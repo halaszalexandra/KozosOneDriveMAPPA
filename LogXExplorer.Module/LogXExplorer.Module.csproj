@@ -434,7 +434,6 @@
     <None Include="Resources\LOG-X.png" />
     <None Include="Resources\X %28color%29.png" />
     <None Include="Resources\LOG-X Software %28R%29.png" />
-    <EmbeddedResource Include="Images\LOG-X Raktárirányítási-Rendszer %28Center 64px%29.png" />
     <EmbeddedResource Include="Images\logo_burgsmueller.png" />
     <EmbeddedResource Include="Images\Icon.svg" />
     <EmbeddedResource Include="Images\1Icon_32x32.png" />
