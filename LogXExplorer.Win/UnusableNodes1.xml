@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <DetailView Id="CommonTrDetail_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="Item3">
+              <LayoutGroup Id="Auto364e8cc0-76c5-4049-aa5e-7b97138ab5e7">
+                <LayoutGroup Id="Auto98484e49-69e5-48f0-9d2b-57747a900080">
+                  <LayoutGroup Id="Auto424d2e0d-05fa-4c63-ab72-75f826807bdf">
+                    <LayoutItem Id="LogX_TransakctonDetailCancel" ViewItem="MyButton" />
+                  </LayoutGroup>
+                </LayoutGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="Product_DetailView">
+      <Variants Id="Variants">
+        <Variant Id="@1ef2a829-8746-4337-89f3-5b96ecd5a5fb" ViewID="Product_DetailView_Copy" />
+      </Variants>
+    </DetailView>
+  </Views>
+</Application>

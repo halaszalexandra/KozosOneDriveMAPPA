@@ -1,0 +1,802 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <ActionDesign>
+    <Actions>
+      <Action Id="LogX_SelectCommonType" Caption="Tranzakció típus" />
+    </Actions>
+  </ActionDesign>
+  <BOModel>
+    <Class Name="DevExpress.Persistent.BaseImpl.AuditDataItemPersistent">
+      <OwnMembers>
+        <Member Name="Description" Caption="Leírás" />
+        <Member Name="ModifiedOn" Caption="Módosítás Dátum" />
+        <Member Name="NewValue" Caption="Új érték" />
+        <Member Name="OldValue" Caption="Régi érték" />
+        <Member Name="OperationType" Caption="Művelet típusa" />
+        <Member Name="PropertyName" Caption="Tulajdonság " />
+        <Member Name="UserName" Caption="Felhasználó" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.AbcType" Caption="Abc típusok">
+      <OwnMembers>
+        <Member Name="Code" Caption="ABC " />
+        <Member Name="Name" Caption="Megnevezés" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.AccelarateType" Caption="Gyorsulási osztályok">
+      <OwnMembers>
+        <Member Name="Accelerate" Caption="Gyorsulás (m/s*s)" />
+        <Member Name="Code" Caption="Kód" />
+        <Member Name="Name" Caption="Megnevezés" />
+        <Member Name="Products" Caption="Termékek" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.Aisle" Caption="Folyosók">
+      <OwnMembers>
+        <Member Name="Name" Caption="Megnevezés" />
+        <Member Name="StorageLocations" Caption="Tárolási helyek" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.BusinessSettings" Caption="Üzleti beállítások">
+      <OwnMembers>
+        <Member Name="DeafultBusinessPartner" Caption="Alapértelmezett Partner" />
+        <Member Name="DefaultAccelerate" Caption="Alapértelmezett gyorsulás" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.CommonTrDetail" Caption="Tételsor">
+      <OwnMembers>
+        <Member Name="CalcLcNumber" Caption="Ládák száma" />
+        <Member Name="CommonTrHeader" Caption="Tanzakció" />
+        <Member Name="Iocps" Caption="IOCP-k" />
+        <Member Name="ItemNum" Caption="Sor" DisplayFormat="{0:#,###,###}" EditMask="#,###,###" />
+        <Member Name="PerformedQty" Caption="Teljesített mennyiség" DisplayFormat="{0:#,###,###}" EditMask="#,###,###" />
+        <Member Name="Product" Caption="Termék" />
+        <Member Name="Quantity" Caption="Igényelt mennyiség" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.CommonTrHeader" Caption="Tranzakciók">
+      <OwnMembers>
+        <Member Name="CommonTrDetails" Caption="Tételsorok" />
+        <Member Name="CommonType" Caption="Tranzakció típus" />
+        <Member Name="Customer" Caption="Partner" />
+        <Member Name="Identity" Caption="Azonosító" />
+        <Member Name="Priority" Caption="Priorítás" />
+        <Member Name="RecordingDate" Caption="Értéknap" EditMask="yyyy.MM.dd" DisplayFormat="{0:yyyy.MM.dd}" />
+        <Member Name="Reference" Caption="Referencia" />
+        <Member Name="Status" Caption="Státusz" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.CommonTrType" Caption="Tranzakció típusok">
+      <OwnMembers>
+        <Member Name="DefaultPartner" Caption="Alapértelmezett Partner" />
+        <Member Name="Name" Caption="Megnevezés" />
+        <Member Name="Sorszams" Caption="Sorszámok" />
+        <Member Name="Type" Caption="Típus" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.CountryStates" Caption="Ország">
+      <OwnMembers>
+        <Member Name="Name" Caption="Megnevezés" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.Customer" Caption="Partner">
+      <OwnMembers>
+        <Member Name="Address" Caption="Cím" />
+        <Member Name="City" Caption="Város" />
+        <Member Name="Country" Caption="Ország" />
+        <Member Name="EmailAddress" Caption="Email Cím" />
+        <Member Name="Name" Caption="Megnevezés" />
+        <Member Name="Phone" Caption="Telefon" />
+        <Member Name="Priority" Caption="Prioritás" />
+        <Member Name="Segment" Caption="Szegmens" />
+        <Member Name="Status" Caption="Státusz" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.CustomerSegment" Caption="Partner Szegmensek">
+      <OwnMembers>
+        <Member Name="Code" Caption="Kód" />
+        <Member Name="Image" Caption="Kép" />
+        <Member Name="Name" Caption="Megnevezés" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.InsertType" Caption="Betét típusok">
+      <OwnMembers>
+        <Member Name="Columns" Caption="Oszlopok" />
+        <Member Name="Name" Caption="Megnevezés" />
+        <Member Name="Photo" Caption="Fotó" />
+        <Member Name="Producer" Caption="Gyártó" />
+        <Member Name="Rows" Caption="Sorok" />
+        <Member Name="StatusCode" Caption="Státusz kód" />
+        <Member Name="Type" Caption="Típus" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.Iocp" Caption="IOCP">
+      <OwnMembers>
+        <Member Name="ActiveCtrD" Caption="Tranzakció" />
+        <Member Name="ActiveLc" Caption="Termékhordó" />
+        <Member Name="ActiveProduct" Caption="Termék" />
+        <Member Name="ActiveType" Caption="Aktív típus" />
+        <Member Name="Barcode" Caption="Vonalkód" />
+        <Member Name="IocpType" Caption="Megjelenés típusa" />
+        <Member Name="Name" Caption="Megnevezés" />
+        <Member Name="Qexchange" Caption="Átváltás" />
+        <Member Name="StoredQty" Caption="Tárolt mennyiség" />
+        <Member Name="StoredUnit" Caption="Tárolt egység" />
+        <Member Name="targetLcNum" Caption="Hívott ládák száma" />
+        <Member Name="TargetProduct" Caption="Alapértelmezett termék" />
+        <Member Name="TargetTag" Caption="Célazonosító" />
+        <Member Name="WeightCurrent" Caption="Aktuális súly" />
+        <Member Name="WieghtBeforeStart" Caption="Induló súly" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.LctProCon" Caption="Ládák-Termékkapcsolat">
+      <OwnMembers>
+        <Member Name="Lct" Caption="Ládatípus" />
+        <Member Name="Product" Caption="Termék" />
+        <Member Name="Reference" Caption="Referencia" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.LoadCarrier" Caption="Termékhordó">
+      <OwnMembers>
+        <Member Name="BarCode" Caption="Vonalkód" />
+        <Member Name="Iocps" Caption="Iocp-k" />
+        <Member Name="isEmpty" Caption="Üres?" />
+        <Member Name="LcType" Caption="Láda Típus" />
+        <Member Name="StatusCode" Caption="Státusz kód" />
+        <Member Name="StockHistories" Caption="Készletnapló" />
+        <Member Name="Stocks" Caption="Készletek" />
+        <Member Name="StorageLocations" Caption="Tárolási helyek" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.LoadCarrierType" Caption="Termékhordó típus">
+      <OwnMembers>
+        <Member Name="Color" Caption="Szín" />
+        <Member Name="Height" Caption="Magasság" DisplayFormat="{0:#,###,### mm}" EditMask="#,###,### mm" />
+        <Member Name="InsertType" Caption="Betét típus" />
+        <Member Name="LctProCons" Caption="Láda-Termékkapcsolat" />
+        <Member Name="Length" Caption="Hosszúság" DisplayFormat="{0:#,###,### mm}" EditMask="#,###,### mm" />
+        <Member Name="LoadCarriers" Caption="Termékhordók" />
+        <Member Name="MaxLoad" Caption="Max teher" DisplayFormat="{0:#,###,### gramm}" EditMask="#,###,### gramm" />
+        <Member Name="Name" Caption="Megnevezés" />
+        <Member Name="Photo" Caption="Fotó" />
+        <Member Name="Producer" Caption="Gyártó" />
+        <Member Name="Products" Caption="Termékek" />
+        <Member Name="QtyExchanges" Caption="Mennyiségi átváltás" />
+        <Member Name="StatusCode" Caption="Státusz kód" />
+        <Member Name="Types" Caption="Típusok" />
+        <Member Name="Weight" Caption="Súly" DisplayFormat="{0:#,###,### gramm}" EditMask="#,###,### gramm" />
+        <Member Name="Width" Caption="Szélesség" DisplayFormat="{0:#,###,### mm}" EditMask="#,###,### mm" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.Producer" Caption="Gyártó">
+      <OwnMembers>
+        <Member Name="InsertTypes" Caption="Betét típus" />
+        <Member Name="LoadCarrierTypes" Caption="Termékhordó típus" />
+        <Member Name="Logo" Caption="Logó" />
+        <Member Name="Name" Caption="Megnevezés" />
+        <Member Name="Products" Caption="Termékek" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.Product" Caption="Termék">
+      <OwnMembers>
+        <Member Name="AbcClass" Caption="Abc osztály" />
+        <Member Name="AccelerateType" Caption="Gyorsulási osztály" />
+        <Member Name="BarCode" Caption="Vonalkód" />
+        <Member Name="BlockedQty" Caption="Zárol mennyiség" />
+        <Member Name="CommonTrDetails" Caption="Tételsorok" />
+        <Member Name="DefaultAisle" Caption="Alapértelmezett folyosó" />
+        <Member Name="DefaultLCT" Caption="Alapértelmezett ládatípus" />
+        <Member Name="DispousedQty" Caption="Selejtezett mennyiség" />
+        <Member Name="FPCType" Caption="Tűzvédelmi osztály" />
+        <Member Name="Height" Caption="Magasság" />
+        <Member Name="Identifier" Caption="Azonosító" />
+        <Member Name="Iocps" Caption="Iocp-k" />
+        <Member Name="LctProCons" Caption="Láda-Termékkapcsolatok" />
+        <Member Name="Length" Caption="Hosszúság" />
+        <Member Name="Name" Caption="Megnevezés" />
+        <Member Name="NormalQty" Caption="Készletmennyiség" />
+        <Member Name="Photo" Caption="Fotó" />
+        <Member Name="Producer" Caption="Gyártó" />
+        <Member Name="ProductGroup" Caption="Termékcsoport" />
+        <Member Name="QtyExchanges" Caption="Mennyiségi átváltás" />
+        <Member Name="ReservedQty" Caption="Foglalt mennyiség" />
+        <Member Name="Status" Caption="Státusz" />
+        <Member Name="StockHistories" Caption="Készletnapló" />
+        <Member Name="Stocks" Caption="Készletek" />
+        <Member Name="Type" Caption="Típus" />
+        <Member Name="UnitType" Caption="Egységtípus" />
+        <Member Name="Weight" Caption="Súly" />
+        <Member Name="Width" Caption="Szélesség" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.QtyExchange" Caption="Mennyiségi átváltás">
+      <OwnMembers>
+        <Member Name="Default" Caption="Alapértelmezett" />
+        <Member Name="In" Caption="Be" />
+        <Member Name="Iocps" Caption="Iocp-k" />
+        <Member Name="LcType" Caption="Láda típus" />
+        <Member Name="Out" Caption="Ki" />
+        <Member Name="PackageHeight" Caption="Magasság" />
+        <Member Name="PackageLength" Caption="Hosszúság" />
+        <Member Name="PackageWeight" Caption="Súly" />
+        <Member Name="PackageWidth" Caption="Szélesség" />
+        <Member Name="Product" Caption="Termék" />
+        <Member Name="SourceQty" Caption="Forrás mennyiség" />
+        <Member Name="TargetQty" Caption="Cél mennyiség" />
+        <Member Name="TargetUnit" Caption="Cél egység" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.Sorszam" Caption="Sorszám">
+      <OwnMembers>
+        <Member Name="LastNum" Caption="Utolsó sorszám" />
+        <Member Name="Type" Caption="Típus" />
+        <Member Name="Year" Caption="Év" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.Stock" Caption="Készlet">
+      <OwnMembers>
+        <Member Name="BlockedQty" Caption="Zárolt mennyiség" />
+        <Member Name="DispousedQty" Caption="Selejtezett mennyiség" />
+        <Member Name="LC" Caption="Termékhordó" />
+        <Member Name="NormalQty" Caption="Készletmennyiség" />
+        <Member Name="Product" Caption="Termék" />
+        <Member Name="ReservedQty" Caption="Foglalt mennyiség" />
+        <Member Name="Section" Caption="Szekció" />
+        <Member Name="StatusCode" Caption="Státusz kód" />
+        <Member Name="StorageLocation" Caption="Tárolási helyek" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.StockHistory" Caption="Készletnapló">
+      <OwnMembers>
+        <Member Name="Booked" Caption="Könyvelt" />
+        <Member Name="CommonDetail" Caption="Tételsor" />
+        <Member Name="Direction" Caption="Irány" />
+        <Member Name="LC" Caption="Termékhordó" />
+        <Member Name="Processed" Caption="Feldolgozott" />
+        <Member Name="Product" Caption="Termék" />
+        <Member Name="Quantity" Caption="Mennyiség" />
+        <Member Name="ResentQty" Caption="Maradék mennyiség" />
+        <Member Name="Section" Caption="Szekció" />
+        <Member Name="Time" Caption="Idő" />
+        <Member Name="Type" Caption="Típus" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.StorageLocation" Caption="Tárolási helyek">
+      <OwnMembers>
+        <Member Name="AbcClass" Caption="Abc osztály" />
+        <Member Name="Aisle" Caption="Folyosó" />
+        <Member Name="Block" Caption="Tömb" />
+        <Member Name="Column" Caption="Oszlop" />
+        <Member Name="Height" Caption="Magasság" />
+        <Member Name="LcIsEmpty" Caption="Láda üres?" />
+        <Member Name="LoadCarrier" Caption="Termékhordó" />
+        <Member Name="Name" Caption="Megnevezés" />
+        <Member Name="ParentSlot" Caption="Szülő cella" />
+        <Member Name="Row" Caption="Sor" />
+        <Member Name="StatusCode" Caption="Státusz kód" />
+        <Member Name="Stocks" Caption="Készletek" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.TransportOrder" Caption="Transzport sorok">
+      <OwnMembers>
+        <Member Name="CommonDetail" Caption="Tételsor" />
+        <Member Name="CommonTrHeader" Caption="Tranzakció" />
+        <Member Name="LC" Caption="Termékhordó" />
+        <Member Name="SourceLocation" Caption="Forrás tárhely" />
+        <Member Name="TargetLocation" Caption="Cél tárhely" />
+        <Member Name="TargetTag" Caption="Cél Modul" />
+        <Member Name="TpId" DisplayFormat="" EditMask="" />
+        <Member Name="Type" Caption="Típus" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.UnitType" Caption="Mennyiségi egységek">
+      <OwnMembers>
+        <Member Name="Name" Caption="Megnevezés" />
+        <Member Name="Products" Caption="Termékek" />
+        <Member Name="QtyExchanges" Caption="Mennyiségi átváltás" />
+      </OwnMembers>
+    </Class>
+  </BOModel>
+  <NavigationItems>
+    <Items>
+      <Item Id="nit_Tasks" Caption="Feladatok">
+        <Items>
+          <Item Id="nit_Transactions" Caption="Tranzakciók " />
+          <Item Id="nit_TransDetails" Caption="Tranzakció tételek" />
+        </Items>
+      </Item>
+      <Item Id="MasterData" Caption="Törzsadatok">
+        <Items>
+          <Item Id="Product" Caption="Termék" />
+          <Item Id="Customer" Caption="Partnerek" />
+          <Item Id="ProductCarrier" Caption="Termékhordók" />
+          <Item Id="StorageLocation" Caption="Tárolási helyek" />
+          <Item Id="Stocks" Caption="Készletek" />
+          <Item Id="Stockhistories" Caption="Készletmozgások" />
+          <Item Id="TrasportLines" Caption="Transzport sorok" />
+        </Items>
+      </Item>
+      <Item Id="Settings" Caption="Beállítások">
+        <Items>
+          <Item Id="BusinessSettings" Caption="Üzleti beállítások" />
+          <Item Id="ABC type" Caption="ABC típus" />
+          <Item Id="AccelerateType" Caption="Gyorsulási Osztályok" />
+          <Item Id="UnitTypes" Caption="Mennyiségi egységek" />
+          <Item Id="LCT" Caption="Láda típusok" />
+          <Item Id="QtyExchange" Caption="Mennyiségi átváltás" />
+          <Item Id="IO port" Caption="IO pontok" />
+        </Items>
+      </Item>
+      <Item Id="Default" Caption="Users" />
+    </Items>
+  </NavigationItems>
+  <Validation>
+    <Rules>
+      <RuleObjectExists Id="cr_BusinessSettingsSingleton" Criteria="[Oid] Is Not Null" CustomMessageTemplate="Another Singleton already exists." />
+    </Rules>
+  </Validation>
+  <Views>
+    <ListView Id="AbcType_ListView" Caption="Abc típusok" />
+    <DetailView Id="AuthenticationStandardLogonParameters_DetailView">
+      <Items>
+        <StaticImage Id="LogonImage" Caption="LogonImage(4)" />
+        <StaticText Id="LogonText" Caption="LogonText(7)" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="RootGroup">
+            <LayoutGroup Id="ImageGroup" Caption="ImageGroup(3)" />
+            <LayoutGroup Id="EditorsGroup">
+              <LayoutGroup Id="Text" Caption="Text(6)" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="BusinessSettings_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="Auto68d5e34b-69f7-4dd6-b2af-fe778de9beec" Caption="">
+              <LayoutGroup Id="XPObject" Caption="Oid" />
+            </LayoutGroup>
+            <LayoutGroup Id="XPObject" Caption="Oid" />
+            <LayoutGroup Id="BusinessSettings">
+              <LayoutGroup Id="Autof02b6599-17de-4ac0-82c6-8165aff4eeb1" Caption="" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="CommonTrDetail_DetailView">
+      <Items>
+        <PropertyEditor Id="ItemNum" Caption="Tételsorszám" DisplayFormat="{0:#,###,##0}" />
+        <ActionContainerViewItem Id="LogX_TransakctonDetailControllers" Caption="LogX_TransakctonDetailControllers(16)" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="CommonTrDetail" Caption="Tranzakció fejléc adatok">
+              <LayoutGroup Id="CommonTrDetail_col1">
+                <LayoutGroup Id="Auto5a104c96-bec4-4730-bb20-c24c60679acd" Caption="Auto5a104c96-bec4-4730-bb20-c24c60679acd(5)" />
+              </LayoutGroup>
+              <LayoutGroup Id="CommonTrDetail_col2" Caption="CommonTrDetail_col2" />
+            </LayoutGroup>
+            <LayoutGroup Id="Item3" Caption="Tranzakció tételsor adatok">
+              <LayoutGroup Id="Autoffe6346f-7839-4fbb-b324-3074bd0ce27f" Caption="Autoffe6346f-7839-4fbb-b324-3074bd0ce27f(9)" />
+              <LayoutGroup Id="Auto364e8cc0-76c5-4049-aa5e-7b97138ab5e7" Caption="Auto364e8cc0-76c5-4049-aa5e-7b97138ab5e7(12)">
+                <LayoutGroup Id="Auto98484e49-69e5-48f0-9d2b-57747a900080" Caption="Auto98484e49-69e5-48f0-9d2b-57747a900080(14)">
+                  <LayoutGroup Id="Auto906a751a-960c-47b2-aa69-197edbe4d7a7" Caption="Auto906a751a-960c-47b2-aa69-197edbe4d7a7(15)" />
+                  <LayoutGroup Id="Auto424d2e0d-05fa-4c63-ab72-75f826807bdf" Caption="Auto424d2e0d-05fa-4c63-ab72-75f826807bdf(18)" />
+                </LayoutGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="XPObject" Caption="Oid" />
+          </LayoutGroup>
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="StockHistories" Caption="Stock Histories" />
+            <LayoutGroup Id="Iocps" Caption="IOCP-k" />
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="CommonTrDetail_ListView">
+      <Columns>
+        <ColumnInfo Id="Product.Identifier" Caption="Termékkód" />
+        <ColumnInfo Id="Product.Name" Caption="Terméknév" />
+        <ColumnInfo Id="CommonTrHeader.Identity" Caption="Tranzakciószám" />
+        <ColumnInfo Id="ItemNum" Caption="Tételsor" />
+        <ColumnInfo Id="Quantity" DisplayFormat="{0:#,###,###}" EditMask="#,###,###" />
+      </Columns>
+    </ListView>
+    <ListView Id="CommonTrHeader_CommonTrDetails_ListView">
+      <Columns>
+        <ColumnInfo Id="ItemNum" EditMask="d" DisplayFormat="{0:d}" />
+      </Columns>
+      <Filters>
+        <Filter Id="flt_allDetails" Caption="Minden tétel" />
+        <Filter Id="flt_nyitottTetelek" Caption="Nyitott tételek" />
+      </Filters>
+    </ListView>
+    <DetailView Id="CommonTrHeader_DetailView">
+      <Items>
+        <ActionContainerViewItem Id="SelectType" Caption="SelectType(19)" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="Item1" Caption="Tranzakció fejléc adatok">
+              <LayoutGroup Id="Autoeda87779-b935-4def-8b30-e5a0de50fa60" Caption="Autoeda87779-b935-4def-8b30-e5a0de50fa60(4)">
+                <LayoutGroup Id="Autoe59ea113-b6b0-4cf9-82c2-d64fb63243cb" Caption="Autoe59ea113-b6b0-4cf9-82c2-d64fb63243cb(8)">
+                  <LayoutGroup Id="Auto46a2296a-b27e-4ea5-bd9c-f7323a40de89" Caption="Auto46a2296a-b27e-4ea5-bd9c-f7323a40de89(14)">
+                    <LayoutGroup Id="Auto91251a58-3760-4fe4-9038-465dcd7c6279" Caption="Auto91251a58-3760-4fe4-9038-465dcd7c6279(16)">
+                      <LayoutGroup Id="Auto20a5ca3e-6116-41ad-9f59-f380ad65ec66" Caption="Auto20a5ca3e-6116-41ad-9f59-f380ad65ec66(12)">
+                        <LayoutGroup Id="Auto533bf7ce-ce89-4c7f-9425-5e2ad3d46c7d" Caption="Auto533bf7ce-ce89-4c7f-9425-5e2ad3d46c7d(10)" />
+                        <LayoutGroup Id="Auto565a79d2-dd93-49a7-9977-5259f02913e1" Caption="Auto565a79d2-dd93-49a7-9977-5259f02913e1(14)" />
+                      </LayoutGroup>
+                    </LayoutGroup>
+                  </LayoutGroup>
+                </LayoutGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="Item3" Caption="Item3" />
+            <LayoutGroup Id="CommonTrDetails" Caption="Tételsorok" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="Customer_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="Customer_col1">
+              <LayoutGroup Id="Item5" Caption="Alap adatok" />
+              <LayoutGroup Id="Autodf311d27-1432-4bc6-97bf-d37e6bfac18f">
+                <LayoutGroup Id="Item11" Caption="Hely" />
+                <LayoutGroup Id="Item3" Caption="Elérhetőségek" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="Customer_ListDetail">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="Customer_col1">
+              <LayoutGroup Id="Item5" Caption="Alap adatok" />
+              <LayoutGroup Id="Autodf311d27-1432-4bc6-97bf-d37e6bfac18f">
+                <LayoutGroup Id="Item11" Caption="Hely" />
+                <LayoutGroup Id="Item3" Caption="Elérhetőségek" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <TabbedGroup Id="Item2">
+              <LayoutGroup Id="Item1" Caption="Audit Trail" />
+            </TabbedGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="Iocp">
+      <Items>
+        <PropertyEditor Id="ActiveLc.BarCode" DisplayFormat="{0:D}" EditMask="D" />
+        <PropertyEditor Id="StoredUnit" DisplayFormat="{0:D}" EditMask="D" />
+        <PropertyEditor Id="WeightCurrent" EditMask="D gramm" DisplayFormat="{0:D gramm}" />
+        <PropertyEditor Id="WieghtBeforeStart" DisplayFormat="{0:D gramm}" EditMask="D gramm" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors" Caption="SimpleEditors">
+            <LayoutGroup Id="Autodc496b72-65fd-42cb-a1c5-3b8ca2e3b084" Caption="Autodc496b72-65fd-42cb-a1c5-3b8ca2e3b084(4)">
+              <LayoutGroup Id="Autoec51067f-5eb0-465f-b138-cd3b3252178b" Caption="Autoec51067f-5eb0-465f-b138-cd3b3252178b(6)">
+                <LayoutGroup Id="Autoee9a42a1-ae66-41e3-a27c-165b4343f5ae" Caption="Autoee9a42a1-ae66-41e3-a27c-165b4343f5ae(7)">
+                  <LayoutGroup Id="Auto55e482e0-f503-4831-b2e6-4a6ae7b77724" Caption="Auto55e482e0-f503-4831-b2e6-4a6ae7b77724(12)">
+                    <LayoutGroup Id="Auto888e76ed-fb57-4292-8f8f-b7e6e117b046" Caption="Auto888e76ed-fb57-4292-8f8f-b7e6e117b046(7)">
+                      <LayoutGroup Id="Autoc97b98dc-26ae-459c-b9ca-9d449d8ca187" Caption="Autoc97b98dc-26ae-459c-b9ca-9d449d8ca187(8)">
+                        <LayoutGroup Id="Auto4ec298ae-f595-4bd3-9622-593f39f6dff6" Caption="Auto4ec298ae-f595-4bd3-9622-593f39f6dff6(15)">
+                          <LayoutGroup Id="Auto97281c56-bbd7-4e1d-9db9-01b75f8f4393" Caption="Auto97281c56-bbd7-4e1d-9db9-01b75f8f4393(22)">
+                            <LayoutGroup Id="Autoef4c8484-3014-4552-aff5-7152e03719fd" Caption="Autoef4c8484-3014-4552-aff5-7152e03719fd(24)">
+                              <LayoutGroup Id="Item4" Caption="Tranzakció">
+                                <LayoutGroup Id="Auto2e251074-84e2-4649-a6af-edd39e1ec5b3" Caption="Auto2e251074-84e2-4649-a6af-edd39e1ec5b3(20)">
+                                  <LayoutGroup Id="Autocdd4435b-cff5-46b3-ac86-989bea972ca8" Caption="Autocdd4435b-cff5-46b3-ac86-989bea972ca8(21)">
+                                    <LayoutGroup Id="Auto2d7a623c-985a-455d-a5fb-ac4437faae7f" Caption="Auto2d7a623c-985a-455d-a5fb-ac4437faae7f(16)">
+                                      <LayoutGroup Id="Auto3b729cdf-f79a-45cb-aca7-11953ac2088b" Caption="Auto3b729cdf-f79a-45cb-aca7-11953ac2088b(17)" />
+                                    </LayoutGroup>
+                                  </LayoutGroup>
+                                  <LayoutGroup Id="Auto57d0914b-4e44-4980-909e-ddc1845f25dc" Caption="Auto57d0914b-4e44-4980-909e-ddc1845f25dc(24)">
+                                    <LayoutGroup Id="Auto92e30d60-903b-43af-b34a-b8f0df62eb54" Caption="Auto92e30d60-903b-43af-b34a-b8f0df62eb54(26)" />
+                                  </LayoutGroup>
+                                </LayoutGroup>
+                              </LayoutGroup>
+                              <LayoutGroup Id="Item5" Caption="Termékhordó">
+                                <LayoutGroup Id="Autoa27faccf-17f5-4f73-a5d1-c074942b4189" Caption="Autoa27faccf-17f5-4f73-a5d1-c074942b4189(31)">
+                                  <LayoutGroup Id="Auto920e255e-79e0-41bf-b53e-489c87c832c5" Caption="Auto920e255e-79e0-41bf-b53e-489c87c832c5(32)" />
+                                  <LayoutGroup Id="Auto8e8a47a4-a589-46f7-aa25-c8d789a87b11" Caption="Auto8e8a47a4-a589-46f7-aa25-c8d789a87b11(41)">
+                                    <LayoutGroup Id="Auto41ee8829-0a7a-4c5a-997b-554bfe3eae3b" Caption="Auto41ee8829-0a7a-4c5a-997b-554bfe3eae3b(45)" />
+                                  </LayoutGroup>
+                                </LayoutGroup>
+                              </LayoutGroup>
+                            </LayoutGroup>
+                          </LayoutGroup>
+                        </LayoutGroup>
+                      </LayoutGroup>
+                      <LayoutGroup Id="Item6" Caption="Transportok" />
+                    </LayoutGroup>
+                  </LayoutGroup>
+                </LayoutGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="Iocp_DetailView">
+      <Items>
+        <PropertyEditor Id="Barcode" DisplayFormat="{0:#,###,###}" EditMask="0:#,###,###" />
+        <PropertyEditor Id="StoredQty" DisplayFormat="{0:#,###,###}" EditMask="0:#,###,###" />
+      </Items>
+    </DetailView>
+    <ListView Id="Iocp_TransportOrders_ListView">
+      <Columns>
+        <ColumnInfo Id="TpId" Caption="Id" />
+        <ColumnInfo Id="InOut" Caption="Irány" />
+        <ColumnInfo Id="LC.BarCode" DisplayFormat="{0:D}" EditMask="D" />
+        <ColumnInfo Id="msgStatus" Caption="Státusz" />
+      </Columns>
+    </ListView>
+    <ListView Id="Iocp_Transports">
+      <Columns>
+        <ColumnInfo Id="LC.BarCode" DisplayFormat="{0:D}" EditMask="D" />
+      </Columns>
+      <Filters>
+        <Filter Id="@376801c0-9e08-4030-9142-dbe6a139818d" Caption="Minden irány" />
+        <Filter Id="Lada_erkezik" Caption="Érkező ládák" />
+        <Filter Id="Lada_erkezik_Copy" Caption="Bemenő ládák" />
+      </Filters>
+    </ListView>
+    <DetailView Id="LoadCarrier_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <TabbedGroup Id="Item1">
+              <LayoutGroup Id="LoadCarrier" Caption="Load Carrier">
+                <LayoutGroup Id="LoadCarrier_col1" Caption="LoadCarrier_col1">
+                  <LayoutGroup Id="Autof652e6f3-7e44-41c3-89f0-dccfb4772837" Caption="Autof652e6f3-7e44-41c3-89f0-dccfb4772837(7)">
+                    <LayoutGroup Id="Auto74d240f1-0ccd-479a-a426-b04e02692aa2" Caption="" />
+                    <LayoutGroup Id="Auto05d43a30-c880-422d-84c4-6abaa3265c75" Caption="">
+                      <LayoutGroup Id="Auto58f375db-464e-41ec-890a-186d79eb0d60" Caption="" />
+                    </LayoutGroup>
+                  </LayoutGroup>
+                </LayoutGroup>
+              </LayoutGroup>
+            </TabbedGroup>
+            <LayoutGroup Id="LoadCarrier">
+              <LayoutGroup Id="LoadCarrier_col1" Caption="LoadCarrier_col1">
+                <LayoutGroup Id="Auto5a1b11c6-2340-4450-b905-747c46e3b552" Caption="" />
+              </LayoutGroup>
+              <LayoutGroup Id="LoadCarrier_col2" Caption="LoadCarrier_col2" />
+            </LayoutGroup>
+            <LayoutGroup Id="XPObject" Caption="Oid" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="LoadCarrier_ListDetail">
+      <Items>
+        <PropertyEditor Id="BarCode" DisplayFormat="" EditMask="" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <TabbedGroup Id="Item1">
+              <LayoutGroup Id="LoadCarrier" Caption="Load Carrier">
+                <LayoutGroup Id="LoadCarrier_col1">
+                  <LayoutGroup Id="Autof652e6f3-7e44-41c3-89f0-dccfb4772837" Caption="Autof652e6f3-7e44-41c3-89f0-dccfb4772837(7)">
+                    <LayoutGroup Id="Auto74d240f1-0ccd-479a-a426-b04e02692aa2" Caption="Auto74d240f1-0ccd-479a-a426-b04e02692aa2(8)" />
+                    <LayoutGroup Id="Auto05d43a30-c880-422d-84c4-6abaa3265c75" Caption="Auto05d43a30-c880-422d-84c4-6abaa3265c75(14)">
+                      <LayoutGroup Id="Auto58f375db-464e-41ec-890a-186d79eb0d60" Caption="Auto58f375db-464e-41ec-890a-186d79eb0d60(16)">
+                        <LayoutGroup Id="Auto68c8b1bd-c2a2-4c61-98d8-1d3c2f99996a" Caption="Auto68c8b1bd-c2a2-4c61-98d8-1d3c2f99996a(21)" />
+                      </LayoutGroup>
+                    </LayoutGroup>
+                  </LayoutGroup>
+                </LayoutGroup>
+              </LayoutGroup>
+            </TabbedGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="LoadCarrierType_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors" Caption="SimpleEditors">
+            <LayoutGroup Id="Auto0543afec-ce27-493f-a234-281fde7ff9ed" Caption="Auto0543afec-ce27-493f-a234-281fde7ff9ed(3)">
+              <LayoutGroup Id="Auto14202e25-610a-4267-8ae2-887fad85cfa1" Caption="Auto14202e25-610a-4267-8ae2-887fad85cfa1(5)">
+                <LayoutGroup Id="Autoc4fc1a48-750d-4cf7-85df-1dcfdd0a2835" Caption="Autoc4fc1a48-750d-4cf7-85df-1dcfdd0a2835(9)">
+                  <LayoutGroup Id="Autoda1624b5-59c6-41f0-a727-32b0aafd904a" Caption="Autoda1624b5-59c6-41f0-a727-32b0aafd904a(10)" />
+                  <LayoutGroup Id="Autoc6a11a0d-7262-4b9f-928f-28f70202b866" Caption="Autoc6a11a0d-7262-4b9f-928f-28f70202b866(14)">
+                    <LayoutGroup Id="Autod29f32eb-789e-4b95-863c-371acabc546c" Caption="" />
+                  </LayoutGroup>
+                </LayoutGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="LoadCarrierType" Caption="Load Carrier Type" />
+            <LayoutGroup Id="XPObject" Caption="Oid" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="Product_DetailView">
+      <Items>
+        <PropertyEditor Id="BarCode" DisplayFormat="{0:#########}" EditMask="{0:#########}" />
+        <PropertyEditor Id="BlockedQty" DisplayFormat="{0:#########}" EditMask="{0:#########}" />
+        <PropertyEditor Id="DispousedQty" DisplayFormat="{0:#########}" EditMask="{0:#########}" />
+        <PropertyEditor Id="EmergQty" DisplayFormat="{0:#########}" EditMask="{0:#########}" />
+        <PropertyEditor Id="Height" DisplayFormat="{0:#########}" EditMask="{0:#########}" />
+        <PropertyEditor Id="Length" DisplayFormat="{0:#########}" EditMask="{0:#########}" />
+        <PropertyEditor Id="MaxQty" DisplayFormat="{0:#########}" EditMask="{0:#########}" />
+        <PropertyEditor Id="MinQty" DisplayFormat="{0:#########}" EditMask="{0:#########}" />
+        <PropertyEditor Id="NormalQty" DisplayFormat="{0:#########}" EditMask="{0:#########}" />
+        <PropertyEditor Id="ReservedQty" DisplayFormat="{0:#########}" EditMask="{0:#########}" />
+        <PropertyEditor Id="Weight" DisplayFormat="{0:#########}" EditMask="{0:#########}" />
+        <PropertyEditor Id="Width" DisplayFormat="{0:#########}" EditMask="{0:#########}" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="XPObject" Caption="Oid">
+              <LayoutGroup Id="Auto300d232b-15fc-419a-88ce-3467bc557440" Caption="Auto300d232b-15fc-419a-88ce-3467bc557440(4)">
+                <LayoutGroup Id="Auto1e02a949-5f12-485c-883c-b570c72cefc8" Caption="Auto1e02a949-5f12-485c-883c-b570c72cefc8(4)" />
+              </LayoutGroup>
+              <TabbedGroup Id="Item16" Caption="Részletek">
+                <LayoutGroup Id="Item9" Caption="Részletek">
+                  <LayoutGroup Id="Auto5d70d860-1142-4fa8-a23e-95875f0a811f">
+                    <LayoutGroup Id="Item2" Caption="Alapértelmezett értékek" />
+                    <LayoutGroup Id="Item17" Caption="Mennyiségek" />
+                  </LayoutGroup>
+                  <LayoutGroup Id="Auto9271009e-4c97-4bb7-a075-1c3fff8d27cb">
+                    <LayoutGroup Id="Item18" Caption="Adatok" />
+                    <LayoutGroup Id="Item19" Caption="Határértékek" />
+                  </LayoutGroup>
+                </LayoutGroup>
+                <LayoutGroup Id="Stocks" Caption="Készletek" />
+              </TabbedGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="Product_ListDetail">
+      <Items>
+        <PropertyEditor Id="BarCode" DisplayFormat="{0:#########}" EditMask="{0:#########}" />
+        <PropertyEditor Id="BlockedQty" DisplayFormat="{0:#########}" EditMask="{0:#########}" />
+        <PropertyEditor Id="DispousedQty" DisplayFormat="{0:#########}" EditMask="{0:#########}" />
+        <PropertyEditor Id="EmergQty" DisplayFormat="{0:#########}" EditMask="{0:#########}" />
+        <PropertyEditor Id="Height" DisplayFormat="{0:#########}" EditMask="{0:#########}" />
+        <PropertyEditor Id="Length" DisplayFormat="{0:#########}" EditMask="{0:#########}" />
+        <PropertyEditor Id="MaxQty" DisplayFormat="{0:#########}" EditMask="{0:#########}" />
+        <PropertyEditor Id="MinQty" DisplayFormat="{0:#########}" EditMask="{0:#########}" />
+        <PropertyEditor Id="NormalQty" DisplayFormat="{0:#########}" EditMask="{0:#########}" />
+        <PropertyEditor Id="ReservedQty" DisplayFormat="{0:#########}" EditMask="{0:#########}" />
+        <PropertyEditor Id="Weight" DisplayFormat="{0:#########}" EditMask="{0:#########}" />
+        <PropertyEditor Id="Width" DisplayFormat="{0:#########}" EditMask="{0:#########}" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="XPObject" Caption="Oid">
+              <LayoutGroup Id="Auto300d232b-15fc-419a-88ce-3467bc557440" Caption="Auto300d232b-15fc-419a-88ce-3467bc557440(4)">
+                <LayoutGroup Id="Auto1e02a949-5f12-485c-883c-b570c72cefc8" Caption="Auto1e02a949-5f12-485c-883c-b570c72cefc8(4)" />
+              </LayoutGroup>
+              <TabbedGroup Id="Item16">
+                <LayoutGroup Id="Item9" Caption="Részletek">
+                  <LayoutGroup Id="Auto5d70d860-1142-4fa8-a23e-95875f0a811f">
+                    <LayoutGroup Id="Item2" Caption="Alapértelmezett értékek" />
+                    <LayoutGroup Id="Item17" Caption="Mennyiségek" />
+                  </LayoutGroup>
+                  <LayoutGroup Id="Auto9271009e-4c97-4bb7-a075-1c3fff8d27cb">
+                    <LayoutGroup Id="Item18" Caption="Adatok" />
+                    <LayoutGroup Id="Item19" Caption="Határértékek" />
+                  </LayoutGroup>
+                </LayoutGroup>
+                <LayoutGroup Id="Stocks" Caption="Készletek" />
+                <LayoutGroup Id="Item6" Caption="Lehetséges folyosók" />
+              </TabbedGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="Product_ListView">
+      <Columns>
+        <ColumnInfo Id="BarCode" DisplayFormat="{0:#########}" EditMask="{0:#########}" />
+        <ColumnInfo Id="EmergQty" DisplayFormat="{0:#########}" EditMask="{0:#########}" />
+        <ColumnInfo Id="MaxQty" DisplayFormat="{0:#########}" EditMask="{0:#########}" />
+        <ColumnInfo Id="MinQty" DisplayFormat="{0:#########}" EditMask="{0:#########}" />
+        <ColumnInfo Id="NormalQty" Caption="Készlet" DisplayFormat="{0:#########}" EditMask="{0:#########}" />
+      </Columns>
+    </ListView>
+    <DetailView Id="QtyExchange_DetailView">
+      <Items>
+        <StaticText Id="Text01" Text="" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="XPObject" Caption="Oid" />
+          </LayoutGroup>
+          <LayoutGroup Id="Iocps_Group" Caption="Iocps" />
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="StockHistory_ListView">
+      <Columns>
+        <ColumnInfo Id="LC.BarCode" DisplayFormat="{0:#########}" />
+      </Columns>
+    </ListView>
+    <DetailView Id="StorageLocation_DetailView">
+      <Items>
+        <PropertyEditor Id="LoadCarrier.BarCode" DisplayFormat="{0:#########}" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="StorageLocation" Caption="Tárolási helyek">
+              <LayoutGroup Id="StorageLocation_col1">
+                <LayoutGroup Id="Auto9519d6ec-1e16-41ee-a1ec-cbce88f2fee6" Caption="" />
+              </LayoutGroup>
+              <LayoutGroup Id="StorageLocation_col2">
+                <LayoutGroup Id="Auto64f4f16a-315a-4535-b67e-753f99d82b67" Caption="" />
+                <LayoutGroup Id="Autob3e47441-91da-4268-8216-92cfddda5c61" Caption="" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="XPObject" Caption="Oid" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="StorageLocation_ListDetail">
+      <Items>
+        <PropertyEditor Id="LoadCarrier.BarCode" DisplayFormat="{0:#########}" />
+      </Items>
+    </DetailView>
+    <ListView Id="StorageLocation_ListView">
+      <Columns>
+        <ColumnInfo Id="LoadCarrier.BarCode" DisplayFormat="{0:#########}" />
+      </Columns>
+    </ListView>
+    <ListView Id="StorageLocation_Stocks_ListView">
+      <Columns>
+        <ColumnInfo Id="NormalQty" DisplayFormat="{0:#########}" EditMask="{0:#########}" />
+        <ColumnInfo Id="ReservedQty" DisplayFormat="{0:#########}" EditMask="{0:#########}" />
+        <ColumnInfo Id="BlockedQty" DisplayFormat="{0:#########}" EditMask="{0:#########}" />
+        <ColumnInfo Id="DispousedQty" DisplayFormat="{0:#########}" EditMask="{0:#########}" />
+      </Columns>
+    </ListView>
+    <DetailView Id="TransportOrder_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="TransportOrder" Caption="Transzport sorok">
+              <LayoutGroup Id="TransportOrder_col1" Caption="Transzport sorok 2">
+                <LayoutGroup Id="Autoaccecd42-1e4f-4d6d-9e00-cae98bb8a084" Caption="Autoaccecd42-1e4f-4d6d-9e00-cae98bb8a084(5)" />
+                <LayoutGroup Id="Autoca45eeb6-3c86-4a23-ae92-e00e11017de5" Caption="Autoca45eeb6-3c86-4a23-ae92-e00e11017de5(8)" />
+                <LayoutGroup Id="Auto4b835b8e-567b-48f0-b24d-16feedcb550c" Caption="" />
+              </LayoutGroup>
+              <LayoutGroup Id="TransportOrder_col2" Caption="Transzport sorok 2" />
+            </LayoutGroup>
+            <LayoutGroup Id="Item1" Caption="Item1">
+              <LayoutGroup Id="Auto443d9d81-2a56-4be8-9dd1-c4777087b060" Caption="Auto443d9d81-2a56-4be8-9dd1-c4777087b060(19)">
+                <LayoutGroup Id="Autoe53ad298-7df9-4861-8e27-e68607fce7e2" Caption="Autoe53ad298-7df9-4861-8e27-e68607fce7e2(20)" />
+                <LayoutGroup Id="Autod473b546-83c8-471a-a0d7-6f286a7aa9af" Caption="Autod473b546-83c8-471a-a0d7-6f286a7aa9af(24)" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="Item2" Caption="Item2" />
+            <LayoutGroup Id="XPObject" Caption="Oid" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

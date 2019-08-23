@@ -1,0 +1,1196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application Title="BURGSMÜLLER Lagerverwaltungssystem">
+  <ActionDesign>
+    <Actions>
+      <Action Id="About Info" Caption="Über..." />
+      <Action Id="Cancel" Caption="Aufheben" />
+      <Action Id="CancelAction" Caption="Aufheben" />
+      <Action Id="ChangeVariant" Caption="Aussicht" />
+      <Action Id="Close" Caption="Schließen" />
+      <Action Id="Delete" Caption="Löschen" />
+      <Action Id="DialogCancel" Caption="Aufheben" />
+      <Action Id="DialogClose" Caption="Schließen" />
+      <Action Id="EditReportControllerV2.Edit" Caption="Editieren" />
+      <Action Id="ListViewShowObject" Caption="Öffnen" />
+      <Action Id="Logoff" Caption="Abmelden" />
+      <Action Id="Logon" Caption="Anmeldung" />
+      <Action Id="LogX_CallCtrh" Caption="Auswahl der Transaktion" />
+      <Action Id="LogX_CallLc" Caption="Anruf" />
+      <Action Id="LogX_CloseCtrH" Caption="Tranzaktion abschließen" />
+      <Action Id="LogX_GetProductFromLc" Caption="Produkt ausnahme " />
+      <Action Id="LogX_ih_AdatokElfogadva" Caption="Status validation" />
+      <Action Id="LogX_ImportDatas" Caption="Import Stammdaten" />
+      <Action Id="LogX_LcIsHere" Caption="Angekommen ladungsträger" />
+      <Action Id="LogX_PutProductIntoLc" Caption="Produkteinsatz" />
+      <Action Id="LogX_SendLcBack" Caption="Zurück" ShortCaption="Zurück" />
+      <Action Id="LogX_sh_AdatokElfogadva" Caption="Data aktzeptieren" />
+      <Action Id="LogX_TypeChangeBack" Caption="Typ zurück" />
+      <Action Id="LogX_TypeChangeComission" Caption="Komissio" />
+      <Action Id="LogX_TypeChangeInventory" Caption="Inventar" />
+      <Action Id="LogX_TypeChangeRemoval" Caption="Entfernung" />
+      <Action Id="LogX_TypeChangeService" Caption="Auswertung" />
+      <Action Id="LogX_TypeChangeStorage" Caption="Lagerung" />
+      <Action Id="Open" Caption="Öffnen" />
+      <Action Id="PreviewReportV2" Caption="Vorschau" />
+      <Action Id="PreviousObject" Caption="Vorheriger Datensatz" />
+      <Action Id="Refresh" Caption="Aktualisieren" />
+      <Action Id="RefreshAction" Caption="Aktualisieren" />
+      <Action Id="RefreshNotifications" Caption="Aktualisieren" />
+      <Action Id="ReportViewerDialogControllerV2_Close" Caption="Schließen" />
+      <Action Id="ResetPassword" Caption="Passwort zurücksetzen" />
+      <Action Id="Save" Caption="Speichern" />
+      <Action Id="SaveAndClose" Caption="Sichere Und Schliesse Ansicht" />
+      <Action Id="SaveAndNew" Caption="Speichern und Neu" />
+    </Actions>
+  </ActionDesign>
+  <BOModel>
+    <Class Name="DevExpress.ExpressApp.Dashboards.Win.XafWizardParameters">
+      <OwnMembers>
+        <Member Name="DataType" Caption="Datentyp" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.ReportsV2.NewReportWizardParameters">
+      <OwnMembers>
+        <Member Name="DataType" Caption="Datentyp" />
+        <Member Name="DisplayName" Caption="AnzeigeName" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Security.AuthenticationStandardLogonParameters">
+      <OwnMembers>
+        <Member Name="Password" Caption="Passwort" />
+        <Member Name="UserName" Caption="Nutzer Name" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Security.ChangePasswordOnLogonParameters">
+      <OwnMembers>
+        <Member Name="NewPassword" Caption="Neues Passwort" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Security.ChangePasswordParameters">
+      <OwnMembers>
+        <Member Name="OldPassword" Caption="Altes Passwort" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Security.EditModelPermission" Caption="Berechtigung zum Editieren des Modells">
+      <OwnMembers>
+        <Member Name="Modifier" Caption="Modifikator" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Security.ObjectAccessPermission">
+      <OwnMembers>
+        <Member Name="NavigateAccess" Caption="Navigieren" />
+        <Member Name="ObjectType" Caption="Objekt Typ" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Security.ResetPasswordParameters">
+      <OwnMembers>
+        <Member Name="Password" Caption="Passwort" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.SystemModule.AboutInfo" Caption="Info über">
+      <OwnMembers>
+        <Member Name="AboutInfoString" Caption="Info Über String" />
+        <Member Name="Description" Caption="Beschreibung" />
+        <Member Name="ProductName" Caption="Produkt Name" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.SystemModule.DashboardOrganizationItem">
+      <OwnMembers>
+        <Member Name="Item" Caption="Artikel" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.SystemModule.StaticImageDashboardOrganizationItem">
+      <OwnMembers>
+        <Member Name="ImageName" Caption="Bild Name" />
+        <Member Name="Preview" Caption="Vorschau" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.SystemModule.ViewDashboardOrganizationItem" Caption="Aussicht">
+      <OwnMembers>
+        <Member Name="ObjectType" Caption="Objekt Typ" />
+        <Member Name="ViewDescriptor" Caption="Aussicht" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Validation.AllContextsView.ContextValidationResult">
+      <OwnMembers>
+        <Member Name="BrokenRules" Caption="Verstossene Regeln" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Validation.AllContextsView.DisplayableValidationResultItem">
+      <OwnMembers>
+        <Member Name="Rule" Caption="Regel" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.ExpressApp.Validation.AllContextsView.ValidationResults">
+      <OwnMembers>
+        <Member Name="Results" Caption="Resultat" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.Persistent.AuditTrail.BaseAuditedObjectWeakReference">
+      <OwnMembers>
+        <Member Name="DisplayName" Caption="AnzeigeName" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.Persistent.BaseImpl.AuditDataItemPersistent">
+      <OwnMembers>
+        <Member Name="Description" Caption="Beschreibung" />
+        <Member Name="ModifiedOn" Caption="Geändert am" />
+        <Member Name="NewValue" Caption="Neuer Wert" />
+        <Member Name="OldValue" Caption="Alter Wert" />
+        <Member Name="OperationType" Caption="Operation Typ" />
+        <Member Name="UserName" Caption="Nutzer Name" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.Persistent.BaseImpl.FileData">
+      <OwnMembers>
+        <Member Name="Size" Caption="Grösse" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.Persistent.BaseImpl.ModelDifference">
+      <OwnMembers>
+        <Member Name="UserName" Caption="Nutzer Name" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.Persistent.BaseImpl.ModelDifferenceAspect">
+      <OwnMembers>
+        <Member Name="DisplayName" Caption="AnzeigeName" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.Persistent.BaseImpl.PermissionPolicy.PermissionPolicyMemberPermissionsObject">
+      <OwnMembers>
+        <Member Name="ReadState" Caption="Lesen" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.Persistent.BaseImpl.PermissionPolicy.PermissionPolicyNavigationPermissionObject">
+      <OwnMembers>
+        <Member Name="NavigateState" Caption="Navigieren" />
+        <Member Name="Role" Caption="Rolle" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.Persistent.BaseImpl.PermissionPolicy.PermissionPolicyObjectPermissionsObject">
+      <OwnMembers>
+        <Member Name="DeleteState" Caption="Löschen" />
+        <Member Name="NavigateState" Caption="Navigieren" />
+        <Member Name="ReadState" Caption="Lesen" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.Persistent.BaseImpl.PermissionPolicy.PermissionPolicyRole" Caption="Rolle" />
+    <Class Name="DevExpress.Persistent.BaseImpl.PermissionPolicy.PermissionPolicyRoleBase">
+      <OwnMembers>
+        <Member Name="IsAdministrative" Caption="Ist Administrative" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.Persistent.BaseImpl.PermissionPolicy.PermissionPolicyTypePermissionObject">
+      <OwnMembers>
+        <Member Name="DeleteState" Caption="Löschen" />
+        <Member Name="NavigateState" Caption="Navigieren" />
+        <Member Name="ReadState" Caption="Lesen" />
+        <Member Name="Role" Caption="Rolle" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.Persistent.BaseImpl.PermissionPolicy.PermissionPolicyUser" Caption="Nutzer">
+      <OwnMembers>
+        <Member Name="IsActive" Caption="Ist Active" />
+        <Member Name="UserName" Caption="Nutzer Name" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.Persistent.BaseImpl.ReportDataV2">
+      <OwnMembers>
+        <Member Name="DataTypeCaption" Caption="Datentyp" />
+        <Member Name="DisplayName" Caption="AnzeigeName" />
+        <Member Name="IsInplaceReport" Caption="Ist Inplace Report" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.Persistent.Validation.IRuleBaseProperties" Caption="Regel Basis Eigenschaften" />
+    <Class Name="DevExpress.Persistent.Validation.IRuleIsReferencedProperties">
+      <OwnMembers>
+        <Member Name="LooksFor" Caption="Sucht Nach " />
+        <Member Name="ReferencePropertyName" Caption="Referenzierte Eigenschaften Name" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.Persistent.Validation.IRuleObjectExistsProperties">
+      <OwnMembers>
+        <Member Name="LooksFor" Caption="Sucht Nach " />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.Persistent.Validation.IRuleRangeProperties">
+      <OwnMembers>
+        <Member Name="MaximumValue" Caption="Maximaler Wert" />
+        <Member Name="MaximumValueExpression" Caption="Maximaler Wert Ausdruck" />
+        <Member Name="MinimumValue" Caption="Minimaler Wert" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.Persistent.Validation.IRuleSearchObjectProperties">
+      <OwnMembers>
+        <Member Name="IncludeCurrentObject" Caption="Enthält Aktuelles ObjektEnthält Aktuelles Objekt" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.Persistent.Validation.IRuleStringComparisonProperties">
+      <OwnMembers>
+        <Member Name="OperandValue" Caption="Operanden Wert" />
+        <Member Name="OperatorType" Caption="Operator Typ" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.Persistent.Validation.IRuleValueComparisonProperties">
+      <OwnMembers>
+        <Member Name="OperatorType" Caption="Operator Typ" />
+        <Member Name="RightOperand" Caption="Rechter Operand" />
+        <Member Name="RightOperandExpression" Caption="Rechter Operand Ausdruck" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.Persistent.Validation.RuleBaseProperties" Caption="Regel Basis Eigenschaften" />
+    <Class Name="DevExpress.Persistent.Validation.RuleIsReferencedProperties">
+      <OwnMembers>
+        <Member Name="LooksFor" Caption="Sucht Nach " />
+        <Member Name="ReferencePropertyName" Caption="Referenzierte Eigenschaften Name" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.Persistent.Validation.RuleObjectExistsProperties">
+      <OwnMembers>
+        <Member Name="LooksFor" Caption="Sucht Nach " />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.Persistent.Validation.RuleRangeProperties">
+      <OwnMembers>
+        <Member Name="MaximumValue" Caption="Maximaler Wert" />
+        <Member Name="MaximumValueExpression" Caption="Maximaler Wert Ausdruck" />
+        <Member Name="MinimumValue" Caption="Minimaler Wert" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.Persistent.Validation.RuleSearchObjectProperties">
+      <OwnMembers>
+        <Member Name="IncludeCurrentObject" Caption="Enthält Aktuelles ObjektEnthält Aktuelles Objekt" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.Persistent.Validation.RuleSetValidationResult">
+      <OwnMembers>
+        <Member Name="Results" Caption="Resultat" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.Persistent.Validation.RuleSetValidationResultItem">
+      <OwnMembers>
+        <Member Name="Rule" Caption="Regel" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.Persistent.Validation.RuleStringComparisonProperties">
+      <OwnMembers>
+        <Member Name="OperandValue" Caption="Operanden Wert" />
+        <Member Name="OperatorType" Caption="Operator Typ" />
+      </OwnMembers>
+    </Class>
+    <Class Name="DevExpress.Persistent.Validation.RuleValueComparisonProperties">
+      <OwnMembers>
+        <Member Name="OperatorType" Caption="Operator Typ" />
+        <Member Name="RightOperand" Caption="Rechter Operand" />
+        <Member Name="RightOperandExpression" Caption="Rechter Operand Ausdruck" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.AbcType" Caption="ABC-Klasse" />
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.AccelarateType" Caption="Beschleunigungs-Klasse">
+      <OwnMembers>
+        <Member Name="Accelerate" Caption="Beschleunigung" />
+        <Member Name="BusinessSettingsCollection" Caption="Geschäftseinstellungen" />
+        <Member Name="Products" Caption="Produkte" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.Aisle" Caption="Gasse">
+      <OwnMembers>
+        <Member Name="StorageLocations" Caption="Lagerplätze" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.BusinessSettings" Caption="Geschäftseinstellungen" />
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.CommonTrDetail" Caption="Tranzaktion Detail">
+      <OwnMembers>
+        <Member Name="PerformedQty" Caption="Ausfüht Menge" />
+        <Member Name="Product" Caption="Produkt" />
+        <Member Name="Quantity" Caption="Menge" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.CommonTrHeader" Caption="Tranzaktion Kopf">
+      <OwnMembers>
+        <Member Name="Customer" Caption="Geschäftspartner" />
+        <Member Name="Identity" Caption="Identität" />
+        <Member Name="Priority" Caption="Priorität" />
+        <Member Name="RecordingDate" Caption="Aufnahmedatum" />
+        <Member Name="Reference" Caption="Referenz" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.CommonTrType">
+      <OwnMembers>
+        <Member Name="Type" Caption="Typ" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.Customer" Caption="Geschäftspartner">
+      <OwnMembers>
+        <Member Name="Address" Caption="Addresse" />
+        <Member Name="BusinessSettingsCollection" Caption="Geschäftseinstellungen" />
+        <Member Name="City" Caption="Stadt" />
+        <Member Name="Priority" Caption="Priorität" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.CustomerSegment">
+      <OwnMembers>
+        <Member Name="Image" Caption="Bild" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.InsertType" Caption="Ladungsträger-Einsätze">
+      <OwnMembers>
+        <Member Name="Columns" Caption="Säulen" />
+        <Member Name="LoadCarrierTypes" Caption="Ladungsträger Typ" />
+        <Member Name="Photo" Caption="Foto" />
+        <Member Name="Producer" Caption="Hersteller" />
+        <Member Name="Type" Caption="Typ" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.Iocp">
+      <OwnMembers>
+        <Member Name="ActiveCtrD" Caption="Transaktion" />
+        <Member Name="Barcode" Caption="Strichcode" />
+        <Member Name="StoredQty" Caption="gelagert menge" />
+        <Member Name="WieghtBeforeStart" Caption="Gewicht vor dem Start" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.LctProCon">
+      <OwnMembers>
+        <Member Name="Product" Caption="Produkt" />
+        <Member Name="Reference" Caption="Referenz" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.LoadCarrier" Caption="Ladungsträger">
+      <OwnMembers>
+        <Member Name="BarCode" Caption="Strichcode" />
+        <Member Name="isEmpty" Caption="ist Empty" />
+        <Member Name="StorageLocations" Caption="Lagerplätze" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.LoadCarrierType">
+      <OwnMembers>
+        <Member Name="Color" Caption="Farbe" />
+        <Member Name="InsertType" Caption="Ladungsträger-Einsätze" />
+        <Member Name="Length" Caption="Länge" />
+        <Member Name="MaxLoad" Caption="Max Gewicht" />
+        <Member Name="Photo" Caption="Foto" />
+        <Member Name="Producer" Caption="Hersteller" />
+        <Member Name="Products" Caption="Produkte" />
+        <Member Name="Types" Caption="Typ" />
+        <Member Name="Weight" Caption="Gewicht" />
+        <Member Name="Width" Caption="Breite" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.Producer" Caption="Hersteller">
+      <OwnMembers>
+        <Member Name="LoadCarrierTypes" Caption="Ladungsträger Typ" />
+        <Member Name="Products" Caption="Produkte" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.Product" Caption="Produkt">
+      <OwnMembers>
+        <Member Name="AbcClass" Caption="ABC-Klasse" />
+        <Member Name="AccelerateType" Caption="Beschleunigungs-Klasse" />
+        <Member Name="BarCode" Caption="Strichcode" />
+        <Member Name="BlockedQty" Caption="Gesperrte Menge" />
+        <Member Name="DefaultLCT" Caption="Ladungsträger-Typen LCT" />
+        <Member Name="DispousedQty" Caption="Beschädigte Menge" />
+        <Member Name="EmergQty" DisplayFormat="{0:#,###,###}" EditMask="#,###,###" />
+        <Member Name="Height" Caption="Höhe" DisplayFormat="{0:#,###,###  mm}" EditMask="#,###,###  mm" />
+        <Member Name="Identifier" Caption="Materialnummer" />
+        <Member Name="Length" Caption="Länge" DisplayFormat="{0:#,###,###  mm}" EditMask="#,###,### mm" />
+        <Member Name="MaxQty" EditMask="#,###,###" DisplayFormat="{0:#,###,###}" />
+        <Member Name="NormalQty" DisplayFormat="{0:#,###,###}" Caption="Normale Menge" EditMask="#,###,### " />
+        <Member Name="Photo" Caption="Foto" />
+        <Member Name="Producer" Caption="Hersteller" />
+        <Member Name="ProductGroup" Caption="Produktgruppe" />
+        <Member Name="ReservedQty" Caption="Reservierte Menge" />
+        <Member Name="Type" Caption="Typ" />
+        <Member Name="UnitType" Caption="Einheitentyp" />
+        <Member Name="Weight" Caption="Gewicht" DisplayFormat="{0:#,###,### gramm}" EditMask="#,###,### gramm" />
+        <Member Name="Width" Caption="Breite" DisplayFormat="{0:#,###,###  mm}" EditMask="#,###,###  mm" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.ProductProducts_AisleAisles">
+      <OwnMembers>
+        <Member Name="Aisles" Caption="Gassen" />
+        <Member Name="Products" Caption="Produkte" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.QtyExchange" Caption="Ladungsträger">
+      <OwnMembers>
+        <Member Name="Product" Caption="Produkt" />
+        <Member Name="SourceQty" Caption="Quelle menge" />
+        <Member Name="TargetQty" Caption="Ziel menge" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.Sorszam" Caption="Nummer">
+      <OwnMembers>
+        <Member Name="Type" Caption="Typ" />
+        <Member Name="Year" Caption="Jahr" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.Stock" Caption="Lager">
+      <OwnMembers>
+        <Member Name="BlockedQty" Caption="Gesperrte Menge" />
+        <Member Name="DispousedQty" Caption="Beschädigte Menge" />
+        <Member Name="NormalQty" Caption="Normale Menge" />
+        <Member Name="Product" Caption="Produkt" />
+        <Member Name="ReservedQty" Caption="Reservierte Menge" />
+        <Member Name="Section" Caption="Sektion" />
+        <Member Name="StorageLocation" Caption="Lagerplätze" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.StockHistory">
+      <OwnMembers>
+        <Member Name="Booked" Caption="Gebucht" />
+        <Member Name="Direction" Caption="Richtung" />
+        <Member Name="Product" Caption="Produkt" />
+        <Member Name="Quantity" Caption="Menge" />
+        <Member Name="ResentQty" Caption="Reservierte Menge" />
+        <Member Name="Section" Caption="Sektion" />
+        <Member Name="Type" Caption="Typ" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.StorageLocation" Caption="Lagerplätze">
+      <OwnMembers>
+        <Member Name="AbcClass" Caption="ABC-Klasse" />
+        <Member Name="Aisle" Caption="Gasse" />
+        <Member Name="Column" Caption="Säule" />
+        <Member Name="LcIsEmpty" Caption="Lc Ist Empty" />
+        <Member Name="LoadCarrier" Caption="Ladungsträger" />
+        <Member Name="Row" Caption="Reihe" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.TransportOrder">
+      <OwnMembers>
+        <Member Name="SourceLocation" Caption="Lagerplätze" />
+        <Member Name="Type" Caption="Typ" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.UnitType" Caption="Einheitentyp">
+      <OwnMembers>
+        <Member Name="Products" Caption="Produkte" />
+      </OwnMembers>
+    </Class>
+  </BOModel>
+  <NavigationItems>
+    <Items>
+      <Item Id="nit_Tasks" Caption="Aufgaben">
+        <Items>
+          <Item Id="nit_Transactions" Caption="Fertigungsaufträge" />
+        </Items>
+      </Item>
+      <Item Id="MasterData" Caption="Stammdaten">
+        <Items>
+          <Item Id="Product" Caption="Produkte" />
+          <Item Id="Stockhistories" Caption="Lagerbuchhaltung" />
+          <Item Id="TrasportLines" Caption="Transporten" />
+        </Items>
+      </Item>
+      <Item Id="Reports">
+        <Items>
+          <Item Id="Analize" Caption="Analyse" />
+          <Item Id="ReportsV2" Caption="Belege / Berichte" />
+          <Item Id="@d62de81e-eb72-469c-8448-a5d64c233d9a" Caption="KPI-Leistungsindikatoren" />
+          <Item Id="KPI" Caption="KPI Wertungsliste" />
+        </Items>
+      </Item>
+      <Item Id="Settings" Caption="Einstellungen">
+        <Items>
+          <Item Id="LCT" Caption="Ladungsträger-Typen" />
+          <Item Id="QtyExchange" Caption="Mengenumrechnung" />
+        </Items>
+      </Item>
+    </Items>
+  </NavigationItems>
+  <Validation>
+    <Contexts>
+      <ValidationContext Id="Accept" Caption="Akzeptieren" />
+      <ValidationContext Id="Delete" Caption="Löschen" />
+      <ValidationContext Id="Save" Caption="Sichern" />
+    </Contexts>
+    <Rules>
+      <RuleObjectExists Id="cr_BusinessSettingsSingleton" Criteria="[Oid] Is Not Null" />
+    </Rules>
+  </Validation>
+  <Views>
+    <DetailView Id="AboutInfo_DetailView" Caption="Über" />
+    <ListView Id="AccelarateType_Products_ListView">
+      <Columns>
+        <ColumnInfo Id="Photo" Caption="Foto" />
+        <ColumnInfo Id="ProductGroup" Caption="Produktgruppe" />
+      </Columns>
+    </ListView>
+    <ListView Id="Aisle_LookupListView" Caption="Folyosók" />
+    <ListView Id="Aisle_StorageLocations_ListView">
+      <Columns>
+        <ColumnInfo Id="Aisle" Caption="Gasse" />
+      </Columns>
+    </ListView>
+    <DetailView Id="AuditDataItemPersistent_DetailView">
+      <Items>
+        <PropertyEditor Id="Description" Caption="Beschreibung" />
+      </Items>
+    </DetailView>
+    <DetailView Id="AuditedObjectWeakReference_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="BaseAuditedObjectWeakReference" Caption="Basis Geprüfte Objekt Referenz Schwäche" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="BaseAuditedObjectWeakReference_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="BaseAuditedObjectWeakReference" Caption="Basis Geprüfte Objekt Referenz Schwäche" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="BusinessSettings_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="Auto68d5e34b-69f7-4dd6-b2af-fe778de9beec">
+              <LayoutGroup Id="BusinessSettings" Caption="Geschäftseinstellungen" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="CommonTrDetail_DetailView" Caption="Tranzaktion Detail" />
+    <ListView Id="CommonTrDetail_Iocps_ListView">
+      <Columns>
+        <ColumnInfo Id="StoredQty" Caption="gelagert menge" />
+      </Columns>
+    </ListView>
+    <ListView Id="CommonTrDetail_ListView" Caption="Tranzaktion Detail" />
+    <ListView Id="CommonTrDetail_StockHistories_ListView">
+      <Columns>
+        <ColumnInfo Id="ResentQty" Caption="Resent Menge" />
+      </Columns>
+    </ListView>
+    <ListView Id="CommonTrHeader_CommonTrDetails_ListView">
+      <Columns>
+        <ColumnInfo Id="Product.Identifier" Caption="Materialnummer" />
+        <ColumnInfo Id="PerformedQty" Caption="Ausgeführte Menge" />
+      </Columns>
+    </ListView>
+    <DetailView Id="CommonTrHeader_DetailView" Caption="Tranzaktion Kopfzeile" />
+    <ListView Id="CommonTrHeader_Iocps_ListView">
+      <Columns>
+        <ColumnInfo Id="StoredQty" Caption="gelagert menge" />
+      </Columns>
+    </ListView>
+    <DetailView Id="CommonTrHeader_ListDetail" Caption="Tranzaktion Kopfzeile">
+      <Items>
+        <StaticImage Id="logo" Caption="logo(6)" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="CommonTrDetails" Caption="Artikel" />
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="CommonTrHeader_ListView" Caption="Tranzaktion Kopfzeile">
+      <Columns>
+        <ColumnInfo Id="CommonType.Name" Caption="Typen" />
+        <ColumnInfo Id="CommonType" Caption="Typ" />
+        <ColumnInfo Id="RecordingDate" Caption="Datum" />
+        <ColumnInfo Id="Reference" Caption="Fertigungsauftragsnummer" />
+      </Columns>
+      <Filters>
+        <Filter Id="filter_alleTranzaktion" Caption="Alle Tranzaktionen" />
+        <Filter Id="filter_activeTranzaktion_Copy" Caption="Aktiv Tranzaktion" />
+      </Filters>
+    </ListView>
+    <ListView Id="Customer_CommonTrHeaders_ListView">
+      <Columns>
+        <ColumnInfo Id="Priority" Caption="Priorität" />
+        <ColumnInfo Id="RecordingDate" Caption="Aufnahmedatum" />
+      </Columns>
+    </ListView>
+    <DetailView Id="Customer_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="Customer_col1">
+              <LayoutGroup Id="Item5" Caption="Stammdaten">
+                <LayoutGroup Id="Autobe1e9426-2441-438a-b9be-1a77d045afe3" Caption="Autobe1e9426-2441-438a-b9be-1a77d045afe3(8)">
+                  <LayoutGroup Id="Autoa7b41a69-1c41-4751-8214-fbc9e8b9a5df" Caption="Autoa7b41a69-1c41-4751-8214-fbc9e8b9a5df(9)" />
+                  <LayoutGroup Id="Auto0824cc08-eb67-4e6d-84bd-9fcbbd8f9d83" Caption="Auto0824cc08-eb67-4e6d-84bd-9fcbbd8f9d83(12)" />
+                </LayoutGroup>
+              </LayoutGroup>
+              <LayoutGroup Id="Autodf311d27-1432-4bc6-97bf-d37e6bfac18f" Caption="Autodf311d27-1432-4bc6-97bf-d37e6bfac18f(14)">
+                <LayoutGroup Id="Item11" Caption="Addresse">
+                  <LayoutGroup Id="Auto42e968c3-308b-4fa3-b2ff-03fb109e4097" Caption="Auto42e968c3-308b-4fa3-b2ff-03fb109e4097(19)" />
+                </LayoutGroup>
+                <LayoutGroup Id="Item3" Caption="Kontakt" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <TabbedGroup Id="Item2">
+              <LayoutGroup Id="Item1" Caption="Item1" />
+            </TabbedGroup>
+            <LayoutGroup Id="Customer" Caption="Geschäftspartner">
+              <LayoutGroup Id="Customer_col1">
+                <TabbedGroup Id="Item6">
+                  <LayoutGroup Id="Item5">
+                    <LayoutGroup Id="Auto55ed513b-0ae8-4d20-b7c0-8eca2ea15346" Caption="Auto55ed513b-0ae8-4d20-b7c0-8eca2ea15346(9)" />
+                    <LayoutGroup Id="Auto4a7cf35b-8bb7-402e-95ef-ae32f164d1da" Caption="" />
+                  </LayoutGroup>
+                </TabbedGroup>
+                <LayoutGroup Id="Autodf311d27-1432-4bc6-97bf-d37e6bfac18f" Caption="Autodf311d27-1432-4bc6-97bf-d37e6bfac18f(14)">
+                  <TabbedGroup Id="Item12">
+                    <LayoutGroup Id="Item11">
+                      <LayoutGroup Id="Auto42e968c3-308b-4fa3-b2ff-03fb109e4097" Caption="Auto42e968c3-308b-4fa3-b2ff-03fb109e4097(19)" />
+                    </LayoutGroup>
+                  </TabbedGroup>
+                </LayoutGroup>
+              </LayoutGroup>
+              <LayoutGroup Id="Customer_col2" Caption="Customer_col2" />
+            </LayoutGroup>
+            <LayoutGroup Id="XPObject" Caption="Oid" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="Customer_ListDetail">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="Customer_col1">
+              <LayoutGroup Id="Item5" Caption="Stammdaten">
+                <LayoutGroup Id="Autobe1e9426-2441-438a-b9be-1a77d045afe3" Caption="Autobe1e9426-2441-438a-b9be-1a77d045afe3(8)">
+                  <LayoutGroup Id="Autoa7b41a69-1c41-4751-8214-fbc9e8b9a5df" Caption="Autoa7b41a69-1c41-4751-8214-fbc9e8b9a5df(9)" />
+                  <LayoutGroup Id="Auto0824cc08-eb67-4e6d-84bd-9fcbbd8f9d83" Caption="Auto0824cc08-eb67-4e6d-84bd-9fcbbd8f9d83(12)" />
+                </LayoutGroup>
+              </LayoutGroup>
+              <LayoutGroup Id="Autodf311d27-1432-4bc6-97bf-d37e6bfac18f" Caption="Autodf311d27-1432-4bc6-97bf-d37e6bfac18f(14)">
+                <LayoutGroup Id="Item11" Caption="Addresse">
+                  <LayoutGroup Id="Autoe380d957-ca8d-4625-8c2f-477bf3fe4d6b" Caption="Autoe380d957-ca8d-4625-8c2f-477bf3fe4d6b(19)" />
+                  <LayoutGroup Id="Auto42e968c3-308b-4fa3-b2ff-03fb109e4097" Caption="Auto42e968c3-308b-4fa3-b2ff-03fb109e4097(19)" />
+                </LayoutGroup>
+                <LayoutGroup Id="Item3" Caption="Kontakt" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="DashboardOrganizationItem_ListView">
+      <Columns>
+        <ColumnInfo Id="Item" Caption="Artikel" />
+      </Columns>
+    </ListView>
+    <DetailView Id="DisplayableValidationResultItem_DetailView">
+      <Items>
+        <PropertyEditor Id="Rule" Caption="Regel" />
+      </Items>
+    </DetailView>
+    <DetailView Id="InsertType_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="InsertType" Caption="Ladungsträger-Einsätze" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="InsertType_LoadCarrierTypes_ListView">
+      <Columns>
+        <ColumnInfo Id="Color" Caption="Farbe" />
+      </Columns>
+    </ListView>
+    <DetailView Id="Iocp_DetailView">
+      <Items>
+        <PropertyEditor Id="StoredQty" Caption="gelagert menge" />
+        <PropertyEditor Id="WieghtBeforeStart" Caption="Gewicht vor dem Start" />
+      </Items>
+    </DetailView>
+    <ListView Id="Iocp_ListView">
+      <Columns>
+        <ColumnInfo Id="StoredQty" Caption="gelagert menge" />
+      </Columns>
+    </ListView>
+    <DetailView Id="IRuleObjectExistsProperties_DetailView">
+      <Items>
+        <PropertyEditor Id="IncludeCurrentObject" Caption="Enthält Aktuelles ObjektEnthält Aktuelles Objekt" />
+      </Items>
+    </DetailView>
+    <DetailView Id="IRuleRangeProperties_DetailView">
+      <Items>
+        <PropertyEditor Id="MaximumValueExpression" Caption="Maximaler Wert Ausdruck" />
+      </Items>
+    </DetailView>
+    <DetailView Id="IRuleStringComparisonProperties_DetailView">
+      <Items>
+        <PropertyEditor Id="OperandValue" Caption="Operanden Wert" />
+      </Items>
+    </DetailView>
+    <DetailView Id="LoadCarrier_DetailView">
+      <Items>
+        <PropertyEditor Id="LcType.Length" Caption="Länge" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <TabbedGroup Id="Item1">
+              <LayoutGroup Id="LoadCarrier" Caption="Ladungsträger" />
+            </TabbedGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="LoadCarrier_Iocps_ListView">
+      <Columns>
+        <ColumnInfo Id="StoredQty" Caption="gelagert menge" />
+      </Columns>
+    </ListView>
+    <DetailView Id="LoadCarrier_ListDetail">
+      <Items>
+        <PropertyEditor Id="LcType.Weight" Caption="Gewicht" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <TabbedGroup Id="Item1">
+              <LayoutGroup Id="LoadCarrier" Caption="Ladungsträger" />
+            </TabbedGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="LoadCarrier_StockHistories_ListView">
+      <Columns>
+        <ColumnInfo Id="Direction" Caption="Richtung" />
+        <ColumnInfo Id="ResentQty" Caption="Resent Menge" />
+      </Columns>
+    </ListView>
+    <ListView Id="LoadCarrier_Stocks_ListView">
+      <Columns>
+        <ColumnInfo Id="DispousedQty" Caption="Beschädigte Menge" />
+      </Columns>
+    </ListView>
+    <ListView Id="LoadCarrier_StorageLocations_ListView">
+      <Columns>
+        <ColumnInfo Id="Aisle" Caption="Gasse" />
+      </Columns>
+    </ListView>
+    <ListView Id="LoadCarrierType_ListView">
+      <Columns>
+        <ColumnInfo Id="InsertType" Caption="Ladungsträger-Einsätze" />
+      </Columns>
+    </ListView>
+    <ListView Id="LoadCarrierType_Products_ListView">
+      <Columns>
+        <ColumnInfo Id="ProductGroup" Caption="Produktgruppe" />
+      </Columns>
+    </ListView>
+    <ListView Id="LoadCarrierType_QtyExchanges_ListView">
+      <Columns>
+        <ColumnInfo Id="SourceQty" Caption="Quelle menge" />
+      </Columns>
+    </ListView>
+    <ListView Id="PermissionPolicyMemberPermissionsObject_ListView">
+      <Columns>
+        <ColumnInfo Id="ReadState" Caption="Lesen" />
+      </Columns>
+    </ListView>
+    <DetailView Id="PermissionPolicyRoleBase_DetailView">
+      <Items>
+        <PropertyEditor Id="IsAdministrative" Caption="Ist Administrative" />
+      </Items>
+    </DetailView>
+    <ListView Id="PermissionPolicyRoleBase_NavigationPermissions_ListView">
+      <Columns>
+        <ColumnInfo Id="NavigateState" Caption="Navigieren" />
+      </Columns>
+    </ListView>
+    <ListView Id="PermissionPolicyUser_ListView" Caption="Nutzer" />
+    <DetailView Id="Producer_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="LoadCarrierTypes" Caption="Ladungsträger Typ" />
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="Producer_Products_ListView">
+      <Columns>
+        <ColumnInfo Id="ProductGroup" Caption="Produktgruppe" />
+      </Columns>
+    </ListView>
+    <ListView Id="Product_CommonTrDetails_ListView">
+      <Columns>
+        <ColumnInfo Id="PerformedQty" Caption="Ausfüht Menge" />
+        <ColumnInfo Id="Quantity" Caption="Menge" />
+      </Columns>
+    </ListView>
+    <DetailView Id="Product_DetailView">
+      <Items>
+        <PropertyEditor Id="DefaultLCT" Caption="Ladungsträger-Typen LCT" />
+        <PropertyEditor Id="EmergQty" Caption="Bäschedigte  Menge" />
+        <PropertyEditor Id="Height" DisplayFormat="{0:# mm}" EditMask="# mm" />
+        <PropertyEditor Id="Length" DisplayFormat="" EditMask="# mm" />
+        <PropertyEditor Id="MaxQty" Caption="Max. Menge" DisplayFormat="{0:#,###,##0}" EditMask="#,###,##0" />
+        <PropertyEditor Id="MinQty" Caption="Min. Menge" />
+        <PropertyEditor Id="Width" DisplayFormat="{0:# mm}" EditMask="# mm" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="XPObject">
+              <LayoutGroup Id="Auto300d232b-15fc-419a-88ce-3467bc557440">
+                <LayoutGroup Id="Auto1e02a949-5f12-485c-883c-b570c72cefc8">
+                  <LayoutGroup Id="Auto3869afa5-006b-4b54-aaef-8807a6a9ae68" Caption="Auto3869afa5-006b-4b54-aaef-8807a6a9ae68(6)">
+                    <LayoutGroup Id="Autobda6ccda-12b4-4bae-822c-54ca25a368a0">
+                      <LayoutGroup Id="Autoaacff1e5-a623-4c82-a081-0e143b42def0" Caption="Autoaacff1e5-a623-4c82-a081-0e143b42def0(9)" />
+                    </LayoutGroup>
+                  </LayoutGroup>
+                </LayoutGroup>
+              </LayoutGroup>
+              <TabbedGroup Id="Item16">
+                <LayoutGroup Id="Item9" Caption="Részletek">
+                  <LayoutGroup Id="Auto5d70d860-1142-4fa8-a23e-95875f0a811f" Caption="Auto5d70d860-1142-4fa8-a23e-95875f0a811f(23)">
+                    <LayoutGroup Id="Item2" Caption="Klassen" />
+                    <LayoutGroup Id="Item17" Caption="Lagermengen" />
+                  </LayoutGroup>
+                  <LayoutGroup Id="Auto9271009e-4c97-4bb7-a075-1c3fff8d27cb" Caption="Auto9271009e-4c97-4bb7-a075-1c3fff8d27cb(34)">
+                    <LayoutGroup Id="Item18" Caption="Abmessungen/Gewicht" />
+                    <LayoutGroup Id="Item19" Caption="Bessafungstrategi" />
+                  </LayoutGroup>
+                </LayoutGroup>
+                <LayoutGroup Id="Stocks" Caption="Lager" />
+                <LayoutGroup Id="Item7" Caption="Änderungsprotokolierung" />
+                <LayoutGroup Id="Item5" Caption="Item5" />
+              </TabbedGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="Product_Iocps_ListView">
+      <Columns>
+        <ColumnInfo Id="StoredQty" Caption="gelagert menge" />
+      </Columns>
+    </ListView>
+    <ListView Id="Product_Iocps1_ListView">
+      <Columns>
+        <ColumnInfo Id="StoredQty" Caption="gelagert menge" />
+      </Columns>
+    </ListView>
+    <DetailView Id="Product_ListDetail">
+      <Items>
+        <PropertyEditor Id="BarCode" DisplayFormat="{0:######}" EditMask="0:######" />
+        <StaticImage Id="ceglogo" Caption="ceglogo(54)" />
+        <PropertyEditor Id="EmergQty" Caption="Beschädigte  Menge" />
+        <PropertyEditor Id="MaxQty" Caption="Max. Menge" />
+        <PropertyEditor Id="MinQty" Caption="Min. Menge" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="XPObject">
+              <LayoutGroup Id="Auto300d232b-15fc-419a-88ce-3467bc557440">
+                <LayoutGroup Id="Auto1e02a949-5f12-485c-883c-b570c72cefc8">
+                  <LayoutGroup Id="Item11" Caption="Stammdaten">
+                    <LayoutGroup Id="Auto3722e099-629d-422e-8450-f556835cd31b" Caption="Auto3722e099-629d-422e-8450-f556835cd31b(9)">
+                      <LayoutGroup Id="Auto8ebeb18d-7757-4e8d-81e8-eaa3147572df" Caption="Auto8ebeb18d-7757-4e8d-81e8-eaa3147572df(11)" />
+                    </LayoutGroup>
+                  </LayoutGroup>
+                </LayoutGroup>
+              </LayoutGroup>
+              <TabbedGroup Id="Item16">
+                <LayoutGroup Id="Item9" Caption="Details">
+                  <LayoutGroup Id="Auto5d70d860-1142-4fa8-a23e-95875f0a811f" Caption="Auto5d70d860-1142-4fa8-a23e-95875f0a811f(23)">
+                    <LayoutGroup Id="Item2" Caption="Klassen" />
+                    <LayoutGroup Id="Item17" Caption="Lagermengen" />
+                  </LayoutGroup>
+                  <LayoutGroup Id="Auto9271009e-4c97-4bb7-a075-1c3fff8d27cb" Caption="Auto9271009e-4c97-4bb7-a075-1c3fff8d27cb(34)">
+                    <LayoutGroup Id="Item18" Caption="Abmessungen/Gewicht" />
+                    <LayoutGroup Id="Item19" Caption="Beschaffungsstrategie" />
+                  </LayoutGroup>
+                </LayoutGroup>
+                <LayoutGroup Id="Stocks" Caption="Lager" />
+                <LayoutGroup Id="Item3" Caption="Einkauf" />
+                <LayoutGroup Id="Item7" Caption="Änderungsprotokolierung" />
+                <LayoutGroup Id="Item6" Caption="Anhänge" />
+                <LayoutGroup Id="Item5" Caption="Ladungsträger" />
+              </TabbedGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="Product_ListView">
+      <Columns>
+        <ColumnInfo Id="AbcClass.Code" Caption="ABC Code" />
+      </Columns>
+    </ListView>
+    <ListView Id="Product_QtyExchanges_ListView">
+      <Columns>
+        <ColumnInfo Id="TargetQty" Caption="Ziel menge" />
+      </Columns>
+    </ListView>
+    <ListView Id="Product_StockHistories_ListView">
+      <Columns>
+        <ColumnInfo Id="ResentQty" Caption="Resent Menge" />
+      </Columns>
+    </ListView>
+    <ListView Id="Product_Stocks_ListView">
+      <Columns>
+        <ColumnInfo Id="ReservedQty" Caption="Reservierte Menge" />
+      </Columns>
+    </ListView>
+    <ListView Id="QtyExchange_Iocps_ListView">
+      <Columns>
+        <ColumnInfo Id="StoredQty" Caption="gelagert menge" />
+      </Columns>
+    </ListView>
+    <DetailView Id="RuleBaseProperties_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="RuleBaseProperties" Caption="Regel Basis Eigenschaften" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="RuleCombinationOfPropertiesIsUniqueProperties_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="RuleBaseProperties" Caption="Regel Basis Eigenschaften" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="RuleCriteriaProperties_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="RuleBaseProperties" Caption="Regel Basis Eigenschaften" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="RuleFromBoolPropertyProperties_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="RuleBaseProperties" Caption="Regel Basis Eigenschaften" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="RuleIsReferencedProperties_DetailView">
+      <Items>
+        <PropertyEditor Id="LooksFor" Caption="Sucht Nach " />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="RuleBaseProperties" Caption="Regel Basis Eigenschaften" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="RuleObjectExistsProperties_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="RuleBaseProperties" Caption="Regel Basis Eigenschaften" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="RulePropertyValueProperties_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="RuleBaseProperties" Caption="Regel Basis Eigenschaften" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="RuleRangeProperties_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="RuleBaseProperties" Caption="Regel Basis Eigenschaften" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="RuleRegularExpressionProperties_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="RuleBaseProperties" Caption="Regel Basis Eigenschaften" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="RuleRequiredFieldProperties_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="RuleBaseProperties" Caption="Regel Basis Eigenschaften" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="RuleSearchObjectProperties_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="RuleBaseProperties" Caption="Regel Basis Eigenschaften" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="RuleSetValidationResultItem_ByTarget_ListView">
+      <Columns>
+        <ColumnInfo Id="ErrorMessage" Caption="Beschreibung" />
+      </Columns>
+    </ListView>
+    <DetailView Id="RuleStringComparisonProperties_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="RuleBaseProperties" Caption="Regel Basis Eigenschaften" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="RuleUniqueValueProperties_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="RuleBaseProperties" Caption="Regel Basis Eigenschaften" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="RuleValueComparisonProperties_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="RuleBaseProperties" Caption="Regel Basis Eigenschaften" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="Sorszam_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="Sorszam" Caption="Nummer" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="Sorszam_LookupListView" Caption="Nummer">
+      <Columns>
+        <ColumnInfo Id="Year" Caption="Jahr" />
+      </Columns>
+    </ListView>
+    <DetailView Id="StaticImageDashboardOrganizationItem_DetailView">
+      <Items>
+        <PropertyEditor Id="Preview" Caption="Vorschau" />
+      </Items>
+    </DetailView>
+    <ListView Id="StaticImageDashboardOrganizationItem_ListView">
+      <Columns>
+        <ColumnInfo Id="ImageName" Caption="Bild Name" />
+      </Columns>
+    </ListView>
+    <DetailView Id="Stock_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="Stock" Caption="Lager" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="StockHistory_DetailView">
+      <Items>
+        <PropertyEditor Id="ResentQty" Caption="Resent Menge" />
+      </Items>
+    </DetailView>
+    <ListView Id="StockHistory_ListView">
+      <Columns>
+        <ColumnInfo Id="ResentQty" Caption="Resent Menge" />
+        <ColumnInfo Id="Time" EditMask="G" DisplayFormat="{0:G}" />
+      </Columns>
+    </ListView>
+    <ListView Id="StockHistory_LookupListView">
+      <Columns>
+        <ColumnInfo Id="Section" Caption="Sektion" />
+        <ColumnInfo Id="ResentQty" Caption="Resent Menge" />
+      </Columns>
+    </ListView>
+    <DetailView Id="StorageLocation_DetailView">
+      <Items>
+        <PropertyEditor Id="Aisle" Caption="Gasse" />
+        <PropertyEditor Id="LoadCarrier.BarCode" DisplayFormat="{0:####################}" EditMask="####################" />
+        <PropertyEditor Id="Row" Caption="Reihe" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="StorageLocation" Caption="Lagerplätze" />
+          </LayoutGroup>
+          <LayoutGroup Id="Stocks">
+            <LayoutGroup Id="Auto84d1081e-5007-4728-a919-eb9f22a5ac21" Caption="Auto84d1081e-5007-4728-a919-eb9f22a5ac21(20)">
+              <LayoutGroup Id="Auto102f7512-643e-47b9-b399-9d2ea6662bb8" Caption="Auto102f7512-643e-47b9-b399-9d2ea6662bb8(22)" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="StorageLocation_ListDetail">
+      <Items>
+        <PropertyEditor Id="Aisle" Caption="Gasse" />
+        <PropertyEditor Id="LoadCarrier.BarCode" DisplayFormat="{0:####################}" EditMask="####################" />
+        <PropertyEditor Id="Row" Caption="Reihe" />
+      </Items>
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="Stocks">
+            <LayoutGroup Id="Auto84d1081e-5007-4728-a919-eb9f22a5ac21" Caption="Auto84d1081e-5007-4728-a919-eb9f22a5ac21(20)">
+              <LayoutGroup Id="Auto102f7512-643e-47b9-b399-9d2ea6662bb8" Caption="Auto102f7512-643e-47b9-b399-9d2ea6662bb8(22)" />
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="StorageLocation_ListView">
+      <Columns>
+        <ColumnInfo Id="Aisle" Caption="Gasse" />
+        <ColumnInfo Id="LcIsEmpty" Caption="Lc Ist Empty" />
+      </Columns>
+    </ListView>
+    <ListView Id="StorageLocation_Stocks_ListView" Caption="Lager">
+      <Columns>
+        <ColumnInfo Id="StorageLocation" Caption="Lagerplätze" />
+      </Columns>
+    </ListView>
+    <ListView Id="UnitType_Products_ListView">
+      <Columns>
+        <ColumnInfo Id="ProductGroup" Caption="Produktgruppe" />
+      </Columns>
+    </ListView>
+    <DetailView Id="ValidationResults_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <TabbedGroup Id="Tabs">
+            <LayoutGroup Id="Results" Caption="Resultat" />
+          </TabbedGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <DetailView Id="Product_ListDetail">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="XPObject">
+              <TabbedGroup Id="Item16">
+                <LayoutGroup Id="Item7">
+                  <LayoutItem Id="AuditTrail" ViewItem="AuditTrail" />
+                </LayoutGroup>
+              </TabbedGroup>
+              <LayoutGroup Id="Auto300d232b-15fc-419a-88ce-3467bc557440">
+                <LayoutGroup Id="Auto1e02a949-5f12-485c-883c-b570c72cefc8">
+                  <LayoutGroup Id="Auto3869afa5-006b-4b54-aaef-8807a6a9ae68">
+                    <LayoutItem Id="@72f1f152-74a8-4fce-8953-61f0bc7aabda" ViewItem="@72f1f152-74a8-4fce-8953-61f0bc7aabda" />
+                  </LayoutGroup>
+                </LayoutGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="CommonTrDetail_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="Item3">
+              <LayoutGroup Id="Auto364e8cc0-76c5-4049-aa5e-7b97138ab5e7">
+                <LayoutGroup Id="Auto98484e49-69e5-48f0-9d2b-57747a900080">
+                  <LayoutGroup Id="Auto424d2e0d-05fa-4c63-ab72-75f826807bdf">
+                    <LayoutItem Id="LogX_TransakctonDetailCancel" ViewItem="MyButton" />
+                  </LayoutGroup>
+                </LayoutGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="Product_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="XPObject">
+              <TabbedGroup Id="Item16">
+                <LayoutGroup Id="Item7">
+                  <LayoutItem Id="AuditTrail" ViewItem="AuditTrail" />
+                </LayoutGroup>
+              </TabbedGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

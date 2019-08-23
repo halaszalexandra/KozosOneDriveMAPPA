@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application PreferredLanguage="hu">
+  <ActionDesign>
+    <Actions>
+      <Action Id="LogX_CallCtrh" ImageName="Opportunities" />
+      <Action Id="LogX_CallLc" ImageName="BO_Order" />
+      <Action Id="LogX_CloseCtrH" ImageName="BO_Task" />
+      <Action Id="LogX_LcIsHere" ImageName="UnpinButton" />
+      <Action Id="LogX_PutProductIntoLc" ImageName="BO_Order_Item" />
+      <Action Id="LogX_SendLcBack" ImageName="CreateStackedBar3DChart" />
+      <Action Id="LogX_TypeChangeBack" ImageName="Shopping_New" />
+      <Action Id="LogX_TypeChangeComission" ImageName="BO_KPI_Definition" />
+      <Action Id="LogX_TypeChangeInventory" ImageName="BO_Dashboard" />
+      <Action Id="LogX_TypeChangeRemoval" ImageName="BO_PivotChart" />
+      <Action Id="LogX_TypeChangeService" ImageName="BO_Role" />
+      <Action Id="LogX_TypeChangeStorage" ImageName="BO_Security_Permission_Type" />
+    </Actions>
+  </ActionDesign>
+  <BOModel>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.StorageLocation">
+      <OwnMembers>
+        <Member Name="StatusCode" PropertyEditorType="LogXExplorer.Module.Win.StoLocEnumPropertyEditor" />
+      </OwnMembers>
+    </Class>
+  </BOModel>
+  <SchemaModules>
+    <SchemaModule Name="CloneObjectModule" Version="18.2.4.0" IsNewNode="True" />
+    <SchemaModule Name="SystemModule" Version="18.2.4.0" IsNewNode="True" />
+    <SchemaModule Name="SystemWindowsFormsModule" Version="18.2.4.0" IsNewNode="True" />
+  </SchemaModules>
+  <Views>
+    <DetailView Id="Iocp" ClassName="LogXExplorer.Module.BusinessObjects.Database.Iocp" IsNewNode="True">
+      <Items IsNewNode="True">
+        <PropertyEditor Id="ActiveCtrD" PropertyName="ActiveCtrD" IsNewNode="True" />
+        <PropertyEditor Id="ActiveCTrH" PropertyName="ActiveCTrH" IsNewNode="True" />
+        <PropertyEditor Id="ActiveCTrH.CommonTrDetails" PropertyName="ActiveCTrH.CommonTrDetails" View="CommonTrHeader_CommonTrDetails_ListView" IsNewNode="True" />
+        <PropertyEditor Id="ActiveCTrH.Identity" PropertyName="ActiveCTrH.Identity" IsNewNode="True" />
+        <PropertyEditor Id="ActiveCTrH.Reference" PropertyName="ActiveCTrH.Reference" IsNewNode="True" />
+        <PropertyEditor Id="ActiveLc" PropertyName="ActiveLc" IsNewNode="True" />
+        <PropertyEditor Id="ActiveLc.BarCode" PropertyName="ActiveLc.BarCode" IsNewNode="True" />
+        <PropertyEditor Id="ActiveLc.LcType.Photo" PropertyName="ActiveLc.LcType.Photo" IsNewNode="True" />
+        <PropertyEditor Id="ActiveLc.RFID1" PropertyName="ActiveLc.RFID1" IsNewNode="True" />
+        <PropertyEditor Id="ActiveLc.RFID2" PropertyName="ActiveLc.RFID2" IsNewNode="True" />
+        <PropertyEditor Id="ActiveLc.Stocks" PropertyName="ActiveLc.Stocks" View="LoadCarrier_Stocks_ListView" IsNewNode="True" />
+        <PropertyEditor Id="ActiveProduct" PropertyName="ActiveProduct" IsNewNode="True" />
+        <PropertyEditor Id="ActiveProduct.Identifier" PropertyName="ActiveProduct.Identifier" IsNewNode="True" />
+        <PropertyEditor Id="ActiveProduct.Name" PropertyName="ActiveProduct.Name" IsNewNode="True" />
+        <PropertyEditor Id="ActiveProduct.Photo" PropertyName="ActiveProduct.Photo" IsNewNode="True" />
+        <PropertyEditor Id="ActiveType" PropertyName="ActiveType" IsNewNode="True" />
+        <PropertyEditor Id="Barcode" PropertyName="Barcode" IsNewNode="True" />
+        <PropertyEditor Id="CalcLcNumber" PropertyName="CalcLcNumber" IsNewNode="True" />
+        <PropertyEditor Id="IocpType" PropertyName="IocpType" IsNewNode="True" />
+        <PropertyEditor Id="LcCallingOK" PropertyName="LcCallingOK" IsNewNode="True" />
+        <PropertyEditor Id="Name" PropertyName="Name" IsNewNode="True" />
+        <PropertyEditor Id="Oid" PropertyName="Oid" IsNewNode="True" />
+        <PropertyEditor Id="Qexchange" PropertyName="Qexchange" IsNewNode="True" />
+        <PropertyEditor Id="StoredQty" PropertyName="StoredQty" IsNewNode="True" />
+        <PropertyEditor Id="StoredUnit" PropertyName="StoredUnit" IsNewNode="True" />
+        <PropertyEditor Id="targetLcNum" PropertyName="targetLcNum" IsNewNode="True" />
+        <PropertyEditor Id="TargetProduct" PropertyName="TargetProduct" IsNewNode="True" />
+        <PropertyEditor Id="TargetTag" PropertyName="TargetTag" IsNewNode="True" />
+        <PropertyEditor Id="WeightCurrent" PropertyName="WeightCurrent" IsNewNode="True" />
+        <PropertyEditor Id="WieghtBeforeStart" PropertyName="WieghtBeforeStart" IsNewNode="True" />
+      </Items>
+      <Layout IsNewNode="True">
+        <LayoutGroup Id="Main" Index="0" ShowCaption="False" RelativeSize="100" IsNewNode="True">
+          <LayoutGroup Id="SimpleEditors" Index="0" ShowCaption="False" RelativeSize="100" TextAlignMode="UseParentOptions" Direction="Vertical" Caption="SimpleEditors" IsNewNode="True">
+            <LayoutItem Id="ActiveType" ViewItem="ActiveType" Index="0" RelativeSize="4.3993231810490689" IsNewNode="True" />
+            <LayoutGroup Id="Auto85626cd3-2629-41c3-a06d-fad05954a140" ShowCaption="False" Caption="" Direction="Horizontal" Index="1" RelativeSize="95.60067681895093" IsNewNode="True">
+              <TabbedGroup Id="Item1" CaptionLocation="Top" Index="0" RelativeSize="52.346857597454253" IsNewNode="True">
+                <LayoutGroup Id="Item2" ShowCaption="True" CaptionLocation="Top" Index="0" RelativeSize="100" IsNewNode="True">
+                  <LayoutGroup Id="Auto7221a1b9-ff70-403e-8635-381d69c1bece" ShowCaption="False" Caption="" Direction="Horizontal" Index="0" RelativeSize="32.553606237816766" IsNewNode="True">
+                    <LayoutItem Id="ActiveProduct.Photo" ShowCaption="False" ViewItem="ActiveProduct.Photo" CaptionLocation="Top" Index="0" RelativeSize="34.565916398713824" IsNewNode="True" />
+                    <LayoutGroup Id="Auto3c057227-f611-4723-abcc-372307b54833" ShowCaption="False" Caption="" Index="1" RelativeSize="65.434083601286176" IsNewNode="True">
+                      <LayoutGroup Id="Auto0829445b-0d04-41cb-a085-0c1c318d4f6d" ShowCaption="False" Caption="" Direction="Horizontal" Index="0" RelativeSize="21.556886227544911" IsNewNode="True">
+                        <LayoutItem Id="ActiveCTrH.Identity" ViewItem="ActiveCTrH.Identity" Index="0" RelativeSize="49.877149877149876" IsNewNode="True" />
+                        <LayoutItem Id="ActiveCTrH.Reference" ShowCaption="False" ViewItem="ActiveCTrH.Reference" CaptionLocation="Left" Index="1" RelativeSize="50.122850122850124" IsNewNode="True" />
+                      </LayoutGroup>
+                      <LayoutGroup Id="Autocdda6c5f-cfc9-47f2-8eb5-987829982e76" ShowCaption="False" Caption="" Index="1" RelativeSize="78.443113772455092" IsNewNode="True">
+                        <LayoutItem Id="Barcode" ViewItem="Barcode" Index="0" RelativeSize="19.847328244274809" IsNewNode="True" />
+                        <LayoutItem Id="ActiveProduct.Identifier" ViewItem="ActiveProduct.Identifier" Index="1" RelativeSize="19.847328244274809" IsNewNode="True" />
+                        <LayoutItem Id="Qexchange" ViewItem="Qexchange" Index="2" RelativeSize="20.610687022900763" IsNewNode="True" />
+                        <LayoutItem Id="ActiveProduct.Name" ViewItem="ActiveProduct.Name" Index="3" RelativeSize="19.847328244274809" IsNewNode="True" />
+                        <LayoutGroup Id="Auto0f5b9d12-03de-43ec-aa79-8f4834c144fe" ShowCaption="False" Caption="" Direction="Horizontal" Index="4" RelativeSize="19.847328244274809" IsNewNode="True">
+                          <LayoutItem Id="StoredUnit" ViewItem="StoredUnit" Index="0" RelativeSize="46.191646191646193" IsNewNode="True" />
+                          <LayoutItem Id="StoredQty" ViewItem="StoredQty" Index="1" RelativeSize="53.808353808353807" IsNewNode="True" />
+                        </LayoutGroup>
+                      </LayoutGroup>
+                    </LayoutGroup>
+                  </LayoutGroup>
+                  <LayoutItem Id="ActiveCTrH.CommonTrDetails" ViewItem="ActiveCTrH.CommonTrDetails" CaptionLocation="Top" Index="1" RelativeSize="67.446393762183234" IsNewNode="True" />
+                </LayoutGroup>
+                <LayoutGroup Id="TransportOrders_Group" ShowCaption="True" Caption="Transport Orders" TextAlignMode="AlignWithChildren" Index="1" RelativeSize="100" IsNewNode="True">
+                  <LayoutItem Id="TransportOrders" ViewItem="TransportOrders" Index="0" RelativeSize="100" IsNewNode="True" />
+                </LayoutGroup>
+              </TabbedGroup>
+              <TabbedGroup Id="Item4" CaptionLocation="Top" Index="1" RelativeSize="47.653142402545747" IsNewNode="True">
+                <LayoutGroup Id="Item3" ShowCaption="True" CaptionLocation="Top" TextAlignMode="AlignWithChildren" Index="0" RelativeSize="100" IsNewNode="True">
+                  <LayoutGroup Id="Auto497bea4d-75de-4f8e-8f49-4f8c417643a7" ShowCaption="False" Caption="" Direction="Horizontal" Index="0" RelativeSize="26.923076923076923" IsNewNode="True">
+                    <LayoutItem Id="ActiveLc.LcType.Photo" ShowCaption="False" ViewItem="ActiveLc.LcType.Photo" CaptionLocation="Top" Index="0" RelativeSize="37.172774869109951" IsNewNode="True" />
+                    <LayoutGroup Id="Auto6527f83a-9a0a-4efb-bf12-a06c3150b57f" ShowCaption="False" Caption="" Index="1" RelativeSize="62.827225130890049" IsNewNode="True">
+                      <LayoutItem Id="ActiveLc.BarCode" ViewItem="ActiveLc.BarCode" Index="0" RelativeSize="25.714285714285715" IsNewNode="True" />
+                      <LayoutItem Id="ActiveLc.RFID1" ViewItem="ActiveLc.RFID1" Index="1" RelativeSize="18.571428571428573" IsNewNode="True" />
+                      <LayoutItem Id="ActiveLc.RFID2" ViewItem="ActiveLc.RFID2" Index="2" RelativeSize="18.571428571428573" IsNewNode="True" />
+                      <LayoutItem Id="WieghtBeforeStart" ViewItem="WieghtBeforeStart" Index="3" RelativeSize="18.571428571428573" IsNewNode="True" />
+                      <LayoutItem Id="WeightCurrent" ViewItem="WeightCurrent" Index="4" RelativeSize="18.571428571428573" IsNewNode="True" />
+                    </LayoutGroup>
+                  </LayoutGroup>
+                  <LayoutItem Id="ActiveLc.Stocks" ViewItem="ActiveLc.Stocks" Index="1" RelativeSize="73.07692307692308" IsNewNode="True" />
+                </LayoutGroup>
+              </TabbedGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

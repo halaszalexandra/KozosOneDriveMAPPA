@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <DetailView Id="Iocp">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="Auto85626cd3-2629-41c3-a06d-fad05954a140">
+              <TabbedGroup Id="Item1">
+                <LayoutGroup Id="TransportOrders_Group">
+                  <LayoutItem Id="TransportOrders" ViewItem="TransportOrders" />
+                </LayoutGroup>
+              </TabbedGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+  </Views>
+</Application>

@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29215.179
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogXExplorer.Module", "LogXExplorer.Module\LogXExplorer.Module.csproj", "{5F15837D-D1E5-44DC-92F0-4F2EBE9C3F8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogXExplorer.Module.Win", "LogXExplorer.Module.Win\LogXExplorer.Module.Win.csproj", "{7964F87D-BC5D-4C4E-8B2F-71E89739AA97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogXExplorer.Win", "LogXExplorer.Win\LogXExplorer.Win.csproj", "{D05D93DF-312D-4D4E-B980-726871EC7833}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogXExplorer.ApplicationServer", "LogXExplorer.ApplicationServer\LogXExplorer.ApplicationServer.csproj", "{5B35A39C-79BB-4AFC-88B2-8DA2EA8D949B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinSetup", "DXApplication4\WinSetup\WinSetup.csproj", "{BFC91226-3770-4FDD-8B33-13280888EA91}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		EasyTest|Any CPU = EasyTest|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5F15837D-D1E5-44DC-92F0-4F2EBE9C3F8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F15837D-D1E5-44DC-92F0-4F2EBE9C3F8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F15837D-D1E5-44DC-92F0-4F2EBE9C3F8D}.EasyTest|Any CPU.ActiveCfg = EasyTest|Any CPU
+		{5F15837D-D1E5-44DC-92F0-4F2EBE9C3F8D}.EasyTest|Any CPU.Build.0 = EasyTest|Any CPU
+		{5F15837D-D1E5-44DC-92F0-4F2EBE9C3F8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F15837D-D1E5-44DC-92F0-4F2EBE9C3F8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7964F87D-BC5D-4C4E-8B2F-71E89739AA97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7964F87D-BC5D-4C4E-8B2F-71E89739AA97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7964F87D-BC5D-4C4E-8B2F-71E89739AA97}.EasyTest|Any CPU.ActiveCfg = EasyTest|Any CPU
+		{7964F87D-BC5D-4C4E-8B2F-71E89739AA97}.EasyTest|Any CPU.Build.0 = EasyTest|Any CPU
+		{7964F87D-BC5D-4C4E-8B2F-71E89739AA97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7964F87D-BC5D-4C4E-8B2F-71E89739AA97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D05D93DF-312D-4D4E-B980-726871EC7833}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D05D93DF-312D-4D4E-B980-726871EC7833}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D05D93DF-312D-4D4E-B980-726871EC7833}.EasyTest|Any CPU.ActiveCfg = EasyTest|Any CPU
+		{D05D93DF-312D-4D4E-B980-726871EC7833}.EasyTest|Any CPU.Build.0 = EasyTest|Any CPU
+		{D05D93DF-312D-4D4E-B980-726871EC7833}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D05D93DF-312D-4D4E-B980-726871EC7833}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B35A39C-79BB-4AFC-88B2-8DA2EA8D949B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B35A39C-79BB-4AFC-88B2-8DA2EA8D949B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B35A39C-79BB-4AFC-88B2-8DA2EA8D949B}.EasyTest|Any CPU.ActiveCfg = EasyTest|Any CPU
+		{5B35A39C-79BB-4AFC-88B2-8DA2EA8D949B}.EasyTest|Any CPU.Build.0 = EasyTest|Any CPU
+		{5B35A39C-79BB-4AFC-88B2-8DA2EA8D949B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B35A39C-79BB-4AFC-88B2-8DA2EA8D949B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BFC91226-3770-4FDD-8B33-13280888EA91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFC91226-3770-4FDD-8B33-13280888EA91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFC91226-3770-4FDD-8B33-13280888EA91}.EasyTest|Any CPU.ActiveCfg = Release|Any CPU
+		{BFC91226-3770-4FDD-8B33-13280888EA91}.EasyTest|Any CPU.Build.0 = Release|Any CPU
+		{BFC91226-3770-4FDD-8B33-13280888EA91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFC91226-3770-4FDD-8B33-13280888EA91}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ED5E5D1D-642B-45E2-A179-517AF53DF806}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application Title="LogXExplorer" PreferredLanguage="hu">
+  <ActionDesign>
+    <Actions>
+      <Action Id="LogX_AutoRefreshOff" ImageName="CalcDate" Caption="Refresh Off" />
+      <Action Id="LogX_AutoRefreshON" ImageName="Date" Caption="Refresh On" />
+      <Action Id="LogX_ImportDatas" ImageName="BO_Product" />
+      <Action Id="LogX_ItemNumDown" ImageName="ModelEditor_IndexDown" />
+      <Action Id="LogX_ItemNumUp" ImageName="ModelEditor_IndexUp" />
+      <Action Id="LogX_LcArrivedIntoLocation" ImageName="ItemTypeChecked" />
+      <Action Id="LogX_SelectCustomer" ImageName="BO_Person" />
+    </Actions>
+    <ActionToContainerMapping>
+      <ActionContainer Id="LogX_SelectCommonType" IsNewNode="True">
+        <ActionLink ActionId="LogX_SelectCommonType" IsNewNode="True" />
+      </ActionContainer>
+      <ActionContainer Id="LogX_SelectCustomer" IsNewNode="True">
+        <ActionLink ActionId="LogX_SelectCustomer" IsNewNode="True" />
+      </ActionContainer>
+      <ActionContainer Id="LogX_TransaktionDetailControllers" IsNewNode="True">
+        <ActionLink ActionId="LogX_TransakctonDetailCancel" IsNewNode="True" />
+        <ActionLink ActionId="LogX_TransakctonDetailSave" IsNewNode="True" />
+      </ActionContainer>
+    </ActionToContainerMapping>
+  </ActionDesign>
+  <BOModel>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.AbcType">
+      <AppearanceRules>
+        <AppearanceRule Id="apr_Code" TargetItems="Code" Enabled="False" Criteria="[Oid] &gt; 0" IsNewNode="True" />
+      </AppearanceRules>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.CommonTrDetail">
+      <AppearanceRules>
+        <AppearanceRule Id="apr_CommonTrDetail_BETAR" Criteria="[CommonTrHeader.CommonType] = 'BETAR'" BackColor="255, 255, 192" FontStyle="Bold" FontColor="Black" TargetItems="CommonTrHeader.CommonType" IsNewNode="True" />
+        <AppearanceRule Id="apr_CommonTrDetail_KITAR" Criteria="[CommonTrHeader.CommonType] = 'KITAR'" BackColor="LightBlue" FontStyle="Bold" FontColor="Black" TargetItems="CommonTrHeader.CommonType" IsNewNode="True" />
+        <AppearanceRule Id="apr_CommonTrDetail_KOMISsIO" Criteria="[CommonTrHeader.CommonType] = 'KOMISSIO'" BackColor="192, 255, 192" FontStyle="Bold" FontColor="Black" TargetItems="CommonTrHeader.CommonType" IsNewNode="True" />
+        <AppearanceRule Id="apr_CommonTrDetail_LELTAR" Criteria="[CommonTrHeader.CommonType] = 'LELTAR'" BackColor="192, 255, 255" FontStyle="Bold" FontColor="Black" TargetItems="CommonTrHeader.CommonType" IsNewNode="True" />
+        <AppearanceRule Id="apr_CommonTrDetail_SERVICE" Criteria="[CommonTrHeader.CommonType] = 'SERVICE'" BackColor="LightSalmon" FontStyle="Bold" FontColor="Black" TargetItems="CommonTrHeader.CommonType" IsNewNode="True" />
+        <AppearanceRule Id="apr_ModifyDeny" AppearanceItemType="Action" TargetItems="New, SaveAndClose" Enabled="False" Criteria="[CommonTrHeader.Status.Code] &gt; '0'" Context="Any" Visibility="Hide" IsNewNode="True" />
+      </AppearanceRules>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.CommonTrHeader">
+      <AppearanceRules>
+        <AppearanceRule Id="apr_ModifyDeny" Criteria="[Status.Code] &gt; '0'" Enabled="False" TargetItems="Customer,Priority,Reference" IsNewNode="True" />
+      </AppearanceRules>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.Iocp">
+      <AppearanceRules>
+        <AppearanceRule Id="ActiveType.SERVICE" TargetItems="ActiveType" Criteria="[ActiveType] = 'SERVICE'" Context="DetailView" FontStyle="Bold" BackColor="LightSalmon" FontColor="Black" IsNewNode="True" />
+        <AppearanceRule Id="ActiveType_BETAR" TargetItems="ActiveType" Criteria="[ActiveType] = 'BETAR'" Context="DetailView" BackColor="255, 255, 192" FontStyle="Bold" FontColor="Black" IsNewNode="True" />
+        <AppearanceRule Id="ActiveType_KITAR" TargetItems="ActiveType" Criteria="[ActiveType] = 'KITAR'" Context="DetailView" BackColor="LightBlue" FontStyle="Bold" FontColor="Black" IsNewNode="True" />
+        <AppearanceRule Id="ActiveType_KOMISSIO" TargetItems="ActiveType" Criteria="[ActiveType] = 'KOMISSIO'" Context="DetailView" BackColor="192, 255, 192" FontStyle="Bold" FontColor="Black" IsNewNode="True" />
+        <AppearanceRule Id="ActiveType_LELTAR" TargetItems="ActiveType" Criteria="[ActiveType] = 'LELTAR'" Context="DetailView" FontStyle="Bold" BackColor="192, 255, 255" FontColor="Black" IsNewNode="True" />
+        <AppearanceRule Id="apr_LogX_CallCtrh" TargetItems="LogX_CallCtrh" Criteria="[ActiveCTrH] Is Not Null Or [ActiveType] Is Null" AppearanceItemType="Action" Context="DetailView" Enabled="False" IsNewNode="True" />
+        <AppearanceRule Id="apr_LogX_CallLc" TargetItems="LogX_CallLc" Criteria="[LcCallingOK] = True Or [ActiveCTrH] Is Null" Context="DetailView" AppearanceItemType="Action" Enabled="False" IsNewNode="True" />
+        <AppearanceRule Id="apr_LogX_CloseCtrH" TargetItems="LogX_CloseCtrH" Criteria="[ActiveCTrH] Is Null Or [ActiveLc] Is Not Null" Context="DetailView" AppearanceItemType="Action" Enabled="False" IsNewNode="True" />
+        <AppearanceRule Id="apr_LogX_GetProductFromLc" TargetItems="LogX_GetProductFromLc" Criteria="[ActiveProduct] Is Null Or [ActiveCTrH] Is Null Or [ActiveType] = 'BETAR' Or [ActiveType] = 'LELTAR'" Context="DetailView" AppearanceItemType="Action" Enabled="False" Visibility="Hide" IsNewNode="True" />
+        <AppearanceRule Id="apr_LogX_LcIsHere" TargetItems="LogX_LcIsHere" Criteria="[ActiveLc] Is Not Null Or [ActiveCTrH] Is Null Or [LcCallingOK] = False" Context="DetailView" AppearanceItemType="Action" Enabled="False" IsNewNode="True" />
+        <AppearanceRule Id="apr_LogX_PutProductIntoLc" TargetItems="LogX_PutProductIntoLc" Criteria="[ActiveProduct] Is Null Or [ActiveCTrH] Is Null Or [ActiveType] = 'KITAR' Or [ActiveType] = 'KOMISSIO' Or [ActiveType] = 'LELTAR'" Context="DetailView" AppearanceItemType="Action" Enabled="False" IsNewNode="True" />
+        <AppearanceRule Id="apr_LogX_SendLcBack" TargetItems="LogX_SendLcBack" Criteria="[ActiveCTrH] Is Null Or [ActiveLc] Is Null" AppearanceItemType="Action" Enabled="False" IsNewNode="True" />
+        <AppearanceRule Id="apr_LogX_TypeChangeBack" TargetItems="LogX_TypeChangeBack" AppearanceItemType="Action" Enabled="False" Criteria="[ActiveType] Is Null Or [ActiveCTrH] Is Not Null" Context="DetailView" IsNewNode="True" />
+        <AppearanceRule Id="apr_LogX_TypeChangeComission" TargetItems="LogX_TypeChangeComission" Criteria="[ActiveType] Is Not Null Or [ActiveCTrH] Is Not Null" Context="DetailView" AppearanceItemType="Action" Enabled="False" IsNewNode="True" />
+        <AppearanceRule Id="apr_LogX_TypeChangeInventory" TargetItems="LogX_TypeChangeInventory" Criteria="[ActiveType] Is Not Null Or [ActiveCTrH] Is Not Null" Context="DetailView" AppearanceItemType="Action" Enabled="False" IsNewNode="True" />
+        <AppearanceRule Id="apr_LogX_TypeChangeRemoval" TargetItems="LogX_TypeChangeRemoval" Criteria="[ActiveType] Is Not Null Or [ActiveCTrH] Is Not Null" Context="DetailView" AppearanceItemType="Action" Enabled="False" IsNewNode="True" />
+        <AppearanceRule Id="apr_LogX_TypeChangeService" TargetItems="LogX_TypeChangeService" Criteria="[ActiveType] Is Not Null Or [ActiveCTrH] Is Not Null" AppearanceItemType="Action" Context="DetailView" Enabled="False" IsNewNode="True" />
+        <AppearanceRule Id="apr_LogX_TypeChangeStorage" TargetItems="LogX_TypeChangeStorage" Criteria="[ActiveType] Is Not Null Or [ActiveCTrH] Is Not Null" Context="DetailView" AppearanceItemType="Action" Enabled="False" IsNewNode="True" />
+      </AppearanceRules>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.Product">
+      <AppearanceRules>
+        <AppearanceRule Id="NormalQtyLBetweenEmergMin" TargetItems="NormalQty" BackColor="LightSkyBlue" FontColor="Black" Context="ListView" Criteria="[NormalQty] Between([EmergQty], [MinQty])" IsNewNode="True" />
+        <AppearanceRule Id="NormalQtyLessThanEnerg" TargetItems="NormalQty" BackColor="CornflowerBlue" FontColor="White" Context="ListView" Criteria="[NormalQty] &lt;= [EmergQty]" IsNewNode="True" />
+      </AppearanceRules>
+    </Class>
+  </BOModel>
+  <NavigationItems>
+    <Items>
+      <Item Id="nit_Tasks" Index="0" Caption="nit_Tasks" ImageName="GroupTooltips" IsNewNode="True">
+        <Items IsNewNode="True">
+          <Item Id="@7eb76cd8-582c-4ec8-b865-62c24e48f55b" Index="0" IsNewNode="True" />
+          <Item Id="@7eb76cd8-582c-4ec8-b865-62c24e48f55b_Copy" Shortcut=" " Index="1" IsNewNode="True" />
+          <Item Id="@7eb76cd8-582c-4ec8-b865-62c24e48f55b_Copy_Copy" Index="2" IsNewNode="True" />
+        </Items>
+      </Item>
+      <Item Id="MasterData" Index="1" ImageName="BO_KPI_Scorecard" Caption="MasterData" IsNewNode="True" />
+      <Item Id="Settings" Index="2" IsNewNode="True" />
+      <Item Id="@4b69b076-02d9-434d-9987-181b1a81d68e_Copy_Copy_Copy" Index="3" IsNewNode="True" />
+      <Item Id="Reports" Index="4" />
+    </Items>
+  </NavigationItems>
+  <Options>
+    <LayoutManagerOptions RequiredFieldMark="*" />
+  </Options>
+  <SchemaModules>
+    <SchemaModule Name="CloneObjectModule" Version="18.2.4.0" IsNewNode="True" />
+    <SchemaModule Name="SystemModule" Version="18.2.4.0" IsNewNode="True" />
+  </SchemaModules>
+  <Validation>
+    <Rules>
+      <RuleUniqueValue Id="CodeRule" TargetContextIDs="Save" TargetType="LogXExplorer.Module.BusinessObjects.Database.AbcType" TargetPropertyName="Code" IsNewNode="True" />
+    </Rules>
+  </Validation>
+  <Views>
+    <ListView Id="AbcType_AuditTrail_ListView">
+      <Columns>
+        <ColumnInfo Id="Description" Width="96" />
+        <ColumnInfo Id="NewValue" Width="96" />
+        <ColumnInfo Id="Oid" Width="96" />
+        <ColumnInfo Id="OldValue" Width="96" />
+        <ColumnInfo Id="UserName" Width="97" SortIndex="-1" SortOrder="None" />
+        <ColumnInfo Id="ModifiedOn" Width="96" SortIndex="0" SortOrder="Ascending" />
+        <ColumnInfo Id="OperationType" Width="96" />
+        <ColumnInfo Id="PropertyName" Width="96" />
+      </Columns>
+    </ListView>
+    <DetailView Id="AbcType_DetailView" ImageName="RenameQuery">
+      <Layout>
+        <LayoutGroup Id="Main" RelativeSize="100">
+          <LayoutGroup Id="SimpleEditors" RelativeSize="12.892561983471074">
+            <LayoutGroup Id="AbcType" RelativeSize="56.410256410256409">
+              <LayoutItem Id="Code" RelativeSize="100" />
+              <LayoutItem Id="Name" RelativeSize="48.571428571428569" Removed="True" />
+            </LayoutGroup>
+            <LayoutItem Id="Name" ViewItem="Name" Index="1" RelativeSize="43.589743589743591" IsNewNode="True" />
+            <LayoutGroup Id="XPObject" Direction="Horizontal" RelativeSize="76.821192052980138" Index="2" Removed="True">
+              <LayoutItem Id="Oid" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="AuditTrail_Group" Direction="Vertical" RelativeSize="87.107438016528931">
+            <LayoutItem Id="AuditTrail" RelativeSize="100" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="AbcType_ListView" AllowEdit="True" />
+    <ListView Id="AbcType_LookupListView" AllowEdit="True" />
+    <ListView Id="AccelarateType_BusinessSettingsCollection_ListView" AllowEdit="True" />
+    <ListView Id="AccelarateType_ListView" AllowEdit="True" />
+    <ListView Id="AccelarateType_LookupListView" AllowEdit="True" />
+    <ListView Id="Aisle_ListView" AllowEdit="True" />
+    <DetailView Id="BusinessSettings_DetailView" AllowDelete="False" AllowEdit="False" AllowNew="False" ImageName="Actions_Settings" />
+    <ListView Id="BusinessSettings_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
+    <ListView Id="BusinessSettings_LookupListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
+    <ListView Id="CommonTrDetail_LookupListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
+    <ListView Id="CommonTrDetail_StockHistories_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
+    <ListView Id="CommonTrHeader_CommonTrDetails_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
+    <DetailView Id="CommonTrHeader_DetailView">
+      <Items>
+        <StaticImage Id="logo" SizeMode="Zoom" ImageName="logo_burgsmueller" HorizontalAlign="NotSet" IsNewNode="True" />
+      </Items>
+    </DetailView>
+    <DetailView Id="CommonTrType_DetailView" AllowDelete="False" AllowNew="False" AllowEdit="False" />
+    <ListView Id="CommonTrType_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
+    <ListView Id="CommonTrType_LookupListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
+    <ListView Id="CommonTrType_Sorszams_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
+    <ListView Id="CountryStates_ListView" AllowEdit="True" />
+    <ListView Id="CountryStates_LookupListView" AllowEdit="True" />
+    <ListView Id="Customer_ListView" AllowEdit="True" />
+    <DetailView Id="Iocp_DetailView" AllowDelete="False" AllowEdit="False" AllowNew="False" />
+    <ListView Id="Iocp_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
+    <ListView Id="Iocp_LookupListView" AllowDelete="False" AllowNew="False" />
+    <ListView Id="Iocp_TransportOrders_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
+    <ListView Id="Product_ListView" AllowDelete="False" AllowNew="False" />
+    <ListView Id="Product_LookupListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
+    <ListView Id="Product_ProductProducts_AisleAisless_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
+    <ListView Id="Product_QtyExchanges_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
+    <ListView Id="Product_StockHistories_ListView" AllowNew="False" AllowDelete="False" />
+    <ListView Id="Product_Stocks_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
+    <DetailView Id="ProductProducts_AisleAisles_DetailView" AllowNew="False" AllowEdit="False" AllowDelete="False" />
+    <DetailView Id="Sorszam_DetailView" AllowNew="False" AllowDelete="False" AllowEdit="False" />
+    <ListView Id="Sorszam_ListView" AllowLink="False" AllowNew="False" />
+    <ListView Id="Sorszam_LookupListView" AllowNew="False" AllowDelete="False" />
+    <DetailView Id="Stock_DetailView" AllowNew="False" AllowEdit="False" AllowDelete="False" />
+    <ListView Id="Stock_ListView" AllowLink="False" AllowNew="False" AllowDelete="False" />
+    <ListView Id="Stock_LookupListView" AllowNew="False" AllowDelete="False" />
+    <DetailView Id="StockHistory_DetailView" AllowNew="False" AllowEdit="False" AllowDelete="False" />
+    <ListView Id="StockHistory_ListView" AllowNew="False" AllowDelete="False" />
+    <ListView Id="StockHistory_LookupListView" AllowNew="False" AllowEdit="False" AllowDelete="False" />
+    <DetailView Id="StorageLocation_DetailView" AllowNew="False" AllowEdit="False" AllowDelete="False" />
+    <ListView Id="StorageLocation_ListView" AllowLink="False" AllowNew="False" AllowDelete="False" />
+    <ListView Id="StorageLocation_LookupListView" AllowNew="False" AllowDelete="False" />
+    <ListView Id="StorageLocation_Stocks_ListView" AllowNew="False" AllowDelete="False" />
+    <DetailView Id="TransportOrder_DetailView" AllowEdit="False" AllowDelete="False" AllowNew="False" />
+    <ListView Id="TransportOrder_ListView" AllowNew="False" AllowDelete="False" />
+    <ListView Id="TransportOrder_LookupListView" AllowNew="False" AllowDelete="False" />
+    <DetailView Id="UnitType_DetailView" AllowNew="True" />
+  </Views>
+</Application>

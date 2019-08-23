@@ -1,0 +1,9 @@
+﻿Code;Name
+0;Rögzített
+5;Várakozó
+10;Folyamatban
+15;Teljesítés alatt
+20;Részteljesült
+25;Teljesült
+50;Lezárt
+60;Elszámolt

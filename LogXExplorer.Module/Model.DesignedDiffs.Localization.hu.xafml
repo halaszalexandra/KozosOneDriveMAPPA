@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <BOModel>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.CommonTrDetail">
+      <OwnMembers>
+        <Member Name="PerformedQty" Caption="Ausgeführte Menge" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.LoadCarrier">
+      <OwnMembers>
+        <Member Name="BarCode" DisplayFormat="{0:#########}" EditMask="#########" />
+      </OwnMembers>
+    </Class>
+    <Class Name="LogXExplorer.Module.BusinessObjects.Database.Product">
+      <OwnMembers>
+        <Member Name="NormalQty" DisplayFormat="{0:#,###,##0}" EditMask="#,###,###" />
+      </OwnMembers>
+    </Class>
+  </BOModel>
+  <NavigationItems>
+    <Items>
+      <Item Id="nit_Tasks" Caption="Feladatok" />
+      <Item Id="MasterData" Caption="Törzsadatok" />
+      <Item Id="Settings" Caption="Beállítások" />
+    </Items>
+  </NavigationItems>
+  <Views>
+    <DetailView Id="AbcType_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="AbcType" Caption="AbcType" />
+            <LayoutGroup Id="XPObject" Caption="Oid" />
+          </LayoutGroup>
+          <LayoutGroup Id="AuditTrail_Group" Caption="Audit Trail" />
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="AbcType_ListView">
+      <Columns>
+        <ColumnInfo Id="Name" Caption="Megnevezés" />
+        <ColumnInfo Id="Code" Caption="Kód" />
+      </Columns>
+    </ListView>
+    <DetailView Id="AuditDataItemPersistent_DetailView">
+      <Items>
+        <PropertyEditor Id="ModifiedOn" Caption="Módosítás" />
+        <PropertyEditor Id="NewValue" Caption="Új érték" />
+        <PropertyEditor Id="OldValue" Caption="Régi érték" />
+        <PropertyEditor Id="OperationType" Caption="Művelet típusa" />
+        <PropertyEditor Id="UserName" Caption="Felhasználó" />
+      </Items>
+    </DetailView>
+  </Views>
+</Application>

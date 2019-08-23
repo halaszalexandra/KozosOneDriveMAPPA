@@ -1,0 +1,6 @@
+﻿Type;Prefix;DateDepended;DefaultPartner;Name;Creatable
+TPO;TPO;FALSE;;TRANSZPORT SOROK;False
+BETAR;BETAR;TRUE;Hanon;BETÁROLÁS;False
+KOMISSIO;KM;FALSE;Hanon;KOMISSOÓ;False
+LELTAR;LTR;TRUE;Hanon;LELTÁR;True
+KITAR;KITAR;TRUE;Hanon;KITÁROLÁS;True
