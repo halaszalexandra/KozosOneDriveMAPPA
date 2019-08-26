@@ -24,7 +24,7 @@ namespace LogXExplorer.Module.Controllers
         
 
 
-
+        // változás szandi
         public IocpNewController()
         {
             InitializeComponent();
