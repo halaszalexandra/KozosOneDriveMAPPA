@@ -31,20 +31,9 @@ using Opc.Ua.Client;
 
 
 namespace LogXExplorer.ApplicationServer.opc
-
 {
     public class UAClientHelperAPI
     {
-
-        private string url;
-        private string secPolicy;
-        private MessageSecurityMode msgSecMode;
-        private bool userAuth;
-        private string userName;
-        private string password;
-        private EndpointDescription endpointDescription;
-        private int errCtr = 5;
-
         #region Construction
         public UAClientHelperAPI()
         {
@@ -90,6 +79,7 @@ namespace LogXExplorer.ApplicationServer.opc
         /// <summary>
         /// Provides the event for KeepAliveNotifications.
         /// </summary>
+        /// //kivulrol kell inizializalni connect elott
         public KeepAliveEventHandler KeepAliveNotification = null;
         #endregion
 
@@ -156,17 +146,10 @@ namespace LogXExplorer.ApplicationServer.opc
         /// <param name="password">The password</param>
         /// <exception cref="Exception">Throws and forwards any exception with short error description.</exception>
         [Obsolete("Only use if no EndpointDescription of the server's endpoint is available")]
-        public void Connect(string _url, string _secPolicy, MessageSecurityMode _msgSecMode, bool _userAuth, string _userName, string _password)
+        public void Connect(string url, string secPolicy, MessageSecurityMode msgSecMode, bool userAuth, string userName, string password)
         {
             try
             {
-                this.url = _url;
-                this.secPolicy = _secPolicy;
-                this.msgSecMode = _msgSecMode;
-                this.userAuth = _userAuth;
-                this.userName = _userName;
-                this.password = _password;
-
                 //Secify application configuration
                 ApplicationConfiguration ApplicationConfig = mApplicationConfig;
 
@@ -207,7 +190,8 @@ namespace LogXExplorer.ApplicationServer.opc
                     null
                     );
 
-                mSession.KeepAlive += new KeepAliveEventHandler(Notification_KeepAlive);                
+                mSession.KeepAlive += new KeepAliveEventHandler(sessionKeepAliveEvents);                
+                //mSession.KeepAlive += KeepAliveNotification; //szerintem..
             }
             catch (Exception e)
             {
@@ -221,21 +205,11 @@ namespace LogXExplorer.ApplicationServer.opc
         /// <param name="userAuth">Autheticate anonymous or with username and password</param>
         /// <param name="userName">The user name</param>
         /// <param name="password">The password</param>
-        /// <exception cref="Exception">Throws and forwar
-        /// ds any exception with short error description.</exception>
-        /// 
-
-
-        public void Connect(EndpointDescription _endpointDescription, bool _userAuth, string _userName, string _password)
+        /// <exception cref="Exception">Throws and forwards any exception with short error description.</exception>
+        public void Connect(EndpointDescription endpointDescription, bool userAuth, string userName, string password)
         {
             try
             {
-
-                this.endpointDescription = _endpointDescription;
-                this.userAuth = _userAuth;
-                this.userName = _userName;
-                this.password = _password;
-
                 //Secify application configuration
                 ApplicationConfiguration ApplicationConfig = mApplicationConfig;
 
@@ -280,7 +254,7 @@ namespace LogXExplorer.ApplicationServer.opc
                     null
                     );
 
-                mSession.KeepAlive += new KeepAliveEventHandler(Notification_KeepAlive);
+                mSession.KeepAlive += new KeepAliveEventHandler(sessionKeepAliveEvents);
             }
             catch (Exception e)
             {
@@ -306,29 +280,6 @@ namespace LogXExplorer.ApplicationServer.opc
             }
         }
         #endregion
-
-        public void reconnect() {
-            try
-            {
-                if (errCtr > 0)
-                {
-                    if (mSession != null && mSession.Connected)
-                    {
-                        Disconnect();
-                    }
-                    Connect(endpointDescription, userAuth, userName, password);
-                    errCtr = 5;
-                }
-                else {
-                    throw new Exception("Error in UAClientHelperApli.reconnect()!");
-                }
-            }
-            catch (Exception) {
-                errCtr--;
-                // log ++++++++++++
-            }
-            
-        }
 
         #region Namspace
         /// <summary>Returns the namespace uri at the specified index.</summary>
@@ -645,19 +596,16 @@ namespace LogXExplorer.ApplicationServer.opc
             NodeId nodeId = new NodeId(nodeIdString);
             //Create a node
             Node node = new Node();
-            
             try
             {
                 //Read the dataValue
                 node = mSession.ReadNode(nodeId);
                 return node;
             }
-            catch 
+            catch (Exception e)
             {
                 //handle Exception here
-                //log ++++++++++
-                reconnect();
-                return null;
+                throw e;
             }
         }
 
@@ -780,13 +728,10 @@ namespace LogXExplorer.ApplicationServer.opc
                 }
                 return resultStrings;
             }
-            catch 
+            catch (Exception e)
             {
                 //handle Exception here
-                //log ++++++++++
-                reconnect();
-                return null;
-                
+                throw e;
             }
         }
 
@@ -814,11 +759,10 @@ namespace LogXExplorer.ApplicationServer.opc
                 {
                     dataValue = mSession.ReadValue(nodeId);
                 }
-                catch 
+                catch (Exception e)
                 {
                     //handle Exception here
-                    //log ++++++++++
-                    reconnect();
+                    throw e;
                 }
 
                 string test = dataValue.Value.GetType().Name;
@@ -887,12 +831,10 @@ namespace LogXExplorer.ApplicationServer.opc
                     }
                 }
             }
-            catch 
+            catch (Exception e)
             {
                 //handle Exception here
-                //throw e;
-                //log ++++++++++
-                reconnect();
+                throw e;
             }
         }
         #endregion
@@ -1307,12 +1249,10 @@ namespace LogXExplorer.ApplicationServer.opc
                 }
 
             }
-            catch 
+            catch (Exception e)
             {
                 //handle Exception here
-                //log ++++++++++
-                reconnect();
-                return null;
+                throw e;
             }
         }
 
@@ -1486,7 +1426,7 @@ namespace LogXExplorer.ApplicationServer.opc
         }
 
         /// <summary>Eventhandler for KeepAlive forwards this event</summary>
-        private void Notification_KeepAlive(Session session, KeepAliveEventArgs e)
+        private void sessionKeepAliveEvents(Session session, KeepAliveEventArgs e)
         {
             KeepAliveNotification(session, e);
         }

@@ -628,6 +628,11 @@ public BusinessSettingsViewController()
                         CriteriaOperator criteriaAisle = new BinaryOperator("Name", values[0]);
                         Aisle aisle = (Aisle)View.ObjectSpace.FindObject(typeof(Aisle), criteriaAisle, true);
 
+                        if(aisle == null)
+                        {
+                            CreateAisle(values[0]);
+
+                        }
 
                         CriteriaOperator criteriaAbc = new BinaryOperator("Code", values[5]);
                         AbcType abc = (AbcType)View.ObjectSpace.FindObject(typeof(AbcType), criteriaAbc, true);
@@ -656,6 +661,13 @@ public BusinessSettingsViewController()
                 }
                 View.ObjectSpace.CommitChanges();
             } 
+        }
+
+        private void CreateAisle(string v)
+        {
+            Aisle aisle = View.ObjectSpace.CreateObject<Aisle>();
+            aisle.Name = v;
+            aisle.Save();
         }
         #endregion
 

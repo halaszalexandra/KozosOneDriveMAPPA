@@ -40,6 +40,10 @@ namespace LogXExplorer.ApplicationServer
     public class LogXServer : ILogXPrivateServices, ILogXPublicServices
     {
         private static LogXServer instance = null;
+        private static readonly ILog log = log4net.LogManager.GetLogger(typeof(OPCClient));
+
+        private ServerApplication serverApplication = null;
+        private IObjectSpace serverObjectSpace = null;
 
         private WcfXafServiceHost xafServiceHost;
         private System.ServiceModel.ServiceHost wsHostPrivate = null;
@@ -62,7 +66,7 @@ namespace LogXExplorer.ApplicationServer
         //Konstruktor
         public LogXServer()
         {
-            Console.WriteLine("LogXServer constructor has been called!");
+            log.Info("LogXServer constructor has been called!");
         }
 
         private static void serverApplication_DatabaseVersionMismatch(object sender, DatabaseVersionMismatchEventArgs e)
@@ -72,6 +76,7 @@ namespace LogXExplorer.ApplicationServer
         }
 
 
+        #region Start,Stop
         /********************* 
         *     INIT!!!
        **********************/
@@ -89,69 +94,40 @@ namespace LogXExplorer.ApplicationServer
         {
             try
             {
+                log.Info("LogXServer init() begins..!");
                 DevExpress.Persistent.Base.PasswordCryptographer.EnableRfc2898 = true;
                 DevExpress.Persistent.Base.PasswordCryptographer.SupportLegacySha512 = false;
 
                 //INIT XAF AND DEFAULT DB SERVER
                 initXAFServer();
+                log.Info("LogXServer.xafServer inited.");
 
                 //INIT WS PRIVATE INTERFACES HTTP SELFHOSTING
                 initWSHostPrivateInterfaces();
 
                 //INIT WS PUBLIC INTERFACES HTTP SELFHOSTING
                 initWSHostPublicInterfaces();
-
-
-                SetAisleList();
-                SetAbcTypeList();
-                SetStorageHeightList();
-
+                log.Info("LogXServer.ws interfaces are inited.");
 
                 //INIT OPC
                 opcClient = new OPCClient();
                 opcClient.init();
+                log.Info("LogXServer opcClient inited");
 
+                SetAisleList();
+                SetAbcTypeList();
+                SetStorageHeightList();
+                log.Info("LogXServer default lists loaded");
+
+
+                log.Info("LogXServer init() end!");
             }
             catch (Exception e)
             {
-                Console.WriteLine("Exception occurs: " + e.Message);
-                Console.WriteLine("Press Enter to close.");
-                Console.ReadLine();
+                log.Fatal("Error in LogXServer.init(): ", e);
             }
         }
 
-
-        /******************** 
-        *    Destroy!!!!
-       *********************/
-        public void destroy()
-        {
-            try
-            {
-                //példány konstruktor
-                //logoljuk, mert kíváncsiak vagyunk, hogy csak egyszer hívódik e meg.
-                Console.WriteLine("LogXServer.destroy() begin..");
-                xafServiceHost.Close();
-                System.Console.WriteLine("XAF service closed.");
-                wsHostPrivate.Close();
-                Console.WriteLine("WS Private service stopped.");
-                wsHostPublic.Close();
-                Console.WriteLine("WS Public service stopped.");
-                opcClient.destroy();
-                Console.WriteLine("LogXServer.destroy() end.");
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Exception occurs: " + e.Message);
-                Console.WriteLine("Press Enter to close.");
-                Console.ReadLine();
-            }
-        }
-
-        public static LogXServer getInstance()
-        {
-            return instance;
-        }
 
         #region Inicializálás
         private void initXAFServer()
@@ -162,7 +138,7 @@ namespace LogXExplorer.ApplicationServer
             ValueManager.ValueManagerType = typeof(MultiThreadValueManager<>).GetGenericTypeDefinition();
 
             SecurityAdapterHelper.Enable();
-            ServerApplication serverApplication = new ServerApplication();
+            serverApplication = new ServerApplication();
             serverApplication.ApplicationName = "LogXExplorer";
             serverApplication.CheckCompatibilityType = CheckCompatibilityType.DatabaseSchema;
 #if DEBUG
@@ -171,43 +147,45 @@ namespace LogXExplorer.ApplicationServer
                 serverApplication.DatabaseUpdateMode = DatabaseUpdateMode.UpdateDatabaseAlways;
             }
 #endif
-
             serverApplication.Modules.BeginInit();
             serverApplication.Modules.Add(new DevExpress.ExpressApp.Security.SecurityModule());
             serverApplication.Modules.Add(new LogXExplorer.Module.LogXExplorerModule());
-            serverApplication.Modules.Add(new LogXExplorer.Module.Win.LogXExplorerWindowsFormsModule());
-            serverApplication.Modules.Add(new DevExpress.ExpressApp.AuditTrail.AuditTrailModule());
             serverApplication.Modules.Add(new DevExpress.ExpressApp.Objects.BusinessClassLibraryCustomizationModule());
-            serverApplication.Modules.Add(new DevExpress.ExpressApp.CloneObject.CloneObjectModule());
-            serverApplication.Modules.Add(new DevExpress.ExpressApp.ConditionalAppearance.ConditionalAppearanceModule());
-            serverApplication.Modules.Add(new DevExpress.ExpressApp.Dashboards.DashboardsModule() { DashboardDataType = typeof(DevExpress.Persistent.BaseImpl.DashboardData) });
-            serverApplication.Modules.Add(new DevExpress.ExpressApp.Dashboards.Win.DashboardsWindowsFormsModule());
-            serverApplication.Modules.Add(new DevExpress.ExpressApp.FileAttachments.Win.FileAttachmentsWindowsFormsModule());
-            serverApplication.Modules.Add(new DevExpress.ExpressApp.Notifications.NotificationsModule());
-            serverApplication.Modules.Add(new DevExpress.ExpressApp.Notifications.Win.NotificationsWindowsFormsModule());
-            serverApplication.Modules.Add(new DevExpress.ExpressApp.ReportsV2.ReportsModuleV2() { ReportDataType = typeof(DevExpress.Persistent.BaseImpl.ReportDataV2) });
-            serverApplication.Modules.Add(new DevExpress.ExpressApp.ReportsV2.Win.ReportsWindowsFormsModuleV2());
-            serverApplication.Modules.Add(new DevExpress.ExpressApp.Validation.ValidationModule());
-            serverApplication.Modules.Add(new DevExpress.ExpressApp.Validation.Win.ValidationWindowsFormsModule());
-            serverApplication.Modules.Add(new DevExpress.ExpressApp.ViewVariantsModule.ViewVariantsModule());
+            //serverApplication.Modules.Add(new LogXExplorer.Module.Win.LogXExplorerWindowsFormsModule());
+            //serverApplication.Modules.Add(new DevExpress.ExpressApp.AuditTrail.AuditTrailModule());
+            //serverApplication.Modules.Add(new DevExpress.ExpressApp.CloneObject.CloneObjectModule());
+            //serverApplication.Modules.Add(new DevExpress.ExpressApp.ConditionalAppearance.ConditionalAppearanceModule());
+            //serverApplication.Modules.Add(new DevExpress.ExpressApp.Dashboards.DashboardsModule() { DashboardDataType = typeof(DevExpress.Persistent.BaseImpl.DashboardData) });
+            //serverApplication.Modules.Add(new DevExpress.ExpressApp.Dashboards.Win.DashboardsWindowsFormsModule());
+            //serverApplication.Modules.Add(new DevExpress.ExpressApp.FileAttachments.Win.FileAttachmentsWindowsFormsModule());
+            //serverApplication.Modules.Add(new DevExpress.ExpressApp.Notifications.NotificationsModule());
+            //serverApplication.Modules.Add(new DevExpress.ExpressApp.Notifications.Win.NotificationsWindowsFormsModule());
+            //serverApplication.Modules.Add(new DevExpress.ExpressApp.ReportsV2.ReportsModuleV2() { ReportDataType = typeof(DevExpress.Persistent.BaseImpl.ReportDataV2) });
+            //serverApplication.Modules.Add(new DevExpress.ExpressApp.ReportsV2.Win.ReportsWindowsFormsModuleV2());
+            //serverApplication.Modules.Add(new DevExpress.ExpressApp.Validation.ValidationModule());
+            //serverApplication.Modules.Add(new DevExpress.ExpressApp.Validation.Win.ValidationWindowsFormsModule());
+            //serverApplication.Modules.Add(new DevExpress.ExpressApp.ViewVariantsModule.ViewVariantsModule());
             serverApplication.Modules.EndInit();
 
+            XPObjectSpaceProvider objectSpaceProvider = null;
             serverApplication.DatabaseVersionMismatch += new EventHandler<DatabaseVersionMismatchEventArgs>(serverApplication_DatabaseVersionMismatch);
             serverApplication.CreateCustomObjectSpaceProvider += (s, e) =>
             {
-                e.ObjectSpaceProviders.Add(new XPObjectSpaceProvider(e.ConnectionString, e.Connection));
+                objectSpaceProvider = new XPObjectSpaceProvider(e.ConnectionString, e.Connection);
+                e.ObjectSpaceProviders.Add(objectSpaceProvider);
                 e.ObjectSpaceProviders.Add(new NonPersistentObjectSpaceProvider(serverApplication.TypesInfo, null));
             };
             serverApplication.ConnectionString = connectionString;
-
-            //System.Console.WriteLine("Setup...");
             serverApplication.Setup();
-            //System.Console.WriteLine("CheckCompatibility...");
             serverApplication.CheckCompatibility();
-            serverApplication.Dispose();
+            //serverApplication.Dispose();
 
-            //System.Console.WriteLine("Starting server...");
-            Func<IDataServerSecurity> dataServerSecurityProvider = () =>
+            //            //korábbi ConnectionHelper kiváltása
+            //            XpoDefault.DataLayer = objectSpaceProvider.DataLayer;
+            //            XpoDefault.GetDataLayer
+            this.serverObjectSpace = serverApplication.ObjectSpaceProvider.CreateObjectSpace();
+
+            Func <IDataServerSecurity> dataServerSecurityProvider = () =>
             {
                 SecurityStrategyComplex security = new SecurityStrategyComplex(typeof(PermissionPolicyUser), typeof(PermissionPolicyRole), new AuthenticationStandard());
                 security.SupportNavigationPermissionsForTypes = false;
@@ -218,11 +196,10 @@ namespace LogXExplorer.ApplicationServer
             xafServiceHost = new WcfXafServiceHost(connectionString, dataServerSecurityProvider);
             xafServiceHost.AddServiceEndpoint(typeof(IWcfXafDataServer), WcfDataServerHelper.CreateNetTcpBinding(), "net.tcp://127.0.0.1:1451/DataServer");
             xafServiceHost.Open();
-            System.Console.WriteLine("XAF service inited.");
 
             //test                
-            ConnectionHelper.Connect(DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema, true);
-            System.Console.WriteLine("ConnectionHelper connected.");
+            //ConnectionHelper.Connect(DevExpress.Xpo.DB.AutoCreateOption.DatabaseAndSchema, true);
+            //log.Info("ConnectionHelper connected.");
 
         }
 
@@ -234,12 +211,11 @@ namespace LogXExplorer.ApplicationServer
             privateWSServices = new LogXPrivateServices();
             wsHostPrivate = new System.ServiceModel.ServiceHost(privateWSServices);
             wsHostPrivate.Open();
-            Console.WriteLine("WS Privateinterface is up and running at:");
+            log.Debug("WS Privateinterface is up and running at:");
             foreach (var ea in wsHostPrivate.Description.Endpoints)
             {
-                Console.WriteLine(ea.Address);
+                log.Debug(ea.Address);
             }
-            System.Console.WriteLine("WS Private service inited.");
         }
 
         private void initWSHostPublicInterfaces()
@@ -250,56 +226,143 @@ namespace LogXExplorer.ApplicationServer
             publicWSServices = new LogXPublicServices();
             wsHostPublic = new System.ServiceModel.ServiceHost(publicWSServices);
             wsHostPublic.Open();
-            Console.WriteLine("WS Public interface is up and running at:");
+            log.Debug("WS Public interface is up and running at:");
             foreach (var ea in wsHostPublic.Description.Endpoints)
             {
-                Console.WriteLine(ea.Address);
+                log.Debug(ea.Address);
             }
-            System.Console.WriteLine("WS Public service inited.");
+        }
+        #endregion
+
+        /******************** 
+        *    Destroy!!!!
+       *********************/
+        public void destroy()
+        {
+            try
+            {
+                //példány konstruktor
+                //logoljuk, mert kíváncsiak vagyunk, hogy csak egyszer hívódik e meg.
+                log.Info("LogXServer.destroy() begin..");
+                xafServiceHost.Close();
+                log.Info("XAF service closed.");
+                wsHostPrivate.Close();
+                log.Info("WS Private service stopped.");
+                wsHostPublic.Close();
+                log.Info("WS Public service stopped.");
+                opcClient.destroy();
+                serverApplication.Dispose();
+                log.Info("LogXServer.destroy() end.");
+            }
+            catch (Exception e)
+            {
+                log.Fatal("Error in LogXServer.destroy()", e);
+            }
+        }
+
+        public static LogXServer getInstance()
+        {
+            return instance;
         }
         #endregion
 
         #region Alapértelmezett folyosók listája
         private void SetAisleList()
         {
-            Session session = new Session();
-            XPQuery<Aisle> aisles = session.Query<Aisle>();
-            IQueryable<Aisle> list = from a in aisles
-                                     where (a.Oid != 0)
-                                     select a;
-            foreach (Aisle item in aisleList)
-            {
-                aisleList.Add(item);
+            IObjectSpace os = null;
 
+            try
+            {
+                os = GetNewObjectSpace();
+
+                IQueryable<Aisle> aisles = os.GetObjectsQuery<Aisle>();
+                var list = from aisle in aisles
+                           select aisle;
+                foreach (Aisle item in list)
+                {
+                    aisleList.Add(item);
+                }
             }
+            catch
+            {
+                log.Error("ObjectSpace not found");
+            }
+            finally
+            {
+                DisposeObjectSpace(os);
+            }
+            
         }
         #endregion
 
-        #region Alapértelmezett folyosók listája
+        #region Alapértelmezett ABC kategóriák lista
         private void SetAbcTypeList()
         {
-            Session session = new Session();
-            XPQuery<AbcType> abctypes = session.Query<AbcType>();
-            IQueryable<AbcType> list = from a in abctypes
-                                       select a;
-            foreach (AbcType item in abctypes)
+            IObjectSpace os = null;
+
+            try
             {
-                abcTypeList.Add(item.Code);
+                os = GetNewObjectSpace();
+                IQueryable<AbcType> abcList = os.GetObjectsQuery<AbcType>();
+                var list = from abc in abcList
+                           select abc;
+                foreach (var item in list)
+                {
+                    abcTypeList.Add(item.Code);
+                }
             }
+            catch
+            {
+                log.Error("ObjectSpace not found");
+            }
+            finally
+            {
+                DisposeObjectSpace(os);
+            }
+            
         }
         #endregion
 
         #region Méretek listája
         private void SetStorageHeightList()
         {
-            Session session = new Session();
-            XPQuery<StorageLocation> stoList = session.Query<StorageLocation>();
-            IQueryable<int> list = stoList.Select(s => s.Height).Distinct();
+            IObjectSpace os = null;
 
-            foreach (int height in list)
+            try
             {
-                storageHeightList.Add(height);
+                os = GetNewObjectSpace();
+
+                IQueryable<StorageLocation> stoList = os.GetObjectsQuery<StorageLocation>();
+                var list = from s in stoList
+                           group s by s.Height into cc
+                           where cc.Count() >= 1
+                           select new { height = cc.Key, Count = cc.Count() };
+                foreach (var loc in list)
+                {
+                    storageHeightList.Add(loc.height);
+                }
             }
+            catch
+            {
+                log.Error("ObjectSpace not found");
+            }
+            finally
+            {
+                DisposeObjectSpace(os);
+            }
+        }
+        #endregion
+
+        #region ObjectSpace create,dispose
+        public IObjectSpace GetNewObjectSpace()
+        {
+            IObjectSpace os = serverApplication.CreateObjectSpace();
+            return os;
+        }
+
+        public void DisposeObjectSpace(IObjectSpace os)
+        {
+            os.Dispose();
         }
         #endregion
 
@@ -314,7 +377,7 @@ namespace LogXExplorer.ApplicationServer
             lock (doWorkLock)
             {
                 //itt a kenyes muvelet
-                Console.WriteLine("DoWork service has been called.");
+                log.Info("DoWork service has been called.");
             }
             return param1 + param2;
         }
@@ -323,15 +386,27 @@ namespace LogXExplorer.ApplicationServer
         #region Partnernév visszaadó Teszt
         public string GetCustomerName(int custID)
         {
-            Session session = new Session();
             string name = "";
-            XPQuery<Customer> customers = session.Query<Customer>();
-            IQueryable<Customer> list = (from c in customers
-                                         where (c.Oid == custID)
-                                         select c);
-            foreach (Customer cust in list)
+            IObjectSpace os = null;
+            try
             {
-                name = cust.Name;
+                os = GetNewObjectSpace();
+
+                IQueryable<Customer> customers = os.GetObjectsQuery<Customer>();
+                var list = from c in customers
+                           select c;
+                foreach (Customer item in list)
+                {
+                    name = item.Name;
+                }
+            }
+            catch
+            {
+                log.Error("ObjectSpace not found");
+            }
+            finally
+            {
+                DisposeObjectSpace(os);
             }
             return name;
         }
@@ -342,191 +417,232 @@ namespace LogXExplorer.ApplicationServer
          */
         public void LcNumPreCalculation(int CtrH)
         {
-            Session session = new Session();
-            XPQuery<CommonTrDetail> details = session.Query<CommonTrDetail>();
-            IQueryable<CommonTrDetail> list = (from c in details
-                                               where (c.CommonTrHeader.Oid == CtrH)
-                                               orderby c.ItemNum ascending
-                                               select c);
-            QtyExchange qtyX = null;
-            // végigmegyünk az ügylet összes tételsorán
-            foreach (CommonTrDetail ctrd in list)
+            IObjectSpace os = null;
+
+            try
             {
-                int kalkulaltLadaszamTetelsoron = 0;
-                double tetelsorIgenyelt = ctrd.Quantity;
-                double tetelsorTeljesitett = ctrd.PerformedQty;
-                double maradekMennyiseg = tetelsorIgenyelt - tetelsorTeljesitett;
-                double maxBetarolhatoDb = 0;
+                os = GetNewObjectSpace();
 
+                IQueryable<CommonTrDetail> details = os.GetObjectsQuery<CommonTrDetail>();
+                    var list = (from c in details
+                                where (c.CommonTrHeader.Oid == CtrH)
+                                orderby c.ItemNum ascending
+                                select c);
 
-                if (maradekMennyiseg > 0)
+                QtyExchange qtyX = null;
+
+                // végigmegyünk az ügylet összes tételsorán
+                foreach (CommonTrDetail ctrd in list)
                 {
-                    // megkeressük az alapértelmezett betárolást
-                    XPQuery<QtyExchange> atvaltasok = session.Query<QtyExchange>();
-                    IQueryable<QtyExchange> list1 = (from q in atvaltasok
-                                                     where (q.Product.Oid == ctrd.Product.Oid && q.In == true && q.Default == true)
-                                                     select q).Take(1);
-                    
-                    foreach (QtyExchange QtyEx in list1) qtyX = QtyEx;
-                    
-                    // megnézzük, hogy az alapértelmezett ládába, hány darabot tárolhatunk el
-                    // Source = Hány egység (doboz,zacskó...)    Target= egységenként hány db  ------- 3 dobozban dobozonként 100 egység , összesen 300
-                    maxBetarolhatoDb = qtyX.SourceQty * qtyX.TargetQty;
+                    int kalkulaltLadaszamTetelsoron = 0;
+                    double tetelsorIgenyelt = ctrd.Quantity;
+                    double tetelsorTeljesitett = ctrd.PerformedQty;
+                    double maradekMennyiseg = tetelsorIgenyelt - tetelsorTeljesitett;
+                    double maxBetarolhatoDb = 0;
 
-                    //Kiszámoljuk, hogy mennyi láda kell az aktuális darabszámra.
-                    kalkulaltLadaszamTetelsoron = Convert.ToInt32(maradekMennyiseg / maxBetarolhatoDb);
 
-                    // ha van maradék, plusz egy ládát kell kihivni.
-                    if (maradekMennyiseg > (kalkulaltLadaszamTetelsoron * maxBetarolhatoDb))
+                    if (maradekMennyiseg > 0)
                     {
-                        kalkulaltLadaszamTetelsoron++;
+                        // megkeressük az alapértelmezett betárolást
+                        IQueryable<QtyExchange> atvaltasok = os.GetObjectsQuery<QtyExchange>();
+                        var atvlist =   (from q in atvaltasok
+                                        where (q.Product.Oid == ctrd.Product.Oid && q.In == true && q.Default == true)
+                                        select q).Take(1);
+                    
+                        foreach (QtyExchange QtyEx in atvlist) qtyX = QtyEx;
+                    
+                        // megnézzük, hogy az alapértelmezett ládába, hány darabot tárolhatunk el
+                        // Source = Hány egység (doboz,zacskó...)    Target= egységenként hány db  ------- 3 dobozban dobozonként 100 egység , összesen 300
+                        maxBetarolhatoDb = qtyX.SourceQty * qtyX.TargetQty;
+
+                        //Kiszámoljuk, hogy mennyi láda kell az aktuális darabszámra.
+                        kalkulaltLadaszamTetelsoron = Convert.ToInt32(maradekMennyiseg / maxBetarolhatoDb);
+
+                        // ha van maradék, plusz egy ládát kell kihivni.
+                        if (maradekMennyiseg > (kalkulaltLadaszamTetelsoron * maxBetarolhatoDb))
+                        {
+                            kalkulaltLadaszamTetelsoron++;
+                        }
                     }
+
+                    if (kalkulaltLadaszamTetelsoron > 0)
+                    {
+                        ctrd.CalcLcNumber = (UInt32)kalkulaltLadaszamTetelsoron;
+
+                    }
+                    os.CommitChanges();
                 }
-
-
-                if (kalkulaltLadaszamTetelsoron > 0)
-                {
-                    ctrd.CalcLcNumber = (UInt32)kalkulaltLadaszamTetelsoron;
-
-                }
-                ctrd.Save();
+            }
+            catch
+            {
+                log.Error("hiba");
+            }
+            finally
+            {
+                DisposeObjectSpace(os);
             }
         }
         #endregion
 
         #region Ládák kihívása
         // Bejővő paraméterek (Ügylet száma, Komissiózó pont azonosítója, Komissiózó pont plc azonosítója)
-        public void CallLoadCarriers(int ctrH, string commonType, int iocp, int weight, int lcTypeHeight)
+        public void CallLoadCarriers(int ctrH, string commonType, int iocp, int weight)
         {
-            // Megkeressük a bizonylat  tételsorait
-            Session session = new Session();
-            XPQuery<CommonTrDetail> details = session.Query<CommonTrDetail>();
-            IQueryable<CommonTrDetail> list = (from c in details
-                                               where (c.CommonTrHeader.Oid == ctrH)
-                                               select c);
-
-
-            //Végigmegyünk minden tételsoron
-            foreach (CommonTrDetail ctrD in list)
+            IObjectSpace os = null;
+            try
             {
-                //Ládákat keresünk az ügylettípus szerint:
-                //BETÁROLÁS
-                //1 Betárolásnál annyi ÜRES!!! ládát kell hívnunk amennyit előkalkuláltunk
-                if (commonType == "BETAR")
-                {
-                    for (int i = 0; i < ctrD.CalcLcNumber; i++)
-                    {
-                        // Keresünk egy üres ládát lehetőleg onnan ahová vissza is akarjuk küldeni és le is foglaljuk az erőforrást.
-                        StorageLocation sourceLocation = FindEmptyLoadcarrier(ctrD.Product, lcTypeHeight);
+                os = GetNewObjectSpace();
+                //Megkeressük a bizonylat tételsorait
+                
+                IQueryable<CommonTrDetail> details = os.GetObjectsQuery<CommonTrDetail>();
+                var list = (from c in details
+                            where (c.CommonTrHeader.Oid == ctrH)
+                            orderby c.ItemNum ascending
+                            select c);
 
-                        if (sourceLocation != null)
+                //Végigmegyünk minden tételsoron és ládákat keresünk az ügylettípus szerint:
+                foreach (CommonTrDetail ctrD in list)
+                {
+                    //BETÁROLÁS - annyi ÜRES!!! ládát kell hívnunk amennyit előkalkuláltunk
+                    if (commonType == "BETAR")
+                    {
+                        for (int i = 0; i < ctrD.CalcLcNumber; i++)
                         {
-                            CreateTransportOrder(2, ctrH, ctrD.Oid, sourceLocation.LoadCarrier, iocp, weight, sourceLocation, null);
-                        }
-                        else
-                        {
-                            throw new Exception("Hiba - Nem talált kihívható ládát!");
+                            // Keresünk egy üres ládát lehetőleg onnan ahová vissza is akarjuk küldeni és le is foglaljuk az erőforrást.
+                            StorageLocation sourceLocation = FindEmptyLoadcarrier(ctrD.Product);
+
+                            if (sourceLocation != null)
+                            {
+                                CreateTransportOrder(2, ctrH, ctrD.Oid, sourceLocation.LoadCarrier.Oid, iocp, weight, sourceLocation, null);
+                            }
+                            else
+                            {
+                                throw new Exception("Hiba - Nem talált kihívható ládát!");
+                            }
                         }
                     }
-                }
 
-                //KITÁROLÁS ÉS KOMISSIÓ
-                // 2 Kitárolásnál  és Komissiónál Allokálnunk kell és FIFO szerint kihívni a terméket tartalmazó ládákat
-                if (commonType == "KITAR" || commonType == "KOMISSIO")
-                {
+                    //KITÁROLÁS ÉS KOMISSIÓ - Allokálnunk kell és FIFO szerint kihívni a terméket tartalmazó ládákat
+                    if (commonType == "KITAR" || commonType == "KOMISSIO")
+                    {
+                        double szuksegesMennyiseg = ctrD.Quantity - ctrD.PerformedQty;
+                        double maradekMennyiseg = szuksegesMennyiseg;
+                        double allokaltMennyiseg = 0;
 
-                    double szuksegesMennyiseg = ctrD.Quantity - ctrD.PerformedQty;
-                    double maradekMennyiseg = szuksegesMennyiseg;
-                    double allokaltMennyiseg = 0;
+                        if (szuksegesMennyiseg > 0)
+                        {
+                            foreach (Stock stock in ctrD.Product.Stocks)
+                            {
+                                if (stock.StorageLocation != null && stock.StorageLocation.StatusCode == 1)
+                                {
+                                    allokaltMennyiseg = Math.Min(stock.NormalQty, maradekMennyiseg);
+                                    if (allokaltMennyiseg > 0)
+                                    {
+                                        LoadCarrier lc = stock.LC;
+                                        stock.StorageLocation.StatusCode = 2;
+                                        maradekMennyiseg -= allokaltMennyiseg;
 
-                    if (szuksegesMennyiseg > 0)
+                                        CreateTransportOrder(2, ctrH, ctrD.Oid, lc.Oid, iocp, weight, stock.StorageLocation, null);
+                                        ctrD.CalcLcNumber++;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    //LELTÁR minden ládát kihozunk amia terméket tartalmazza
+                    if (commonType == "LELTAR" )
                     {
                         foreach (Stock stock in ctrD.Product.Stocks)
                         {
                             if (stock.StorageLocation != null && stock.StorageLocation.StatusCode == 1)
                             {
-                                allokaltMennyiseg = Math.Min(stock.NormalQty, maradekMennyiseg);
-                                if (allokaltMennyiseg > 0)
-                                {
-                                    LoadCarrier lc = stock.LC;
-                                    stock.StorageLocation.StatusCode = 2;
-                                    maradekMennyiseg -= allokaltMennyiseg;
-
-                                    CreateTransportOrder(2, ctrH, ctrD.Oid, lc, iocp, weight, stock.StorageLocation, null);
-                                    ctrD.CalcLcNumber++;
-                                }
+                                ChangeLocationStatus(stock.StorageLocation, 3);
+                                CreateTransportOrder(2, ctrH, ctrD.Oid, stock.LC.Oid, iocp, weight, stock.StorageLocation, null);
+                                ctrD.CalcLcNumber++;
                             }
                         }
                     }
                 }
-
-                //LELTÁR
-                // 2 Kitárolásnál  és Komissiónál Allokálnunk kell és FIFO szerint kihívni a terméket tartalmazó ládákat
-                if (commonType == "LELTAR" )
-                {
-                    foreach (Stock stock in ctrD.Product.Stocks)
-                    {
-                        if (stock.StorageLocation != null && stock.StorageLocation.StatusCode == 1)
-                        {
-                            ChangeLocationStatus(stock.StorageLocation, 3);
-                            CreateTransportOrder(2, ctrH, ctrD.Oid, stock.LC, iocp, weight, stock.StorageLocation, null);
-                            ctrD.CalcLcNumber++;
-                        }
-                    }
-                }
+            }
+            catch
+            {
+                log.Error("hiba");
+            }
+            finally
+            {
+                DisposeObjectSpace(os);
             }
         }
         #endregion
 
         #region Üres láda keresése tárolóhelyen betároláshoz
-        public StorageLocation FindEmptyLoadcarrier(Product product, int lcTypeHeight)
+        public StorageLocation FindEmptyLoadcarrier(Product product)
         {
             StorageLocation retSl = null;
             
             //Megpróbálunk arról a tárolási helyről ládát kihívni ahová esetleg vissza is küldenénk
 
-                bool talalt = false;
-                List<int> meretek = new List<int>();
-                meretek.Add(lcTypeHeight);
+            bool talalt = false;
+            List<int> meretek = product.GetLcHeights();
+            List<Aisle> folyosok = GetProductAisleByStock(product);
+            List<string> abcBesorolasok = GetAbcListByProduct(product.AbcClass.Code);
 
-                List<Aisle> folyosok = GetProductAisleByStock(product);
-                List<string> abcBesorolasok = GetAbcListByProduct(product.AbcClass.Code);
+            if (folyosok.Count == 0)
+            {
+                folyosok = aisleList;
+            }                
+            
 
-                for (int i = 0; i < meretek.Count || !talalt; i++)
+            for (int i = 0; i < meretek.Count && !talalt; i++)
+            {
+                for (int j = 0; j < folyosok.Count && !talalt; j++)
                 {
-                    for (int j = 0; j < folyosok.Count || !talalt; j++)
+                    for (int k = 0; k < abcBesorolasok.Count && !talalt; k++)
                     {
-                        for (int k = 0; k < abcBesorolasok.Count || !talalt; k++)
+                        retSl = AdottTarolohelykeresesFolyoson(meretek[i], folyosok[j], abcBesorolasok[k],1);
+                        if (retSl != null)
                         {
-                            retSl = AdottTarolohelykeresesFolyoson(meretek[i], folyosok[j], abcBesorolasok[k],1);
-                            if (retSl != null)
-                            {
-                                ChangeLocationStatus(retSl, 3);
-                                talalt = true;
-                            }
+                            ChangeLocationStatus(retSl, 3);
+                            talalt = true;
                         }
                     }
                 }
-                return retSl;
+            }
+            return retSl;
         }
         #endregion
 
         #region Láda beküldése
         public void SendLoadCarrierBack(int ctrH, int ctrD, int lc, int IocpId, int weight)
         {
-            Session workSession = new Session();
-            LoadCarrier lca = workSession.FindObject<LoadCarrier>(new BinaryOperator("Oid", lc));
+            IObjectSpace os = null;
 
-            StorageLocation targetLocation = FindEmptyLocation(lca);
+            try
+            {
+                os = GetNewObjectSpace();
 
-            if (targetLocation != null)
-            {
-                CreateTransportOrder(1, ctrH, ctrD, lca, IocpId, weight, null,targetLocation);
+                LoadCarrier lca = os.FindObject<LoadCarrier>(new BinaryOperator("Oid", lc));
+                StorageLocation targetLocation = FindEmptyLocation(lca);
+
+                if (targetLocation != null)
+                {
+                    CreateTransportOrder(1, ctrH, ctrD, lca.Oid, IocpId, weight, null,targetLocation);
+                }
+                else
+                {
+                    throw new Exception("Nem talált tárolóhelyet");
+                }
             }
-            else
+            catch
             {
-                throw new Exception("Nem talált tárolóhelyet");
+                log.Error("ObjectSpace not found");
             }
+            finally
+            {
+                DisposeObjectSpace(os);
+            }
+         
         }
         #endregion
 
@@ -597,12 +713,11 @@ namespace LogXExplorer.ApplicationServer
         private StorageLocation AdottTarolohelykeresesFolyoson(int height, Aisle aisle, string abcTypeCode, int statusCode)
         {
             StorageLocation ret = null;
-            Session session = new Session();
-            XPQuery<StorageLocation> details = session.Query<StorageLocation>();
-            IQueryable<StorageLocation> list = (from c in details
-                                                where (c.StatusCode == statusCode && c.Aisle==aisle && c.Height == height && (c.AbcClass.Code == abcTypeCode || abcTypeCode == null))
-                                                orderby c.Column, c.Row, c.Block ascending
-                                                select c).Take(1);
+            IQueryable<StorageLocation> locations = serverObjectSpace.GetObjectsQuery<StorageLocation>();
+            var list = (from c in locations
+                        where (c.StatusCode == statusCode && c.Aisle==aisle && c.Height == height && (c.AbcClass.Code == abcTypeCode || abcTypeCode == null))
+                        orderby c.Column, c.Row, c.Block ascending
+                        select c).Take(1);
             foreach (StorageLocation item in list)
             {
                 ret = item;
@@ -612,24 +727,25 @@ namespace LogXExplorer.ApplicationServer
         #endregion
 
         #region Transzport sor létrehozása az adatbázisba
-        public void CreateTransportOrder(int type,  int ctrH, int ctrD, LoadCarrier lc,   int IocpId , int weight, StorageLocation sourceLocation, StorageLocation targetLocation)
+        public void CreateTransportOrder(int type,  int ctrH, int ctrD, int lc,   int IocpId , int weight, StorageLocation sourceLocation, StorageLocation targetLocation)
         {
-            //Csinálunk egy sessiont
-            Session workSession = new Session();
+            
 
             //Megkeressük az erőforrásokat
-            CommonTrHeader ctrHeader = workSession.FindObject<CommonTrHeader>(new BinaryOperator("Oid", ctrH));
-            CommonTrDetail cdetail = workSession.FindObject<CommonTrDetail>(new BinaryOperator("Oid", ctrD));
-            Iocp iocp = workSession.FindObject<Iocp>(new BinaryOperator("Oid", IocpId));
+            CommonTrHeader ctrHeader = serverObjectSpace.FindObject<CommonTrHeader>(new BinaryOperator("Oid", ctrH));
+            CommonTrDetail cdetail = serverObjectSpace.FindObject<CommonTrDetail>(new BinaryOperator("Oid", ctrD));
+            LoadCarrier loadCarrier = serverObjectSpace.FindObject<LoadCarrier>(new BinaryOperator("Oid", lc));
+            Iocp iocp = serverObjectSpace.FindObject<Iocp>(new BinaryOperator("Oid", IocpId));
 
             //Osztumk egy új sorszámot
             ushort UjTransportID = GetNewSorszam("TPO");
 
             //Létrehozzuk az új transzportot az adatbázisban
-            TransportOrder transportOrder = new TransportOrder(workSession);
+
+            TransportOrder transportOrder = serverObjectSpace.CreateObject<TransportOrder>();
             transportOrder.Iocp = iocp;
             transportOrder.TpId = UjTransportID;
-            transportOrder.LC = lc;
+            transportOrder.LC = loadCarrier;
             
             transportOrder.CommonTrHeader = ctrHeader;
             transportOrder.CommonDetail = cdetail;
@@ -638,9 +754,7 @@ namespace LogXExplorer.ApplicationServer
             transportOrder.SourceLocation =sourceLocation;
             transportOrder.TargetLocation=targetLocation;
             transportOrder.Weight=weight;
-            transportOrder.Save();
-
-            
+            serverObjectSpace.CommitChanges();
             // Hozzáadjuk a megfelelő iocp zsák queue-hoz
             this.opcClient.addJob(transportOrder);
         }
@@ -650,11 +764,11 @@ namespace LogXExplorer.ApplicationServer
         public bool ChangeLocationStatus(StorageLocation location, int status)
         {
             bool succes = false;
+            log.Debug("Location status is changed: " + status);
             lock (locationStatusLock)
             {
                 location.StatusCode = status;
                 location.Save();
-                Console.WriteLine("Location status is changed: " + status);
                 succes = true;
             }
             return succes;
@@ -663,17 +777,26 @@ namespace LogXExplorer.ApplicationServer
 
         #region Bizonylat státusz állítás
         private Object lockCtrhStatus = new Object();
-        public void ChangeCommonTrHeaderStatus(int CtrhID, int status)
+        public bool  ChangeCommonTrHeaderStatus(int CtrhID, int status)
         {
-            lock (lockCtrhStatus)
-            {
-                //itt a kenyes muvelet
-                Session workSession = new Session();
-                CriteriaOperator criteria = CriteriaOperator.Parse("[Oid] = ?", CtrhID);
-                CommonTrHeader cTrH = workSession.FindObject<CommonTrHeader>(criteria);
-                cTrH.Status = status;
+            bool ret = false;
 
-                Console.WriteLine("Status is changed.");
+            lock (lockCtrhStatus)
+            {   
+                CriteriaOperator criteria = CriteriaOperator.Parse("[Oid] = ?", CtrhID);
+                CommonTrHeader cTrH = serverObjectSpace.FindObject<CommonTrHeader>(criteria);
+
+                if(cTrH.Status< status)
+                {
+                    cTrH.Status = status;
+                    serverObjectSpace.CommitChanges();
+                    ret = true;
+                    return ret;
+                }
+                else
+                {
+                    throw new Exception ("Az ügylet státusza időközben megváltozott!");
+                }
             }
         }
         #endregion
@@ -682,8 +805,8 @@ namespace LogXExplorer.ApplicationServer
         public ushort GetNewSorszam(string commonType)
         {
             decimal ujSorszam = 0;
-            Session workSession = new Session();
-            CommonTrType cType = workSession.FindObject<CommonTrType>(new BinaryOperator("Type", commonType));
+            
+            CommonTrType cType = serverObjectSpace.FindObject<CommonTrType>(new BinaryOperator("Type", commonType));
             Sorszam tpoSorszam = null;
 
             lock (sorszamLock)
@@ -693,18 +816,18 @@ namespace LogXExplorer.ApplicationServer
                 if (cType.DateDepended)
                 {
                     CriteriaOperator cop = new GroupOperator(GroupOperatorType.And, new BinaryOperator("Type", cType.Oid), new BinaryOperator("Year", date.Year));
-                    tpoSorszam = (Sorszam)workSession.FindObject(typeof(Sorszam), cop);
+                    tpoSorszam = (Sorszam)serverObjectSpace.FindObject(typeof(Sorszam), cop);
                 }
                 else
                 {
                     CriteriaOperator cop = new GroupOperator(GroupOperatorType.And, new BinaryOperator("Type", cType.Oid), new BinaryOperator("Year", 0));
-                    tpoSorszam = (Sorszam)workSession.FindObject(typeof(Sorszam), cop);
+                    tpoSorszam = (Sorszam)serverObjectSpace.FindObject(typeof(Sorszam), cop);
                 }
 
                 // Ha nem létezik sorszám létrehozunk egyet
                 if (tpoSorszam == null)
                 {
-                    tpoSorszam = new Sorszam(workSession);
+                    tpoSorszam = serverObjectSpace.CreateObject<Sorszam>();
                     tpoSorszam.Type = cType;
 
                     if (cType.DateDepended)
@@ -718,15 +841,14 @@ namespace LogXExplorer.ApplicationServer
 
                     tpoSorszam.LastNum = 1;
                     ujSorszam = 1;
-                    tpoSorszam.Save();
                 }
                 // Ha létezik akkor kérünk egy új sorszámot
                 else
                 {
                     ujSorszam = tpoSorszam.GetNewNumber();
-                    tpoSorszam.Save();
 
                 }
+                serverObjectSpace.CommitChanges();
             }
             return Convert.ToUInt16(ujSorszam);
         }

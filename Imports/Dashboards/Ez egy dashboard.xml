@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="en-US">
+  <Title Text="Dashboard" />
+  <DataSources>
+    <ExcelDataSource Name="Excel Data Source 1" FileName="C:\Log_x\DashboardSource\Adatok1.xlsx" ComponentName="dashboardExcelDataSource1">
+      <Options Type="DevExpress.DataAccess.Excel.ExcelSourceOptions" SkipEmptyRows="true" UseFirstRowAsHeader="true" SkipHiddenColumns="true" SkipHiddenRows="true">
+        <ImportSettings Type="DevExpress.DataAccess.Excel.ExcelWorksheetSettings" WorksheetName="Munka3" />
+      </Options>
+      <Schema>
+        <FieldInfo Name="Row ID" Type="System.Double" Selected="true" />
+        <FieldInfo Name="Order Priority" Type="System.String" Selected="true" />
+        <FieldInfo Name="Discount" Type="System.String" Selected="true" />
+        <FieldInfo Name="Customer ID" Type="System.Double" Selected="true" />
+        <FieldInfo Name="Customer Name" Type="System.String" Selected="true" />
+        <FieldInfo Name="Ship Mode" Type="System.String" Selected="true" />
+        <FieldInfo Name="Customer Segment" Type="System.String" Selected="true" />
+        <FieldInfo Name="Product Category" Type="System.String" Selected="true" />
+        <FieldInfo Name="Product Name" Type="System.String" Selected="true" />
+        <FieldInfo Name="Region" Type="System.String" Selected="true" />
+        <FieldInfo Name="Margin" Type="System.String" Selected="true" />
+        <FieldInfo Name="Order Date" Type="System.String" Selected="true" />
+        <FieldInfo Name="Quantity" Type="System.Double" Selected="true" />
+      </Schema>
+      <ResultSchema>
+        <View>
+          <Field Name="Row ID" Type="Double" />
+          <Field Name="Order Priority" Type="String" />
+          <Field Name="Discount" Type="String" />
+          <Field Name="Customer ID" Type="Double" />
+          <Field Name="Customer Name" Type="String" />
+          <Field Name="Ship Mode" Type="String" />
+          <Field Name="Customer Segment" Type="String" />
+          <Field Name="Product Category" Type="String" />
+          <Field Name="Product Name" Type="String" />
+          <Field Name="Region" Type="String" />
+          <Field Name="Margin" Type="String" />
+          <Field Name="Order Date" Type="String" />
+          <Field Name="Quantity" Type="Double" />
+        </View>
+      </ResultSchema>
+    </ExcelDataSource>
+    <ExcelDataSource Name="Excel-Datenquelle 1" FileName="C:\Log_x\DashboardSource\Adatok1.xlsx" ComponentName="dashboardExcelDataSource2">
+      <Options Type="DevExpress.DataAccess.Excel.ExcelSourceOptions" SkipEmptyRows="true" UseFirstRowAsHeader="true" SkipHiddenColumns="true" SkipHiddenRows="true">
+        <ImportSettings Type="DevExpress.DataAccess.Excel.ExcelWorksheetSettings" WorksheetName="Munka3" />
+      </Options>
+      <Schema>
+        <FieldInfo Name="Row ID" Type="System.Double" Selected="true" />
+        <FieldInfo Name="Priorität" Type="System.String" Selected="true" />
+        <FieldInfo Name="Customer ID" Type="System.Double" Selected="true" />
+        <FieldInfo Name="Customer Name" Type="System.String" Selected="true" />
+        <FieldInfo Name="Ship Mode" Type="System.String" Selected="true" />
+        <FieldInfo Name="Customer Segment" Type="System.String" Selected="true" />
+        <FieldInfo Name="Product Category" Type="System.String" Selected="true" />
+        <FieldInfo Name="Product Name" Type="System.String" Selected="true" />
+        <FieldInfo Name="Bundesland" Type="System.String" Selected="true" />
+        <FieldInfo Name="Auftragsdatum" Type="System.String" Selected="true" />
+        <FieldInfo Name="Komnissionsdatum" Type="System.String" Selected="true" />
+        <FieldInfo Name="Menge" Type="System.Double" Selected="true" />
+        <FieldInfo Name="Netto" Type="System.Double" Selected="true" />
+      </Schema>
+      <ResultSchema>
+        <View>
+          <Field Name="Row ID" Type="Double" />
+          <Field Name="Priorität" Type="String" />
+          <Field Name="Customer ID" Type="Double" />
+          <Field Name="Customer Name" Type="String" />
+          <Field Name="Ship Mode" Type="String" />
+          <Field Name="Customer Segment" Type="String" />
+          <Field Name="Product Category" Type="String" />
+          <Field Name="Product Name" Type="String" />
+          <Field Name="Bundesland" Type="String" />
+          <Field Name="Auftragsdatum" Type="String" />
+          <Field Name="Komnissionsdatum" Type="String" />
+          <Field Name="Menge" Type="Double" />
+          <Field Name="Netto" Type="Double" />
+        </View>
+      </ResultSchema>
+    </ExcelDataSource>
+  </DataSources>
+  <Items>
+    <Pie ComponentName="pieDashboardItem1" Name="Pies 1" DataSource="dashboardExcelDataSource2" PieType="Donut">
+      <DataItems>
+        <Measure DataMember="Netto" DefaultId="DataItem0" />
+        <Dimension DataMember="Product Category" DefaultId="DataItem1" />
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem1" />
+      </Arguments>
+      <Values>
+        <Value DefaultId="DataItem0" />
+      </Values>
+    </Pie>
+    <Grid ComponentName="gridDashboardItem2" Name="Chart 2" DataSource="dashboardExcelDataSource1">
+      <DataItems>
+        <Dimension DataMember="Region" DefaultId="DataItem0" />
+        <Measure DataMember="Quantity" DefaultId="DataItem1" />
+      </DataItems>
+      <GridColumns>
+        <GridDimensionColumn>
+          <Dimension DefaultId="DataItem0" />
+        </GridDimensionColumn>
+        <GridMeasureColumn>
+          <Measure DefaultId="DataItem1" />
+        </GridMeasureColumn>
+      </GridColumns>
+      <GridOptions />
+    </Grid>
+    <Chart ComponentName="chartDashboardItem1" Name="Chart 1" DataSource="dashboardExcelDataSource2">
+      <DataItems>
+        <Dimension DataMember="Product Category" DefaultId="DataItem1" />
+        <Dimension DataMember="Customer Segment" DefaultId="DataItem2" />
+        <Measure DataMember="Netto" DefaultId="DataItem0" />
+      </DataItems>
+      <SeriesDimensions>
+        <SeriesDimension DefaultId="DataItem2" />
+      </SeriesDimensions>
+      <Arguments>
+        <Argument DefaultId="DataItem1" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Pane 1">
+          <Series>
+            <Simple SeriesType="FullStackedBar">
+              <Value DefaultId="DataItem0" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+    </Chart>
+    <Grid ComponentName="gridDashboardItem1" Name="Grid 1" DataSource="dashboardExcelDataSource1">
+      <DataItems>
+        <Dimension DataMember="Region" DefaultId="DataItem0" />
+        <Measure DataMember="Quantity" DefaultId="DataItem1" />
+        <Dimension DataMember="Order Priority" DefaultId="DataItem2" />
+      </DataItems>
+      <FormatRules>
+        <GridItemFormatRule Name="FormatRule 1" DataItem="DataItem1">
+          <FormatConditionTopBottom RankType="Number">
+            <AppearanceSettings AppearanceType="PaleRed" />
+          </FormatConditionTopBottom>
+        </GridItemFormatRule>
+        <GridItemFormatRule Name="FormatRule 2" DataItem="DataItem1">
+          <FormatConditionRangeGradient ValueType="Percent">
+            <RangeSet>
+              <Ranges>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="0" />
+                  <AppearanceSettings AppearanceType="GradientGreen" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="10" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="20" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="30" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="40" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="50" />
+                  <AppearanceSettings AppearanceType="GradientTransparent" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="60" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="70" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="80" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="90" />
+                  <AppearanceSettings AppearanceType="GradientRed" />
+                </RangeInfo>
+              </Ranges>
+            </RangeSet>
+          </FormatConditionRangeGradient>
+        </GridItemFormatRule>
+        <GridItemFormatRule Name="FormatRule 3" DataItem="DataItem1">
+          <FormatConditionRangeSet ValueType="Percent">
+            <RangeSet>
+              <Ranges>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="0" />
+                  <IconSettings IconType="RatingFullGrayCircle" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="25" />
+                  <IconSettings IconType="ShapeLightGrayCircle" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="50" />
+                  <IconSettings IconType="ShapeLightRedCircle" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="75" />
+                  <IconSettings IconType="ShapeRedCircle" />
+                </RangeInfo>
+              </Ranges>
+            </RangeSet>
+          </FormatConditionRangeSet>
+        </GridItemFormatRule>
+        <GridItemFormatRule Name="FormatRule 4" DataItem="DataItem1">
+          <FormatConditionBar>
+            <NegativeStyleSettings PredefinedColor="PaleRed" />
+            <StyleSettings PredefinedColor="PaleGreen" />
+            <BarOptions />
+          </FormatConditionBar>
+        </GridItemFormatRule>
+        <GridItemFormatRule Name="FormatRule 5" DataItem="DataItem1">
+          <FormatConditionGradientRangeBar ValueType="Percent">
+            <RangeSet>
+              <Ranges>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="0" />
+                  <BarStyleSettings PredefinedColor="GradientGreen" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="20" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="40" />
+                  <BarStyleSettings PredefinedColor="GradientYellow" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="60" />
+                </RangeInfo>
+                <RangeInfo>
+                  <Value Type="System.Double" Value="80" />
+                  <BarStyleSettings PredefinedColor="GradientBlue" />
+                </RangeInfo>
+              </Ranges>
+            </RangeSet>
+            <BarOptions DrawAxis="true" />
+          </FormatConditionGradientRangeBar>
+        </GridItemFormatRule>
+      </FormatRules>
+      <GridColumns>
+        <GridDimensionColumn Weight="50.031407035175882">
+          <Dimension DefaultId="DataItem0" />
+        </GridDimensionColumn>
+        <GridMeasureColumn Weight="117.02261306532664">
+          <Measure DefaultId="DataItem1" />
+          <Totals>
+            <Total Type="Sum" />
+            <Total Type="Max" />
+          </Totals>
+        </GridMeasureColumn>
+        <GridDimensionColumn Weight="57.945979899497488">
+          <Dimension DefaultId="DataItem2" />
+        </GridDimensionColumn>
+      </GridColumns>
+      <GridOptions ColumnWidthMode="Manual" />
+    </Grid>
+  </Items>
+  <LayoutTree>
+    <LayoutGroup>
+      <LayoutGroup Orientation="Vertical" Weight="0.5">
+        <LayoutItem DashboardItem="pieDashboardItem1" Weight="0.5" />
+        <LayoutItem DashboardItem="chartDashboardItem1" Weight="0.5" />
+      </LayoutGroup>
+      <LayoutGroup Orientation="Vertical" Weight="0.5">
+        <LayoutItem DashboardItem="gridDashboardItem2" Weight="0.5" />
+        <LayoutItem DashboardItem="gridDashboardItem1" Weight="0.5" />
+      </LayoutGroup>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

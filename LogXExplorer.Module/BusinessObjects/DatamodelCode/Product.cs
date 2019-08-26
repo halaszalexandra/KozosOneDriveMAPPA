@@ -13,18 +13,17 @@ namespace LogXExplorer.Module.BusinessObjects.Database
         public Product(Session session) : base(session) { }
         public override void AfterConstruction() { base.AfterConstruction(); }
 
-        public double  GetStockByAisle(Aisle aisle)
+        public List<int> GetLcHeights()
         {
-            double ret = 0;
-            foreach (Stock stock in this.Stocks)
+            List<int> ret = new List<int>();
+            foreach (QtyExchange qty in this.QtyExchanges)
             {
-                if(stock.StorageLocation.Aisle == aisle)
+                if (qty.In == true)
                 {
-                    ret += stock.NormalQty;
+                    ret.Add(qty.LcType.Height);
                 }
             }
             return ret;
         }
-       
     }
 }

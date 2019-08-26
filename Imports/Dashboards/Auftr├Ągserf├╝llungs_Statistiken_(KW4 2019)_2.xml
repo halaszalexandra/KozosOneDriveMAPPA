@@ -1,0 +1,493 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="en-US">
+  <Title Text="Aufträgserfüllungs-Statistiken (KW4 2019)" Alignment="Left" />
+  <DataSources>
+    <ExcelDataSource Name="Excel Data Source 1" FileName="C:\Log_x\DashboardSource\Adatok1.xlsx" ComponentName="dashboardExcelDataSource1">
+      <Options Type="DevExpress.DataAccess.Excel.ExcelSourceOptions" SkipEmptyRows="true" UseFirstRowAsHeader="true" SkipHiddenColumns="true" SkipHiddenRows="true">
+        <ImportSettings Type="DevExpress.DataAccess.Excel.ExcelWorksheetSettings" WorksheetName="Munka3" />
+      </Options>
+      <Schema>
+        <FieldInfo Name="Row ID" Type="System.Double" Selected="true" />
+        <FieldInfo Name="Order Priority" Type="System.String" Selected="true" />
+        <FieldInfo Name="Discount" Type="System.String" Selected="true" />
+        <FieldInfo Name="Customer ID" Type="System.Double" Selected="true" />
+        <FieldInfo Name="Customer Name" Type="System.String" Selected="true" />
+        <FieldInfo Name="Ship Mode" Type="System.String" Selected="true" />
+        <FieldInfo Name="Customer Segment" Type="System.String" Selected="true" />
+        <FieldInfo Name="Product Category" Type="System.String" Selected="true" />
+        <FieldInfo Name="Product Name" Type="System.String" Selected="true" />
+        <FieldInfo Name="Region" Type="System.String" Selected="true" />
+        <FieldInfo Name="Margin" Type="System.String" Selected="true" />
+        <FieldInfo Name="Order Date" Type="System.String" Selected="true" />
+        <FieldInfo Name="Quantity" Type="System.Double" Selected="true" />
+      </Schema>
+      <ResultSchema>
+        <View>
+          <Field Name="Row ID" Type="Double" />
+          <Field Name="Order Priority" Type="String" />
+          <Field Name="Discount" Type="String" />
+          <Field Name="Customer ID" Type="Double" />
+          <Field Name="Customer Name" Type="String" />
+          <Field Name="Ship Mode" Type="String" />
+          <Field Name="Customer Segment" Type="String" />
+          <Field Name="Product Category" Type="String" />
+          <Field Name="Product Name" Type="String" />
+          <Field Name="Region" Type="String" />
+          <Field Name="Margin" Type="String" />
+          <Field Name="Order Date" Type="String" />
+          <Field Name="Quantity" Type="Double" />
+        </View>
+      </ResultSchema>
+    </ExcelDataSource>
+    <ExcelDataSource Name="Excel-Datenquelle 1" FileName="C:\Log_x\DashboardSource\Adatok1.xlsx" ComponentName="dashboardExcelDataSource2">
+      <Options Type="DevExpress.DataAccess.Excel.ExcelSourceOptions" SkipEmptyRows="true" UseFirstRowAsHeader="true" SkipHiddenColumns="true" SkipHiddenRows="true">
+        <ImportSettings Type="DevExpress.DataAccess.Excel.ExcelWorksheetSettings" WorksheetName="Munka3" />
+      </Options>
+      <Schema>
+        <FieldInfo Name="Row ID" Type="System.Double" Selected="true" />
+        <FieldInfo Name="Priorität" Type="System.String" Selected="true" />
+        <FieldInfo Name="Customer ID" Type="System.Double" Selected="true" />
+        <FieldInfo Name="Customer Name" Type="System.String" Selected="true" />
+        <FieldInfo Name="Ship Mode" Type="System.String" Selected="true" />
+        <FieldInfo Name="Customer Segment" Type="System.String" Selected="true" />
+        <FieldInfo Name="Product Category" Type="System.String" Selected="true" />
+        <FieldInfo Name="Product Name" Type="System.String" Selected="true" />
+        <FieldInfo Name="Bundesland" Type="System.String" Selected="true" />
+        <FieldInfo Name="Auftragsdatum" Type="System.String" Selected="true" />
+        <FieldInfo Name="Komnissionsdatum" Type="System.String" Selected="true" />
+        <FieldInfo Name="Menge" Type="System.Double" Selected="true" />
+        <FieldInfo Name="Netto" Type="System.Double" Selected="true" />
+      </Schema>
+      <ResultSchema>
+        <View>
+          <Field Name="Row ID" Type="Double" />
+          <Field Name="Priorität" Type="String" />
+          <Field Name="Customer ID" Type="Double" />
+          <Field Name="Customer Name" Type="String" />
+          <Field Name="Ship Mode" Type="String" />
+          <Field Name="Customer Segment" Type="String" />
+          <Field Name="Product Category" Type="String" />
+          <Field Name="Product Name" Type="String" />
+          <Field Name="Bundesland" Type="String" />
+          <Field Name="Auftragsdatum" Type="String" />
+          <Field Name="Komnissionsdatum" Type="String" />
+          <Field Name="Menge" Type="Double" />
+          <Field Name="Netto" Type="Double" />
+        </View>
+      </ResultSchema>
+    </ExcelDataSource>
+    <ExcelDataSource Name="Excel-Datenquelle 2" FileName="C:\Log_x\DashboardSource\Adatok1.xlsx" ComponentName="dashboardExcelDataSource3">
+      <Options Type="DevExpress.DataAccess.Excel.ExcelSourceOptions" SkipEmptyRows="true" UseFirstRowAsHeader="true" SkipHiddenColumns="true" SkipHiddenRows="true">
+        <ImportSettings Type="DevExpress.DataAccess.Excel.ExcelWorksheetSettings" WorksheetName="Munka3" />
+      </Options>
+      <Schema>
+        <FieldInfo Name="Row ID" Type="System.Double" Selected="true" />
+        <FieldInfo Name="Priorität" Type="System.String" Selected="true" />
+        <FieldInfo Name="Customer ID" Type="System.Double" Selected="true" />
+        <FieldInfo Name="Customer Name" Type="System.String" Selected="true" />
+        <FieldInfo Name="Ship Mode" Type="System.String" Selected="true" />
+        <FieldInfo Name="Customer Segment" Type="System.String" Selected="true" />
+        <FieldInfo Name="Product Category" Type="System.String" Selected="true" />
+        <FieldInfo Name="Product Name" Type="System.String" Selected="true" />
+        <FieldInfo Name="Bundesland" Type="System.String" Selected="true" />
+        <FieldInfo Name="Auftragsdatum" Type="System.String" Selected="true" />
+        <FieldInfo Name="Komnissionsdatum" Type="System.String" Selected="true" />
+        <FieldInfo Name="Menge" Type="System.Double" Selected="true" />
+        <FieldInfo Name="Netto" Type="System.Double" Selected="true" />
+      </Schema>
+      <ResultSchema>
+        <View>
+          <Field Name="Row ID" Type="Double" />
+          <Field Name="Priorität" Type="String" />
+          <Field Name="Customer ID" Type="Double" />
+          <Field Name="Customer Name" Type="String" />
+          <Field Name="Ship Mode" Type="String" />
+          <Field Name="Customer Segment" Type="String" />
+          <Field Name="Product Category" Type="String" />
+          <Field Name="Product Name" Type="String" />
+          <Field Name="Bundesland" Type="String" />
+          <Field Name="Auftragsdatum" Type="String" />
+          <Field Name="Komnissionsdatum" Type="String" />
+          <Field Name="Menge" Type="Double" />
+          <Field Name="Netto" Type="Double" />
+        </View>
+      </ResultSchema>
+    </ExcelDataSource>
+    <ExcelDataSource Name="Excel-Datenquelle 3" FileName="C:\Log_x\DashboardSource\Adatok1.xlsx" ComponentName="dashboardExcelDataSource4">
+      <Options Type="DevExpress.DataAccess.Excel.ExcelSourceOptions" SkipEmptyRows="true" UseFirstRowAsHeader="true" SkipHiddenColumns="true" SkipHiddenRows="true">
+        <ImportSettings Type="DevExpress.DataAccess.Excel.ExcelWorksheetSettings" WorksheetName="Munka3" />
+      </Options>
+      <Schema>
+        <FieldInfo Name="Row ID" Type="System.Double" Selected="true" />
+        <FieldInfo Name="Priorität" Type="System.String" Selected="true" />
+        <FieldInfo Name="Customer ID" Type="System.Double" Selected="true" />
+        <FieldInfo Name="Customer Name" Type="System.String" Selected="true" />
+        <FieldInfo Name="Ship Mode" Type="System.String" Selected="true" />
+        <FieldInfo Name="Customer Segment" Type="System.String" Selected="true" />
+        <FieldInfo Name="Product Category" Type="System.String" Selected="true" />
+        <FieldInfo Name="Product Name" Type="System.String" Selected="true" />
+        <FieldInfo Name="Bundesland" Type="System.String" Selected="true" />
+        <FieldInfo Name="Auftragsdatum" Type="System.String" Selected="true" />
+        <FieldInfo Name="Komnissionsdatum" Type="System.String" Selected="true" />
+        <FieldInfo Name="Menge" Type="System.Double" Selected="true" />
+        <FieldInfo Name="Netto" Type="System.Double" Selected="true" />
+      </Schema>
+      <ResultSchema>
+        <View>
+          <Field Name="Row ID" Type="Double" />
+          <Field Name="Priorität" Type="String" />
+          <Field Name="Customer ID" Type="Double" />
+          <Field Name="Customer Name" Type="String" />
+          <Field Name="Ship Mode" Type="String" />
+          <Field Name="Customer Segment" Type="String" />
+          <Field Name="Product Category" Type="String" />
+          <Field Name="Product Name" Type="String" />
+          <Field Name="Bundesland" Type="String" />
+          <Field Name="Auftragsdatum" Type="String" />
+          <Field Name="Komnissionsdatum" Type="String" />
+          <Field Name="Menge" Type="Double" />
+          <Field Name="Netto" Type="Double" />
+        </View>
+      </ResultSchema>
+    </ExcelDataSource>
+  </DataSources>
+  <Items>
+    <Pie ComponentName="pieDashboardItem1" Name="Aufträge nach Partnerkategorie und Produktgruppe" DataSource="dashboardExcelDataSource2" PieType="Donut">
+      <DataItems>
+        <Measure DataMember="Netto" DefaultId="DataItem0" />
+        <Dimension DataMember="Product Category" DefaultId="DataItem1" />
+      </DataItems>
+      <Arguments>
+        <Argument DefaultId="DataItem1" />
+      </Arguments>
+      <Values>
+        <Value DefaultId="DataItem0" />
+      </Values>
+    </Pie>
+    <Pivot ComponentName="pivotDashboardItem1" Name="Gesamtwert der Aufräge Pro Partnerpriorität" DataSource="dashboardExcelDataSource4">
+      <DataItems>
+        <Dimension DataMember="Product Category" SortByMeasure="DataItem3" DefaultId="DataItem2" />
+        <Dimension DataMember="Customer Segment" SortOrder="Descending" DefaultId="DataItem0" />
+        <Dimension DataMember="Priorität" SortByMeasure="DataItem3" DefaultId="DataItem1" />
+        <Measure DataMember="Menge" DefaultId="DataItem3" />
+      </DataItems>
+      <FormatRules>
+        <PivotItemFormatRule Name="FormatRule 1" DataItem="DataItem2">
+          <FormatConditionExpression>
+            <IconSettings IconType="Rating3Bars" />
+          </FormatConditionExpression>
+          <PivotItemFormatRuleLevel />
+        </PivotItemFormatRule>
+      </FormatRules>
+      <Columns>
+        <Column DefaultId="DataItem0" />
+        <Column DefaultId="DataItem1" />
+      </Columns>
+      <Rows>
+        <Row DefaultId="DataItem2" />
+      </Rows>
+      <Values>
+        <Value DefaultId="DataItem3" />
+      </Values>
+    </Pivot>
+    <Chart ComponentName="chartDashboardItem1" Name="Aufträge nach Partnerkategorie und Produktgruppe" DataSource="dashboardExcelDataSource3">
+      <DataItems>
+        <Dimension DataMember="Customer Segment" DefaultId="DataItem0" />
+        <Dimension DataMember="Product Category" DefaultId="DataItem2" />
+        <Measure DataMember="Netto" DefaultId="DataItem1" />
+      </DataItems>
+      <SeriesDimensions>
+        <SeriesDimension DefaultId="DataItem0" />
+      </SeriesDimensions>
+      <Arguments>
+        <Argument DefaultId="DataItem2" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Pane 1">
+          <Series>
+            <Simple SeriesType="StackedBar">
+              <Value DefaultId="DataItem1" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+    </Chart>
+    <Chart ComponentName="chartDashboardItem2" Name="Gesamtwer der Aufräge Pro Bundesland" DataSource="dashboardExcelDataSource4" Rotated="true">
+      <InteractivityOptions TargetDimensions="Points" />
+      <DataItems>
+        <Dimension DataMember="Product Category" DefaultId="DataItem2" />
+        <Dimension DataMember="Customer Segment" DefaultId="DataItem1" />
+        <Measure DataMember="Netto" DefaultId="DataItem0" />
+      </DataItems>
+      <SeriesDimensions>
+        <SeriesDimension DefaultId="DataItem1" />
+      </SeriesDimensions>
+      <Arguments>
+        <Argument DefaultId="DataItem2" />
+      </Arguments>
+      <Panes>
+        <Pane Name="Bereich 1">
+          <Series>
+            <Simple SeriesType="StackedBar">
+              <Value DefaultId="DataItem0" />
+            </Simple>
+          </Series>
+        </Pane>
+      </Panes>
+    </Chart>
+  </Items>
+  <ColorScheme>
+    <Entry DataSource="dashboardExcelDataSource2" Color="-11108679">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="Customer Segment" />
+          <Value Type="System.String" Value="Geschäftspartner" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardExcelDataSource2" Color="-5982255">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="Customer Segment" />
+          <Value Type="System.String" Value="Privatperson" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardExcelDataSource2" Color="-4605511">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="Customer Segment" />
+          <Value Type="System.String" Value="Sonnstig" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardExcelDataSource2" Color="-3024642">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="Product Category" />
+          <Value Type="System.String" Value="Aluminiumprofil" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardExcelDataSource2" Color="-4930051">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="Product Category" />
+          <Value Type="System.String" Value="Baugruppe" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardExcelDataSource2" Color="-8554257">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="Product Category" />
+          <Value Type="System.String" Value="Drehteil" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardExcelDataSource2" PaletteIndex="17">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="Product Category" />
+          <Value Type="System.String" Value="Elektronik" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardExcelDataSource2" PaletteIndex="17">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="Product Category" />
+          <Value Type="System.String" Value="Halbzeug" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardExcelDataSource2" PaletteIndex="17">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="Product Category" />
+          <Value Type="System.String" Value="Kunststoffteil" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardExcelDataSource2" PaletteIndex="17">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="Product Category" />
+          <Value Type="System.String" Value="Normteil" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardExcelDataSource2" PaletteIndex="17">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="Product Category" />
+          <Value Type="System.String" Value="Verbindungstechnik" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardExcelDataSource2" PaletteIndex="17">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="Product Category" />
+          <Value Type="System.String" Value="D86D8A6C-0D87-4CA4-9C15-3356A83699B5" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardExcelDataSource2" Color="-1972492">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="Product Category" />
+          <Value Type="System.String" Value="Düse" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardExcelDataSource2" Color="-13943180">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="Product Category" />
+          <Value Type="System.String" Value="Adapter" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardExcelDataSource2" Color="-13021292">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="Product Category" />
+          <Value Type="System.String" Value="Vielkeilverzahnung" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardExcelDataSource2" Color="-12164939">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="Product Category" />
+          <Value Type="System.String" Value="Stopfen" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardExcelDataSource2" Color="-11440964">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="Product Category" />
+          <Value Type="System.String" Value="Seitendosierschnecke" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardExcelDataSource2" Color="-580814142">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="Product Category" />
+          <Value Type="System.String" Value="Rundnut" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardExcelDataSource2" Color="-1451979829">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="Product Category" />
+          <Value Type="System.String" Value="Polygonwelle" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardExcelDataSource2" Color="-1969180709">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="Product Category" />
+          <Value Type="System.String" Value="Lochplatte" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardExcelDataSource2" Color="-10191419">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="Product Category" />
+          <Value Type="System.String" Value="Schneckenspitze" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardExcelDataSource2" Color="-741485076">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="Product Category" />
+          <Value Type="System.String" Value="Entgasungseinsatz" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardExcelDataSource3" Color="-11108679">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="Customer Segment" />
+          <Value Type="System.String" Value="Geschäftspartner" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardExcelDataSource3" Color="-5982255">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="Customer Segment" />
+          <Value Type="System.String" Value="Privatperson" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardExcelDataSource3" Color="-2630168">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="Customer Segment" />
+          <Value Type="System.String" Value="Sonnstig" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardExcelDataSource3" PaletteIndex="13">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="Customer Segment" />
+          <Value Type="System.String" Value=" " />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardExcelDataSource3" PaletteIndex="17">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="Customer Segment" />
+          <Value Type="System.String" Value="Gesamtsumme" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardExcelDataSource4" Color="-11108679">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="Customer Segment" />
+          <Value Type="System.String" Value="Geschäftspartner" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardExcelDataSource4" Color="-5982255">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="Customer Segment" />
+          <Value Type="System.String" Value="Privatperson" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+    <Entry DataSource="dashboardExcelDataSource4" Color="-2630168">
+      <DimensionKeys>
+        <DimensionKey>
+          <Definition DataMember="Customer Segment" />
+          <Value Type="System.String" Value="Sonnstig" />
+        </DimensionKey>
+      </DimensionKeys>
+    </Entry>
+  </ColorScheme>
+  <LayoutTree>
+    <LayoutGroup Orientation="Vertical" Weight="100">
+      <LayoutGroup Weight="50">
+        <LayoutItem DashboardItem="chartDashboardItem1" Weight="49.968808484092328" />
+        <LayoutItem DashboardItem="pivotDashboardItem1" Weight="50.031191515907672" />
+      </LayoutGroup>
+      <LayoutGroup Weight="50">
+        <LayoutItem DashboardItem="pieDashboardItem1" Weight="50" />
+        <LayoutItem DashboardItem="chartDashboardItem2" Weight="50" />
+      </LayoutGroup>
+    </LayoutGroup>
+  </LayoutTree>
+</Dashboard>

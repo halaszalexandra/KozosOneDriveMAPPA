@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <DetailView Id="Product_ListDetail">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="XPObject">
+              <TabbedGroup Id="Item16">
+                <LayoutGroup Id="Item7">
+                  <LayoutItem Id="AuditTrail" ViewItem="AuditTrail" />
+                </LayoutGroup>
+              </TabbedGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="Iocp_Transports">
+      <Columns Id="Columns">
+        <ColumnInfo Id="InOut" PropertyName="InOut" Index="1" Width="47" PropertyEditorType="LogXExplorer.Module.Win.TransportInOutPropEd" />
+      </Columns>
+    </ListView>
+    <DetailView Id="CommonTrDetail_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="Item3">
+              <LayoutGroup Id="Auto364e8cc0-76c5-4049-aa5e-7b97138ab5e7">
+                <LayoutGroup Id="Auto98484e49-69e5-48f0-9d2b-57747a900080">
+                  <LayoutGroup Id="Auto424d2e0d-05fa-4c63-ab72-75f826807bdf">
+                    <LayoutItem Id="LogX_TransakctonDetailCancel" ViewItem="MyButton" />
+                  </LayoutGroup>
+                </LayoutGroup>
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="Iocp_TransportOrders_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="msgCtrhidCurrdSumd" Index="-1" />
+        <ColumnInfo Id="msgID" Index="-1" />
+        <ColumnInfo Id="msgLoadCarrier" Index="-1" />
+        <ColumnInfo Id="msgSource" Index="-1" />
+        <ColumnInfo Id="msgSourceLHU1" Index="-1" />
+        <ColumnInfo Id="msgSourceLHU2" Index="-1" />
+        <ColumnInfo Id="msgTarget" Index="-1" />
+        <ColumnInfo Id="msgTargetLHU1" Index="-1" />
+        <ColumnInfo Id="msgTargetLHU2" Index="-1" />
+        <ColumnInfo Id="msgTypeAccPrTime" Index="-1" />
+        <ColumnInfo Id="msgWeight" Index="-1" />
+        <ColumnInfo Id="InOut" Index="0" Width="37" PropertyEditorType="LogXExplorer.Module.Win.TransportInOutPropEd" />
+      </Columns>
+    </ListView>
+    <DetailView Id="Product_DetailView">
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="XPObject">
+              <TabbedGroup Id="Item16">
+                <LayoutGroup Id="Item7">
+                  <LayoutItem Id="AuditTrail" ViewItem="AuditTrail" />
+                </LayoutGroup>
+              </TabbedGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <DetailView Id="TransportOrder_DetailView">
+      <Items Id="Items">
+        <PropertyEditor Id="msgID" Removed="True" />
+        <PropertyEditor Id="msgWeight" Removed="True" />
+      </Items>
+      <Layout Id="Layout">
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="Item1">
+              <LayoutGroup Id="Auto443d9d81-2a56-4be8-9dd1-c4777087b060">
+                <LayoutGroup Id="Autod473b546-83c8-471a-a0d7-6f286a7aa9af">
+                  <LayoutItem Id="msgTargetLHU2" ViewItem="msgTargetLHU2" />
+                  <LayoutItem Id="msgTargetLHU1" ViewItem="msgTargetLHU1" />
+                  <LayoutItem Id="msgTarget" ViewItem="msgTarget" />
+                </LayoutGroup>
+                <LayoutGroup Id="Autoe53ad298-7df9-4861-8e27-e68607fce7e2">
+                  <LayoutItem Id="msgSourceLHU2" ViewItem="msgSourceLHU2" />
+                  <LayoutItem Id="msgSourceLHU1" ViewItem="msgSourceLHU1" />
+                  <LayoutItem Id="msgSource" ViewItem="msgSource" />
+                </LayoutGroup>
+              </LayoutGroup>
+              <LayoutItem Id="msgLoadCarrier" ViewItem="msgLoadCarrier" />
+              <LayoutItem Id="msgTypeAccPrTime" ViewItem="msgTypeAccPrTime" />
+              <LayoutItem Id="msgCtrhidCurrdSumd" ViewItem="msgCtrhidCurrdSumd" />
+            </LayoutGroup>
+            <LayoutGroup Id="TransportOrder">
+              <LayoutGroup Id="TransportOrder_col1">
+                <LayoutItem Id="msgID" Index="10" RelativeSize="7.6923076923076925" Removed="True" />
+                <LayoutItem Id="TargetLocation" Index="10" RelativeSize="8.4112149532710276" />
+                <LayoutItem Id="TargetTag" Index="11" RelativeSize="11.214953271028037" />
+              </LayoutGroup>
+            </LayoutGroup>
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
+    <ListView Id="TransportOrder_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="msgCtrhidCurrdSumd" Index="-1" />
+        <ColumnInfo Id="msgID" Index="-1" />
+        <ColumnInfo Id="msgLoadCarrier" Index="-1" />
+        <ColumnInfo Id="msgSource" Index="-1" />
+        <ColumnInfo Id="msgSourceLHU1" Index="-1" />
+        <ColumnInfo Id="msgSourceLHU2" Index="-1" />
+        <ColumnInfo Id="msgTarget" Index="-1" />
+        <ColumnInfo Id="msgTargetLHU1" Index="-1" />
+        <ColumnInfo Id="msgTargetLHU2" Index="-1" />
+        <ColumnInfo Id="msgTypeAccPrTime" Index="-1" />
+        <ColumnInfo Id="msgWeight" Index="-1" />
+      </Columns>
+    </ListView>
+  </Views>
+</Application>

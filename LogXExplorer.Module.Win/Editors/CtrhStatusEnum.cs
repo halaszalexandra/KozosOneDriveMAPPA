@@ -5,13 +5,13 @@ namespace LogXExplorer.Module.Win
     public enum CtrhStatusEnum
     {
         [ImageName("status_gray")]
-        Neu = 0,
+        Uj = 0,
         [ImageName("status_red")]
-        Offen = 5,
+        Elfogadott = 5,
         [ImageName("status_red")]
         Geplant = 10,
         [ImageName("status_yellow")]
-        Gesperrt = 15,
+        Teljesites_alatt = 15,
         [ImageName("status_blue")]
         InProduktion = 20,
         [ImageName("status_green")]

@@ -16,9 +16,9 @@
   </TestDatabases>
   <Aliases>
     <Alias Name="DomainUserName" Value="%USERDOMAIN%\%USERNAME%" />
-    <Alias Name="WinAdapterAssemblyName" Value="DevExpress.ExpressApp.EasyTest.WinAdapter.v19.1, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Alias Name="WinAdapterAssemblyName" Value="DevExpress.ExpressApp.EasyTest.WinAdapter.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Alias Name="WinAppBin" Value="[ConfigPath]\..\..\LogXExplorer.Win\Bin\EasyTest" />
-    <Alias Name="WebAdapterAssemblyName" Value="DevExpress.ExpressApp.EasyTest.WebAdapter.v19.1, Version=19.1.5.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Alias Name="WebAdapterAssemblyName" Value="DevExpress.ExpressApp.EasyTest.WebAdapter.v18.2, Version=18.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Alias Name="WebAppBin" Value="[ConfigPath]\..\..\LogXExplorer.Web" />
   </Aliases>
 </Options>

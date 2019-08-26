@@ -27,9 +27,8 @@ namespace LogXExplorer.ApplicationServer.opc
         private static readonly ILog log = log4net.LogManager.GetLogger(typeof(OPCClient));
 
         // Változók
-        private IPLCHandler plcHandler = null;
-        //private UAClientHelperAPI myClientHelperAPI;
-        //private Opc.Ua.Client.Session opcSession;
+        private UAClientHelperAPI myClientHelperAPI;
+        private Opc.Ua.Client.Session opcSession;
         private int iocpkSzama = 0;
         
         //iocpid + "_in", iocpid + "_out"
@@ -70,24 +69,47 @@ namespace LogXExplorer.ApplicationServer.opc
         {
             try
             {
-                //plcHandler = new PLCHandler();
-                plcHandler = new FakePLC();
-                plcHandler.init(this.endpointUrl, this.opcuser, this.opcpwd);
+/*                
+                log.Debug
+                log.Info
+                log.Error
+                log.Fatal
+*/
 
-                //load jobs from database
-                loadJobsFromDb();
+                myClientHelperAPI = new UAClientHelperAPI();
+                EndpointDescription mySelectedEndpoint = null;
+                log.Info("Start OPC connection...");
+                //mySelectedEndpoint = CreateEndpointDescription(endpointUrl, secPolicy, MessageSecurityMode.None);
+                mySelectedEndpoint = getEndpointDescription(endpointUrl);
+                if (opcSession == null && mySelectedEndpoint != null)
+                {
+                    myClientHelperAPI.KeepAliveNotification += new Opc.Ua.Client.KeepAliveEventHandler(plcKeepAliveEventHandler);
+                    //myClientHelperAPI.CertificateValidationNotification += new CertificateValidationEventHandler(Notification_ServerCertificate);
 
-                //Új szál indítása
-                this.plcMaxQSize = int.Parse(ConfigurationManager.AppSettings["plc_max_q_size"]);
-                this.sleepMillis = int.Parse(ConfigurationManager.AppSettings["thread_sleepmillis"]);
-                this.isRunning = true;
-                this.mainThread = new Thread(this.Ciklus);
-                this.mainThread.Start();
+                    //Call connect
+                    myClientHelperAPI.Connect(mySelectedEndpoint, opcuser.Length > 0, opcuser, opcpwd);
+                    //myClientHelperAPI.Connect(mySelectedEndpoint.EndpointUrl, mySelectedEndpoint.SecurityPolicyUri, MessageSecurityMode.None, false, null, null);
+                    opcSession = myClientHelperAPI.Session;
+                    log.Info("OPC connect successfull");
+                    
+
+                    //load jobs from database
+                    loadJobsFromDb();
+
+                    //Új szál indítása
+                    this.plcMaxQSize = int.Parse(ConfigurationManager.AppSettings["plc_max_q_size"]);
+                    this.sleepMillis = int.Parse(ConfigurationManager.AppSettings["thread_sleepmillis"]);
+                    this.isRunning = true;
+                    this.mainThread = new Thread(this.Ciklus);
+                    this.mainThread.Start();
+                    
+                }
              
             }
-            catch (Exception exc)
+            catch (Exception exp)
             {
-                log.Error("Error in OPCClient.init()", exc);
+                log.Info("OPC not connected" + exp);
+                
             }
         }
       
@@ -98,7 +120,13 @@ namespace LogXExplorer.ApplicationServer.opc
             try
             {
                 this.isRunning = false;
-                plcHandler.destroy();
+                if (opcSession != null)
+                {
+                    //Call connect
+                    myClientHelperAPI.Disconnect();
+                    opcSession = null;
+                    log.Info("OPC disconnect successfull");
+                }
             }
             catch (Exception exp)
             {
@@ -106,6 +134,39 @@ namespace LogXExplorer.ApplicationServer.opc
             }
            
         }
+        #endregion
+
+        #region Endpoint
+        //private EndpointDescription CreateEndpointDescription(string url, string secPolicy, MessageSecurityMode msgSecMode)
+        //{
+        //    // create the endpoint description.
+        //    EndpointDescription endpointDescription = new EndpointDescription();
+
+        //    // submit the url of the endopoint
+        //    endpointDescription.EndpointUrl = url;
+
+        //    // specify the security policy to use.
+        //    endpointDescription.SecurityPolicyUri = secPolicy;
+        //    endpointDescription.SecurityMode = msgSecMode;
+        //    // specify the transport profile.
+        //    endpointDescription.TransportProfileUri = Profiles.UaTcpTransport;
+        //    return endpointDescription;
+        //}
+
+        //url="opc.tcp://192.168.0.15:4840"
+        private EndpointDescription getEndpointDescription(string url)
+        {
+            EndpointDescription ret = null;
+            EndpointDescriptionCollection endpoints = myClientHelperAPI.GetEndpoints(url);
+            if (endpoints != null && endpoints.Count > 0) {
+                ret = endpoints[0];
+            }
+            return ret;
+        }
+
+
+
+
         #endregion
 
         private void loadJobsFromDb()
@@ -148,12 +209,13 @@ namespace LogXExplorer.ApplicationServer.opc
         {
             while (this.isRunning)
             {
+                Boolean wasProcessed = false;
                 //1. get status from PLC
-                Boolean wasProcessed = processPLCEvents();
+                wasProcessed = wasProcessed || processPLCEvents();
 
                 //2. lekérdezzük a plc q méretét
                 int plcQSize = queryPLCQueueSize();
-                log.Debug("PLC Q SIZE: " + plcQSize);
+System.Console.WriteLine("plcQSize: " + plcQSize);
                 if ((plcQSize > 0 ) && (plcQSize  < plcMaxQSize)) {
 
                     //3. process next job
@@ -163,12 +225,10 @@ namespace LogXExplorer.ApplicationServer.opc
 
                 if (!wasProcessed)
                 {
-                    //nem volt tennivaló, többet vár 1sec
                     Thread.Sleep(this.sleepMillis);
                 }
                 else {
-                    //volt tennivaló, kicsit alszik
-                    Thread.Sleep(100);
+                    Thread.Sleep(1000);
                 }
             }
         }
@@ -176,7 +236,7 @@ namespace LogXExplorer.ApplicationServer.opc
 
         private int queryPLCQueueSize() {
             int ret = -1;
-            List<String> retVals = plcHandler.ReadValues(PLCTransaction.getOneInputParam(opcQueryQSize));
+            List<String> retVals = myClientHelperAPI.ReadValues(PLCTransaction.getOneInputParam(opcQueryQSize));
             if (retVals.Count > 0) {
                 String firstVal = retVals.ElementAt<String>(0);
                 ret = int.Parse(firstVal);
@@ -225,7 +285,7 @@ namespace LogXExplorer.ApplicationServer.opc
                 if (hasJob && (job != null))
                 {
                     //send job to plc
-                    plcHandler.sendPLCTransaction(job);
+                    sendPLCTransaction(job);
                 }
                 else {
                     //ez nem kell, limitálatlan méretű q-k kellenek!!!
@@ -335,18 +395,65 @@ namespace LogXExplorer.ApplicationServer.opc
 
 
         #region Adatok küldése 
+        public void sendPLCTransaction(TransportOrder transportOrder)
+        {
+            List<string[]> inputData = PLCTransaction.getTransactionData(transportOrder);
+            IList<object> outputValues = myClientHelperAPI.CallMethod(opcSetNodId, opcSetObjId, inputData);
+        }
 
-/*
+
             public void SetTransportOrderORIG(int tpoId)
         {
             Session session = new Session();
             TransportOrder transportOrder = session.FindObject<TransportOrder>(CriteriaOperator.Parse("[TpId] = ?", tpoId));
             List<string[]> inputData = new List<string[]>();
 
-            IList<object> outputValues = plcHandler.CallMethod(opcSetNodId, opcSetObjId, inputData);
+            //string msgID = transportOrder.TpId.ToString();
+            //string msgCtrhidCurrdSumd = Convert.ToString(JoinTogetherTransaction(CommonTrHeader.Oid, CommonDetail.Oid, CommonTrHeader.CommonTrDetails.Count));
+            //string msgTypeAccPrTime = Convert.ToString(JoinTogetherTypeAccPrTime(0, Type, LC.LeglassabbGyorsulasVissz(6), 1, 0));
+            //string msgLoadCarrier = Convert.ToString(LC.Oid);
+            //string msgSource;
+            //string msgSourceLHU1;
+            //string msgSourceLHU2;
+            //string msgTarget;
+            //string msgTargetLHU1;
+            //string msgTargetLHU2;
+
+
+            //if (transportOrder.SourceLocation != null)
+            //{
+            //    //msgSource = Convert.ToString(JoinTogetherSource(SourceLocation.Block, SourceLocation.Row, SourceLocation.Column));
+            //    //msgSourceLHU1 = Convert.ToString(JoinTogetherLhu(SourceLocation.LHU1X, SourceLocation.LHU1Y));
+            //    //msgSourceLHU2 = Convert.ToString(JoinTogetherLhu(SourceLocation.LHU2X, SourceLocation.LHU2Y));
+            //}
+            //else
+            //{
+            //    msgSource = "0";
+            //    msgSourceLHU1 = "0";
+            //    msgSourceLHU2 = "0";
+            //}
+
+            //if (transportOrder.TargetLocation != null)
+            //{
+            //    msgTarget = Convert.ToString(JoinTogetherTarget(0, TargetLocation.Block, TargetLocation.Row, TargetLocation.Column, 0, 0));
+            //    msgTargetLHU1 = Convert.ToString(JoinTogetherLhu(0, 0));
+            //    msgTargetLHU2 = Convert.ToString(JoinTogetherLhu(0, 0));
+            //}
+            //else
+            //{
+            //    msgTarget = Convert.ToString(JoinTogetherTarget(0, 0, 0, 0, 0, TargetTag));
+            //    msgTargetLHU1 = "0";
+            //    msgTargetLHU2 = "0";
+            //}
+
+
+
+            //TODO Súly kitöltése
+           // msgWeight = "0";
+        
+            IList<object> outputValues = myClientHelperAPI.CallMethod(opcSetNodId, opcSetObjId, inputData);
             //transportOrder.DecomposeTransportMessage(outputValues);
         }
-*/
         #endregion
 
         #region Komissióponthoz tartozó RFID tag leolvasása
@@ -369,20 +476,21 @@ namespace LogXExplorer.ApplicationServer.opc
         #endregion
 
         #region Van Státuszváltozás Tag figyelése
-        private Int64 ChangedTpoID(string OpcTagId)
+        public Int64 ChangedTpoID(string OpcTagId)
         {
             Int64 returnTransportID = 0;
             string output = "";
             List<String> values = new List<String>();
             try
             {
-                values = plcHandler.ReadValues(PLCTransaction.getOneInputParam(opcTransportStatusChanges));
+                values = myClientHelperAPI.ReadValues(PLCTransaction.getOneInputParam(opcTransportStatusChanges));
                 output = values.ElementAt<String>(0);
                 returnTransportID = Convert.ToInt64(output);
             }
             catch (Exception e)
             {
-                log.Error(e);
+                Console.WriteLine(e);
+                //log.Error(exp);
             }
             return returnTransportID;
         }
@@ -397,7 +505,7 @@ namespace LogXExplorer.ApplicationServer.opc
 
             try
             {
-                IList<object> outputDel = plcHandler.CallMethod(opcDelNodId, opcDelObjId, input);
+                IList<object> outputDel = myClientHelperAPI.CallMethod(opcDelNodId, opcDelObjId, input);
             }
             catch (Exception exp)
             {
@@ -426,6 +534,31 @@ namespace LogXExplorer.ApplicationServer.opc
         //    }
         // }
         #endregion
+
+            private void plcKeepAliveEventHandler(Opc.Ua.Client.Session sender, Opc.Ua.Client.KeepAliveEventArgs e)
+            {
+//Console.WriteLine("plcKeepAliveEventHandler " + e);
+                try
+                {
+                    // check for events from discarded sessions.
+                    if (!Object.ReferenceEquals(sender, opcSession))
+                    {
+                        return;
+                    }
+
+                    // check for disconnected session.
+                    if (!ServiceResult.IsGood(e.Status))
+                    {
+                        // try reconnecting using the existing session state
+                        opcSession.Reconnect();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
+            }
+
 
         }
     }

@@ -28,7 +28,7 @@ namespace LogXExplorer.Module.comm
 
         //Bizonylat státusz állítás
         [OperationContract]
-        void ChangeCommonTrHeaderStatus(Int32 CtrhID, Int32 status);
+        bool ChangeCommonTrHeaderStatus(Int32 CtrhID, Int32 status);
 
         
 
@@ -42,7 +42,7 @@ namespace LogXExplorer.Module.comm
 
 
         [OperationContract]
-        void CallLoadCarriers(int ctrH, string commonType, int iocp, int weight, int lcTypeHeight);
+        void CallLoadCarriers(int ctrH, string commonType, int iocp, int weight);
 
 
         [OperationContract]

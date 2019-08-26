@@ -445,6 +445,19 @@
         </LayoutGroup>
       </Layout>
     </DetailView>
+    <DetailView Id="CommonTrType_DetailView">
+      <Layout>
+        <LayoutGroup Id="Main">
+          <LayoutGroup Id="SimpleEditors">
+            <LayoutGroup Id="CommonTrType">
+              <LayoutGroup Id="CommonTrType_col2" Caption="CommonTrType_col2" />
+            </LayoutGroup>
+            <LayoutGroup Id="XPObject" Caption="Oid" />
+          </LayoutGroup>
+          <LayoutGroup Id="Sorszams_Group" Caption="Sorszámok" />
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
     <DetailView Id="Customer_DetailView">
       <Layout>
         <LayoutGroup Id="Main">
@@ -540,7 +553,6 @@
     <ListView Id="Iocp_TransportOrders_ListView">
       <Columns>
         <ColumnInfo Id="TpId" Caption="Id" />
-        <ColumnInfo Id="InOut" Caption="Irány" />
         <ColumnInfo Id="LC.BarCode" DisplayFormat="{0:D}" EditMask="D" />
         <ColumnInfo Id="msgStatus" Caption="Státusz" />
       </Columns>

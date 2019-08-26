@@ -66,6 +66,8 @@ namespace LogXExplorer.Module.Controllers
             MessageBox.Show("aaa");
         }
 
+
+
         #region Ügylet választása
         
         //Választóablak megnyítása
@@ -86,8 +88,6 @@ namespace LogXExplorer.Module.Controllers
         //Kiválasztott ügyleten történő események
         private void LogX_CallCtrh_Execute(object sender, PopupWindowShowActionExecuteEventArgs e)
         {
-
-            int status = 15;
             foreach (CommonTrHeader ctrh in e.PopupWindowViewSelectedObjects)
             {
                 if (ctrh != null)
@@ -95,45 +95,42 @@ namespace LogXExplorer.Module.Controllers
                     CommonTrHeader selectedItem = View.ObjectSpace.FindObject<CommonTrHeader>(new BinaryOperator("Oid", ctrh.Oid));
                     if (selectedItem != null)
                     {
-                        LogXPrivateServiceClientProxy proxy = new LogXPrivateServiceClientProxy();
-                        proxy.ChangeCommonTrHeaderStatus(selectedItem.Oid,status);
-
-                        Iocp iocp = (Iocp)View.CurrentObject;
-                        iocp.ActiveCTrH = selectedItem;
-
-                        switch (selectedItem.CommonType.Type)
+                        try
                         {
-                            case "BETAR":
-                                {
-                                   proxy.LcNumPreCalculation(selectedItem.Oid);
+                            Iocp iocp = (Iocp)View.CurrentObject;
+                            LogXPrivateServiceClientProxy proxy = new LogXPrivateServiceClientProxy();
+                            bool siker = proxy.ChangeCommonTrHeaderStatus(selectedItem.Oid, 15);
+                            if (siker)
+                            {
+                                iocp.ActiveCTrH = selectedItem;
+                            }
+                            
 
-                                    break;
-                                }
-                            case "KITAR":
+                            if (selectedItem.CommonType.Type == "BETAR")
+                            {
+                                try
                                 {
-                                    break;
+                                    proxy.LcNumPreCalculation(selectedItem.Oid);
                                 }
-                            case "KOMISSIO":
+                                catch
                                 {
+                                    throw;
+                                }
+                                finally
+                                {
+                                    ObjectSpace.CommitChanges();
+                                    ObjectSpace.Refresh();
+                                }
+                            }
 
-                                    break;
-                                }
-                            case "LELTAR":
-                                {
-
-                                    break;
-                                }
-                            default:
-                                {
-                                    break;
-                                }
                         }
-                        ObjectSpace.CommitChanges();
+                        catch (Exception exp)
+                        {
+                            MessageBox.Show(exp.Message);
+                        }
                     }
                 }
             }
-            ObjectSpace.CommitChanges();
-            ObjectSpace.Refresh();
         }
         #endregion
 
@@ -170,9 +167,8 @@ namespace LogXExplorer.Module.Controllers
             cTrD = iocp.ActiveCTrH.CommonTrDetails;
 
             LogXPrivateServiceClientProxy proxy = new LogXPrivateServiceClientProxy();
-            proxy.CallLoadCarriers(iocp.ActiveCTrH.Oid, iocp.ActiveCTrH.CommonType.Type, iocp.Oid, iocp.WeightCurrent,iocp.Qexchange.LcType.Height);
-            iocp.LcCallingOK = true;
-            
+            proxy.CallLoadCarriers(iocp.ActiveCTrH.Oid, iocp.ActiveCTrH.CommonType.Type, iocp.Oid, iocp.WeightCurrent);
+            //iocp.LcCallingOK = true;
             View.Refresh();
         }
 

@@ -22,9 +22,9 @@ namespace LogXExplorer.Module.comm
 
 
         //Bizonylat státusz állítás
-        public void ChangeCommonTrHeaderStatus(int CtrhID, int status)
+        public bool ChangeCommonTrHeaderStatus(int CtrhID, int status)
         {
-            base.Channel.ChangeCommonTrHeaderStatus(CtrhID, status);
+            return base.Channel.ChangeCommonTrHeaderStatus(CtrhID, status);
         }
 
         [OperationContract]
@@ -51,9 +51,9 @@ namespace LogXExplorer.Module.comm
         {
             return base.Channel.GetNewSorszam(commomnType);
         }
-        public void CallLoadCarriers(int ctrH, string commonType, int iocp, int weight, int lcTypeHeight)
+        public void CallLoadCarriers(int ctrH, string commonType, int iocp, int weight)
         {
-           base.Channel.CallLoadCarriers(ctrH, commonType, iocp, weight, lcTypeHeight);
+           base.Channel.CallLoadCarriers(ctrH, commonType, iocp, weight);
         }
 
 

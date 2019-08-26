@@ -11,6 +11,6 @@ namespace LogXExplorer.Module.Win
         [ImageName("State_Priority_Normal")]
         Használható_Készlettel = 2,
         [ImageName("State_Priority_High")]
-        Foglalt =   0 
+        Foglalt = 3 
     }
 }

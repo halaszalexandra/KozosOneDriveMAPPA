@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <Views Id="Views">
+    <ListView Id="Iocp_TransportOrders_ListView">
+      <Columns Id="Columns">
+        <ColumnInfo Id="InOut" Caption="Irány" />
+      </Columns>
+    </ListView>
+  </Views>
+</Application>

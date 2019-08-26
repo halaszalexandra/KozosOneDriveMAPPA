@@ -11,14 +11,14 @@ namespace LogXExplorer.ApplicationServer.ws
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class LogXPrivateServices : ILogXPrivateServices
     {
-        public void CallLoadCarriers(int ctrH, string commonType, int iocp, int weight, int lcTypeHeight)
+        public void CallLoadCarriers(int ctrH, string commonType, int iocp, int weight)
         {
-            LogXServer.getInstance().CallLoadCarriers(ctrH, commonType, iocp, weight, lcTypeHeight);
+            LogXServer.getInstance().CallLoadCarriers(ctrH, commonType, iocp, weight);
         }
 
-        public void ChangeCommonTrHeaderStatus(int CtrhID, int status)
+        public bool ChangeCommonTrHeaderStatus(int CtrhID, int status)
         {
-            LogXServer.getInstance().ChangeCommonTrHeaderStatus(CtrhID, status);
+            return LogXServer.getInstance().ChangeCommonTrHeaderStatus(CtrhID, status);
         }
 
         public void CreateStockHistory(int direction, int LoadCarrierId, int ProductId, int ctrDId, double quantity, string section, int type)

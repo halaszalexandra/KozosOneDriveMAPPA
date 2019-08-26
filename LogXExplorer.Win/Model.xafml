@@ -530,6 +530,36 @@
         <ColumnInfo Id="Status" Index="5" Width="116" PropertyEditorType="LogXExplorer.Module.Win.CtrhStatusPropEd" SortIndex="0" SortOrder="Descending" />
       </Columns>
     </ListView>
+    <DetailView Id="CommonTrType_DetailView" AllowEdit="True">
+      <Layout>
+        <LayoutGroup Id="Main" RelativeSize="100">
+          <LayoutGroup Id="SimpleEditors" RelativeSize="100">
+            <LayoutGroup Id="CommonTrType" RelativeSize="100" Direction="Vertical">
+              <LayoutGroup Id="CommonTrType_col1" RelativeSize="100">
+                <LayoutItem Id="Type" RelativeSize="6.8965517241379306" />
+                <LayoutItem Id="DefaultPartner" ViewItem="DefaultPartner" Index="1" RelativeSize="5.0974512743628182" IsNewNode="True" />
+                <LayoutItem Id="Prefix" RelativeSize="5.0974512743628182" Index="2" />
+                <LayoutItem Id="Name" ViewItem="Name" Index="3" RelativeSize="5.0974512743628182" IsNewNode="True" />
+                <LayoutItem Id="DateDepended" RelativeSize="4.7976011994003" Index="4" />
+                <LayoutItem Id="Creatable" ViewItem="Creatable" Index="5" RelativeSize="4.7976011994003" IsNewNode="True" />
+                <SeparatorItem Id="Item1" Index="6" RelativeSize="68.215892053973008" IsNewNode="True" />
+              </LayoutGroup>
+              <LayoutGroup Id="CommonTrType_col2" RelativeSize="47.218453188602439" TextAlignMode="UseParentOptions" Direction="Horizontal" Removed="True">
+                <LayoutItem Id="Creatable" RelativeSize="100" Index="0" Removed="True" />
+                <LayoutItem Id="Name" RelativeSize="6.8965517241379306" Index="0" Removed="True" />
+                <LayoutItem Id="DefaultPartner" RelativeSize="5.6980056980056979" Removed="True" />
+              </LayoutGroup>
+            </LayoutGroup>
+            <LayoutGroup Id="XPObject" RelativeSize="77.333333333333329" Direction="Horizontal" Removed="True">
+              <LayoutItem Id="Oid" RelativeSize="100" Removed="True" />
+            </LayoutGroup>
+          </LayoutGroup>
+          <LayoutGroup Id="Sorszams_Group" RelativeSize="70.4" Removed="True">
+            <LayoutItem Id="Sorszams" Removed="True" />
+          </LayoutGroup>
+        </LayoutGroup>
+      </Layout>
+    </DetailView>
     <ListView Id="CommonTrType_ListView" ShowFindPanel="True" />
     <ListView Id="Customer_AuditTrail_ListView" AllowDelete="False" AllowLink="False" AllowNew="False">
       <Columns>
@@ -901,25 +931,13 @@
         <ColumnInfo Id="CommonTrHeader" Width="143" Index="-1" />
         <ColumnInfo Id="IsSendOpc" Index="-1" />
         <ColumnInfo Id="LC" Index="-1" Width="119" />
-        <ColumnInfo Id="msgCtrhidCurrdSumd" Index="-1" />
-        <ColumnInfo Id="msgID" Index="-1" />
-        <ColumnInfo Id="msgLoadCarrier" Index="-1" />
         <ColumnInfo Id="msgLocation" Index="-1" />
-        <ColumnInfo Id="msgSource" Index="-1" />
-        <ColumnInfo Id="msgSourceLHU1" Index="-1" />
-        <ColumnInfo Id="msgSourceLHU2" Index="-1" />
-        <ColumnInfo Id="msgTarget" Index="-1" />
-        <ColumnInfo Id="msgTargetLHU1" Index="-1" />
-        <ColumnInfo Id="msgTargetLHU2" Index="-1" />
-        <ColumnInfo Id="msgTypeAccPrTime" Index="-1" />
-        <ColumnInfo Id="msgWeight" Index="-1" />
         <ColumnInfo Id="RecordingDate" Index="-1" />
         <ColumnInfo Id="SourceLocation" Index="-1" />
         <ColumnInfo Id="TargetLocation" Index="-1" />
         <ColumnInfo Id="TargetTag" Index="-1" />
         <ColumnInfo Id="TpId" Index="-1" SortIndex="0" SortOrder="Ascending" Width="37" />
         <ColumnInfo Id="Type" Index="-1" />
-        <ColumnInfo Id="InOut" Index="0" Width="37" PropertyEditorType="LogXExplorer.Module.Win.TransportInOutPropEd" />
         <ColumnInfo Id="LC.BarCode" PropertyName="LC.BarCode" Index="1" Width="83" IsNewNode="True" />
         <ColumnInfo Id="msgStatus" Index="2" Width="93" PropertyEditorType="LogXExplorer.Module.Win.TransportStatusPropEd" />
       </Columns>
@@ -927,7 +945,6 @@
     <ListView Id="Iocp_Transports" ClassName="LogXExplorer.Module.BusinessObjects.Database.TransportOrder" AllowNew="False" AllowDelete="False" ShowFindPanel="False" ShowAutoFilterRow="False" IsNewNode="True">
       <Columns IsNewNode="True">
         <ColumnInfo Id="TpId" PropertyName="TpId" Width="34" Index="0" AllowEdit="False" IsNewNode="True" />
-        <ColumnInfo Id="InOut" PropertyName="InOut" Index="1" Width="47" PropertyEditorType="LogXExplorer.Module.Win.TransportInOutPropEd" IsNewNode="True" />
         <ColumnInfo Id="Type" PropertyName="Type" Width="81" Index="2" IsNewNode="True" />
         <ColumnInfo Id="LC.BarCode" PropertyName="LC.BarCode" Index="3" Width="110" AllowEdit="False" IsNewNode="True" />
         <ColumnInfo Id="msgStatus" PropertyName="msgStatus" Index="4" Width="118" PropertyEditorType="LogXExplorer.Module.Win.TransportStatusPropEd" IsNewNode="True" />
@@ -1763,9 +1780,7 @@
         <PropertyEditor Id="CommonTrHeader.Identity" PropertyName="CommonTrHeader.Identity" IsNewNode="True" />
         <PropertyEditor Id="CommonTrHeader.Reference" PropertyName="CommonTrHeader.Reference" IsNewNode="True" />
         <PropertyEditor Id="Iocp.Name" PropertyName="Iocp.Name" IsNewNode="True" />
-        <PropertyEditor Id="msgID" Removed="True" />
         <PropertyEditor Id="msgLocation" Removed="True" />
-        <PropertyEditor Id="msgWeight" Removed="True" />
         <PropertyEditor Id="Oid" PropertyEditorType="DevExpress.ExpressApp.Win.Editors.DefaultPropertyEditor" />
         <PropertyEditor Id="TargetLocation.AbcClass.Code" PropertyName="TargetLocation.AbcClass.Code" IsNewNode="True" />
         <PropertyEditor Id="TargetLocation.Aisle.Name" PropertyName="TargetLocation.Aisle.Name" IsNewNode="True" />
@@ -1797,9 +1812,6 @@
                 <LayoutItem Id="LC" Index="7" RelativeSize="8.4112149532710276" />
                 <LayoutItem Id="Type" Index="8" RelativeSize="8.09968847352025" />
                 <LayoutItem Id="SourceLocation" Index="9" RelativeSize="8.4112149532710276" />
-                <LayoutItem Id="msgID" Index="10" RelativeSize="7.6923076923076925" Removed="True" />
-                <LayoutItem Id="TargetLocation" Index="10" RelativeSize="8.4112149532710276" />
-                <LayoutItem Id="TargetTag" Index="11" RelativeSize="11.214953271028037" />
               </LayoutGroup>
               <LayoutGroup Id="TransportOrder_col2" RelativeSize="35.257410296411855" Direction="Horizontal" Removed="True">
                 <LayoutItem Id="msgLoadCarrier" RelativeSize="10" Index="0" Removed="True" />
@@ -1845,19 +1857,8 @@
     <ListView Id="TransportOrder_ListView" AllowNew="False" AllowDelete="False" ShowFindPanel="True" ShowAutoFilterRow="True" ImageName="BO_PivotChart">
       <Columns>
         <ColumnInfo Id="CommonTrHeader" Width="192" SortIndex="-1" SortOrder="None" Index="-1" />
-        <ColumnInfo Id="msgCtrhidCurrdSumd" Index="-1" />
-        <ColumnInfo Id="msgID" Index="-1" />
-        <ColumnInfo Id="msgLoadCarrier" Index="-1" />
         <ColumnInfo Id="msgLocation" Index="-1" />
-        <ColumnInfo Id="msgSource" Index="-1" />
-        <ColumnInfo Id="msgSourceLHU1" Index="-1" />
-        <ColumnInfo Id="msgSourceLHU2" Index="-1" />
         <ColumnInfo Id="msgStatus" Index="-1" />
-        <ColumnInfo Id="msgTarget" Index="-1" />
-        <ColumnInfo Id="msgTargetLHU1" Index="-1" />
-        <ColumnInfo Id="msgTargetLHU2" Index="-1" />
-        <ColumnInfo Id="msgTypeAccPrTime" Index="-1" />
-        <ColumnInfo Id="msgWeight" Index="-1" />
         <ColumnInfo Id="Iocp" Width="91" />
         <ColumnInfo Id="CommonTrHeader.Reference" PropertyName="CommonTrHeader.Reference" Index="2" Width="94" IsNewNode="True" />
         <ColumnInfo Id="CommonTrHeader.Identity" PropertyName="CommonTrHeader.Identity" Index="3" Width="94" SortIndex="0" SortOrder="Ascending" IsNewNode="True" />
