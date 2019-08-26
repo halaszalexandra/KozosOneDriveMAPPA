@@ -25,6 +25,7 @@ namespace LogXExplorer.Win {
 #endif
 
             // változas sza
+            //második változas szandi
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             EditModelPermission.AlwaysGranted = System.Diagnostics.Debugger.IsAttached;
